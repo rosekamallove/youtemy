@@ -10,7 +10,7 @@ function Footer() {
           <i class="far fa-heart"></i>
         </span>{" "}
         by <a href="https://github.com/rosekamallove">Rosek</a> &{" "}
-        <a href="https://github.com/ritesh005">Ritesh</a>
+        <a href="https://github.com/Ritesh005">Ritesh</a>
       </p>
     </div>
   );

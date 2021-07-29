@@ -25,9 +25,9 @@ function Navbar() {
         </ul>
       </nav>
       <a href="#">
-        <button>
-          <i class="fas fa-cog"></i>
-        </button>
+        <div className="settings-icon">
+          <i class="fas fa-cog "></i>
+        </div>
       </a>
     </div>
   );
