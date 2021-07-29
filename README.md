@@ -1,6 +1,11 @@
 # Youtemy
 Track your YouTube learning with progress bars and pies, avoiding the infamous _Tutorial Hell_
 
+_Start Dev Server_
+
+    npm i
+    npm start
+
 ## Overview
 
 - ### Pages:
