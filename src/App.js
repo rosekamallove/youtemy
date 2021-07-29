@@ -1,9 +1,11 @@
 import React from "react";
+import Navbar from "./Components/Navbar/Navbar";
+import "./index.css";
 
 const App = () => {
   return (
     <>
-      <h1> Youtemy</h1>
+      <Navbar />
     </>
   );
 };

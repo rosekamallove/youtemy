@@ -1,15 +1,34 @@
 import React from "react";
+import logo from "./Logo.png";
+import "./Navbar.css";
 
 function Navbar() {
   return (
-    <div>
-      <img src="/" alt="logo" className="nav-logo" />
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+    <div className="header">
+      <img class="logo" src={logo} alt="logo" />
+      <nav>
+        <ul className="nav__links">
+          <li>
+            <a href="#" class="active">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#">Courses</a>
+          </li>
+          <li>
+            <a href="#">Explore</a>
+          </li>
+          <li>
+            <a href="#">Bookmarks</a>
+          </li>
+        </ul>
+      </nav>
+      <a href="#">
+        <button>
+          <i class="fas fa-cog"></i>
+        </button>
+      </a>
     </div>
   );
 }
