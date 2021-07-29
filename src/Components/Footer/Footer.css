@@ -1,0 +1,12 @@
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.red {
+  color: #ff0000;
+}
