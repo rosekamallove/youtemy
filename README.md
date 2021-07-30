@@ -58,6 +58,6 @@ _Start Dev Server_
 **Course Curriculam:**
 ![Player](protoypes/Player.png)
 
-** Weekly Progress via Trello Board**
+**Weekly Progress via Trello Board:**
 ![Week1](TrelloProgress/Week1Progress.png)
 
