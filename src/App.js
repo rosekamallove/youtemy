@@ -4,8 +4,6 @@ import "firebase/firestore";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./App.css";
-import Footer from "./Components/Footer/Footer";
-import Navbar from "./Components/Navbar/Navbar";
 import "./index.css";
 import Dashboard from "./Pages/Dashboard";
 
@@ -24,10 +22,8 @@ function App() {
   const [user] = useAuthState(auth);
   return (
     <>
-      <Navbar />
       {user ? <Dashboard /> : <LandingPage />}
       <SignOut />
-      <Footer />
     </>
   );
 }
