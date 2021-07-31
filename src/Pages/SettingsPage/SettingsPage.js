@@ -1,7 +1,7 @@
 import React from "react";
-import "../index.css";
+import "./SettingsPage.css";
 
-export default function CoursesPage() {
+export default function SettingsPage() {
   return (
     <div class="very-center">
       <h1>This is the settings page</h1>

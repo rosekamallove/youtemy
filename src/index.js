@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import App from "./App";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
-import BookmarksPage from "./Pages/BookmarksPage";
-import CoursesPage from "./Pages/CoursesPage";
-import ExplorePage from "./Pages/ExplorePage";
-import SettingsPage from "./Pages/SettingsPage";
+import BookmarksPage from "./Pages/BookmarksPage/BookmarksPage";
+import ExplorePage from "./Pages/ExplorePage/ExplorePage";
+import SettingsPage from "./Pages/SettingsPage/SettingsPage";
+import CoursesPage from "./Pages/CoursesPage/CoursesPage";
 
 const Routing = () => {
   return (

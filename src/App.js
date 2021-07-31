@@ -5,7 +5,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./App.css";
 import "./index.css";
-import Dashboard from "./Pages/Dashboard";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_MM_KEY,

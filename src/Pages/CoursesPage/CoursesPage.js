@@ -1,5 +1,5 @@
 import React from "react";
-import "../index.css";
+import "./CoursesPage.css";
 
 export default function CoursesPage() {
   return (
