@@ -7,7 +7,7 @@ function Footer() {
       <p>
         Made with{" "}
         <span className="red">
-          <i class="far fa-heart"></i>
+          <i className="far fa-heart"></i>
         </span>{" "}
         by <a href="https://github.com/rosekamallove">Rosek</a> &{" "}
         <a href="https://github.com/Ritesh005">Ritesh</a>

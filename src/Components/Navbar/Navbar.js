@@ -6,7 +6,7 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <div className="header">
-      <img class="logo" src={logo} alt="logo" />
+      <img className="logo" src={logo} alt="logo" />
       <nav>
         <ul className="nav__links">
           <li>
@@ -25,7 +25,7 @@ function Navbar() {
       </nav>
       <Link to="/settings">
         <div className="settings-icon">
-          <i class="fas fa-cog "></i>
+          <i className="fas fa-cog "></i>
         </div>
       </Link>
     </div>

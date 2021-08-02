@@ -1,9 +1,10 @@
 import React from "react";
+import VideoPlayer from "../VideoPlayer/VideoPlayer";
 
 export default function Dashboard() {
   return (
     <div>
-      <h1>Dahsboard</h1>
+      <VideoPlayer />
     </div>
   );
 }

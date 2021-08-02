@@ -3,7 +3,7 @@ import "./BookmarksPage.css";
 
 export default function BookmarksPage() {
   return (
-    <div class="very-center">
+    <div className="very-center">
       <h1>This is the Bookmarks page</h1>
     </div>
   );
