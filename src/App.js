@@ -3,8 +3,8 @@ import "firebase/auth";
 import "firebase/firestore";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "./App.css";
-import "./index.css";
+import "./css/App.css";
+import "./css/index.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
 firebase.initializeApp({
