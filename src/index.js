@@ -8,6 +8,7 @@ import BookmarksPage from "./Pages/BookmarksPage/BookmarksPage";
 import ExplorePage from "./Pages/ExplorePage/ExplorePage";
 import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import CoursesPage from "./Pages/CoursesPage/CoursesPage";
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 const Routing = () => {
   return (
