@@ -1,12 +1,31 @@
-* {
+*{
     margin: 0;
     padding: 0;
   }
   
   .very-center {
-    padding-top: 100px;
     display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+  }
+  .heading{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    text-shadow: 2px 2px 2px #CCCCCC;
+    margin: -90px 0 40px 0px;
+  }
+  .video-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     align-content: center;
     justify-content: center;
   }
-  
+
+  .video{
+  max-height: 50%;
+  max-width: 30%;
+  margin: 50px 10px 140px 10px;
+  }
