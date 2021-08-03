@@ -34,3 +34,8 @@
   margin-right: 5px;
   margin-left: 0px;
 }
+react-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
