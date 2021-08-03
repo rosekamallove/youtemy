@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       {user ? <Dashboard /> : <LandingPage />}
-      <SignOut />
+      {/* <SignOut /> */}
     </>
   );
 }
@@ -53,7 +53,7 @@ function LandingPage() {
           Your chance to stop wasting time and track your YouTube Learning
         </h2>{" "}
         <button className="sign-in" onClick={signInWithGoogle}>
-          SignIn with Google <i class="fab fa-google"></i>
+          SignIn with Google <i className="fab fa-google"></i>
         </button>
       </div>
     </div>

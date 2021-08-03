@@ -5,9 +5,9 @@ import App from "./App";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import BookmarksPage from "./Pages/BookmarksPage/BookmarksPage";
+import CoursesPage from "./Pages/CoursesPage/CoursesPage";
 import ExplorePage from "./Pages/ExplorePage/ExplorePage";
 import SettingsPage from "./Pages/SettingsPage/SettingsPage";
-import CoursesPage from "./Pages/CoursesPage/CoursesPage";
 
 const Routing = () => {
   return (
