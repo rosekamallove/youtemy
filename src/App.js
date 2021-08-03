@@ -21,10 +21,10 @@ const auth = firebase.auth();
 function App() {
   const [user] = useAuthState(auth);
   return (
-    <>
+    <div>
       {user ? <Dashboard /> : <LandingPage />}
       {/* <SignOut /> */}
-    </>
+    </div>
   );
 }
 

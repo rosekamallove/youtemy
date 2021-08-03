@@ -1,11 +1,21 @@
+import { Layout, Menu, Typography } from "antd";
+import "antd/dist/antd.css";
+import Checkbox from "antd/lib/checkbox/Checkbox";
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 import "./VideoPlayer.css";
 
+const { Header, Sider, Content } = Layout;
+const { Title } = Typography;
+
 const VideoPlayer = ({ playlistID, userProgress }) => {
-  const [playlist, setPlaylist] = useState({
+  const [state, setState] = useState({
+    menuCollapsed: 0,
     firstVideo: "",
+    currentVideo: "",
     playlistArray: [],
   });
+
   useEffect(() => {
     const API_KEY = "AIzaSyBR3F9lodP7zQ3wiY3FY0dHS_8edP5j6NM";
     playlistID =
@@ -26,31 +36,86 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     Object.keys(params).forEach((key) =>
       url.searchParams.append(key, params[key])
     );
+
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setPlaylist({
+        setState({
+          ...state,
           firstVideo: data.items[0].snippet.resourceId.videoId,
           playlistArray: data.items,
         });
       })
       .catch((err) => console.log(err));
   }, []);
+
+  /* Utility */
+  const returnIframMarkup = (videoId) => {
+    let videoURL = `https://www.youtube.com/embed/${videoId}`;
+    return (
+      <ReactPlayer
+        url={videoURL}
+        className="react-player"
+        width="100%"
+        height="80%"
+      ></ReactPlayer>
+    );
+  };
+  const handleMenuCollapse = (collapsed) => {
+    setState({
+      ...state,
+      menuCollapsed: collapsed,
+    });
+  };
+
+  const handleMenuItemClick = (videoId) => {
+    returnIframMarkup(videoId);
+  };
+
   return (
     <div>
-      {playlist.playlistArray.map((item) => (
-        <article className="item" data-key={item.snippet.resourceId.videoId}>
-          <img
-            src={item.snippet.thumbnails.medium.url}
-            alt=""
-            className="thumb"
-          />
-          <div className="details">
-            <h4>{item.snippet.title}</h4>
-            <p>{item.snippet.description.substring(0, 100)}</p>
-          </div>
-        </article>
-      ))}
+      <Layout>
+        <Sider
+          collapsible
+          onCollapse={handleMenuCollapse}
+          collapsed={state.menuCollapsed}
+          width={400}
+          collapsedWidth={150}
+        >
+          <Menu
+            theme="light"
+            mode="inline"
+            defaultSelectedKeys={["1"]}
+            className="menu"
+          >
+            <Title level={4} className="playlist-title">
+              Videos
+            </Title>
+            {state.playlistArray.map((item) => (
+              <Menu.Item
+                key={item.snippet.resourceId.videoId}
+                className="menu-item"
+                onClick={handleMenuItemClick(item.snippet.resourceId.videoId)}
+              >
+                <Checkbox className="menu-checkbox"></Checkbox>
+                {item.snippet.title}
+              </Menu.Item>
+            ))}
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Content
+            className="site-layout-background"
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              minHeight: 280,
+            }}
+          >
+            {returnIframMarkup(state.currentVideo || state.firstVideo)}
+          </Content>
+        </Layout>
+      </Layout>
     </div>
   );
 };
