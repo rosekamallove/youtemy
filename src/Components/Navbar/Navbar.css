@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+li,
+a,
+button {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  font-size: 17px;
+  text-decoration: none;
+  color: #858484;
+}
+
+.settings-icon {
+  padding-right: 15px;
+}
+
+.active {
+  color: #000;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0px;
+  padding-right: 2px;
+}
+.logo {
+  cursor: pointer;
+  width: 110px;
+}
+
+.nav__links {
+  list-style: none;
+}
+
+.nav__links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav__links li a {
+  transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover {
+  color: #000;
+}
+
+button {
+  padding: 9px 25px;
+  border: none;
+  background-color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+button:hover {
+  color: #000;
+}
