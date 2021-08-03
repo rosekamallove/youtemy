@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./VideoPlayer.css";
 
-export default function VideoPlayer({ playlistID, userProgress }) {
+const VideoPlayer = ({ playlistID, userProgress }) => {
+  const [playlist, setPlaylist] = useState({
+    firstVideo: "",
+    playlistArray: [],
+  });
   useEffect(() => {
     const API_KEY = "AIzaSyBR3F9lodP7zQ3wiY3FY0dHS_8edP5j6NM";
     playlistID =
@@ -24,9 +28,15 @@ export default function VideoPlayer({ playlistID, userProgress }) {
     );
     fetch(url)
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        setPlaylist({
+          firstVideo: data.items[0].snippet.resourceId.videoId,
+          playlistArray: data.items,
+        });
+      })
       .catch((err) => console.log(err));
   }, []);
-
   return <div></div>;
-}
+};
+
+export default VideoPlayer;
