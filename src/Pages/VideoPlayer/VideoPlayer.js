@@ -36,7 +36,23 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       })
       .catch((err) => console.log(err));
   }, []);
-  return <div></div>;
+  return (
+    <div>
+      {playlist.playlistArray.map((item) => (
+        <article className="item" data-key={item.snippet.resourceId.videoId}>
+          <img
+            src={item.snippet.thumbnails.medium.url}
+            alt=""
+            className="thumb"
+          />
+          <div className="details">
+            <h4>{item.snippet.title}</h4>
+            <p>{item.snippet.description.substring(0, 100)}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
 };
 
 export default VideoPlayer;
