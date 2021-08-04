@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300:400;500;600&display=swap");
 
 * {
   box-sizing: border-box;
@@ -12,18 +12,20 @@ a,
 button {
   font-family: "Courier New", Courier, monospace;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 18px;
   text-decoration: none;
-  color: #858484;
-}
-
-.settings-icon {
-  padding-right: 15px;
+  color: #000;
+  margin-top: 15px;
 }
 
 .active {
   color: #000;
 }
+
+/* .parent {
+  position: fixed;
+  top: 0;
+} */
 
 .header {
   display: flex;
@@ -31,7 +33,9 @@ button {
   align-items: center;
   padding-left: 0px;
   padding-right: 2px;
+  background-color: white;
 }
+
 .logo {
   cursor: pointer;
   width: 110px;
@@ -51,7 +55,15 @@ button {
 }
 
 .nav__links li a:hover {
-  color: #000;
+  color: gray;
+}
+.signout-icon {
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.signout-icon:hover {
+  cursor: pointer;
+  color: gray;
 }
 
 button {
@@ -64,5 +76,10 @@ button {
 }
 
 button:hover {
-  color: #000;
+  color: gray;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
 }

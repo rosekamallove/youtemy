@@ -1,21 +1,28 @@
-import { Checkbox, Layout, Menu, Typography } from "antd";
+import { Checkbox, Collapse, Layout, Menu, Typography } from "antd";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player/youtube";
 import "./VideoPlayer.css";
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 const { Title } = Typography;
+const { Panel } = Collapse;
 
 const VideoPlayer = ({ playlistID, userProgress }) => {
-  const [state, setState] = useState({
-    menuCollapsed: 0,
+  const [playlistState, setPlaylistState] = useState({
+    playlistData: {},
     firstVideo: "",
     playlistArray: [],
   });
 
-  const [currentVideo, setCurrentVideo] = useState("");
+  const [menuCollapsed, setMenuCollapsed] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
+  const [videoDescrption, setVideoDescription] = useState("");
+  const [videoMargin, setVideoMargin] = useState(400);
 
+  /**************************
+   * Sets the PlaylistData *
+   **************************/
   useEffect(() => {
     const API_KEY = "AIzaSyBR3F9lodP7zQ3wiY3FY0dHS_8edP5j6NM";
     playlistID =
@@ -40,19 +47,30 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setState({
-          ...state,
+        setPlaylistState({
+          ...playlistState,
+          playlistData: data,
           firstVideo: data.items[0].snippet.resourceId.videoId,
           playlistArray: data.items,
         });
-        setCurrentVideo(state.firstVideo);
+        setCurrentVideo(playlistState.firstVideo);
       })
       .catch((err) => console.log(err));
+    setVideoDescriptionInMarkup();
   }, []);
-  /* Utility */
+
+  useEffect(() => {
+    setVideoDescriptionInMarkup();
+  }, [currentVideo]);
+
+  /**************************
+   *    Utility Functions   *
+   **************************/
+
+  /* Returns the React Player on Current Video Change */
   const returnIframMarkup = () => {
     let videoURL = `https://www.youtube.com/embed/${
-      currentVideo || state.firstVideo
+      currentVideo || playlistState.firstVideo
     }`;
     return (
       <ReactPlayer
@@ -69,14 +87,34 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     );
   };
 
-  const handleVideoEnded = () => {};
+  const setVideoDescriptionInMarkup = () => {
+    playlistState.playlistArray.map((item) => {
+      if (item.snippet.resourceId.videoId === currentVideo)
+        setVideoDescription(item.snippet.description);
+    });
+  };
+
+  const handleVideoEnded = () => {
+    var idx;
+    playlistState.playlistArray.forEach((item) => {
+      if (item.snippet.resourceId.videoId === currentVideo) {
+        console.log(typeof item.snippet.resourceId.videoId);
+        idx = playlistState.playlistArray.indexOf(item);
+        console.log(idx);
+      }
+    });
+    idx === -1
+      ? setCurrentVideo(currentVideo)
+      : setCurrentVideo(
+          playlistState.playlistArray[++idx].snippet.resourceId.videoId
+        );
+  };
+
   const handleVideoDuration = () => {};
 
   const handleMenuCollapse = (collapsed) => {
-    setState({
-      ...state,
-      menuCollapsed: collapsed,
-    });
+    setMenuCollapsed(collapsed);
+    menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
   };
 
   const handleMenuItemClick = (videoId) => {
@@ -88,12 +126,12 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       <Sider
         collapsible
         onCollapse={handleMenuCollapse}
-        collapsed={state.menuCollapsed}
+        collapsed={menuCollapsed}
         width={400}
-        collapsedWidth={150}
+        collapsedWidth={65}
         style={{
           overflow: "auto",
-          height: "100vh",
+          height: "88vh",
           position: "fixed",
           left: 0,
         }}
@@ -102,13 +140,14 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
         <Menu
           theme="light"
           mode="inline"
-          defaultSelectedKeys={JSON.stringify(currentVideo)}
+          defaultSelectedKeys={[playlistState.firstVideo]}
           className="menu"
         >
-          <Title level={4} className="playlist-title">
+          <Title level={3} className="playlist-title">
             Videos
           </Title>
-          {state.playlistArray.map((item) => (
+          {/* <div className="menu-items"> */}
+          {playlistState.playlistArray.map((item) => (
             <Menu.Item
               key={item.snippet.resourceId.videoId}
               className="menu-item"
@@ -122,7 +161,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
           ))}
         </Menu>
       </Sider>
-      <Layout className="site-layout" style={{ marginLeft: 400 }}>
+      <Layout className="site-layout" style={{ marginLeft: videoMargin }}>
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div
             className="site-layout-background"
@@ -130,6 +169,9 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
           >
             {returnIframMarkup()}
           </div>
+          <Collapse bordered={false}>
+            <Panel header="Description">{videoDescrption}</Panel>
+          </Collapse>
         </Content>
       </Layout>
     </Layout>
