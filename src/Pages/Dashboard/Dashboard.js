@@ -4,7 +4,8 @@ import VideoPlayer from "../VideoPlayer/VideoPlayer";
 export default function Dashboard() {
   return (
     <div>
-      <VideoPlayer />
+      <VideoPlayer/>
+            Currently Enrolled
     </div>
   );
 }
