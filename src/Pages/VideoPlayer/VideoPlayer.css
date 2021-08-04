@@ -24,7 +24,11 @@
   text-align: center;
   font-weight: 400 !important;
   font-size: 15px !important;
-  color: gray !important;
+  color: black !important;
+  background-color: white;
+  box-shadow: rgba(122, 122, 122, 0.2) 0px 2px 8px 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .menu-item {
