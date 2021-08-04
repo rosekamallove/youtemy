@@ -15,7 +15,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     playlistArray: [],
   });
 
-  const [menuCollapsed, setMenuCollapsed] = useState(0);
+  const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
   const [videoDescrption, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
@@ -98,6 +98,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     var idx;
     playlistState.playlistArray.forEach((item) => {
       if (item.snippet.resourceId.videoId === currentVideo) {
+        console.log(typeof item.snippet.resourceId.videoId);
         idx = playlistState.playlistArray.indexOf(item);
         console.log(idx);
       }
@@ -113,7 +114,6 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
 
   const handleMenuCollapse = (collapsed) => {
     setMenuCollapsed(collapsed);
-    console.log(videoMargin);
     menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
   };
 
@@ -126,7 +126,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       <Sider
         collapsible
         onCollapse={handleMenuCollapse}
-        collapsed={playlistState.menuCollapsed}
+        collapsed={menuCollapsed}
         width={400}
         collapsedWidth={65}
         style={{
@@ -140,7 +140,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
         <Menu
           theme="light"
           mode="inline"
-          defaultSelectedKeys={[currentVideo]}
+          defaultSelectedKeys={[playlistState.firstVideo]}
           className="menu"
         >
           <Title level={3} className="playlist-title">
@@ -159,7 +159,6 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
               {item.snippet.title}
             </Menu.Item>
           ))}
-          {/* </div> */}
         </Menu>
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: videoMargin }}>
