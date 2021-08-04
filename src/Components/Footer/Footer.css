@@ -10,9 +10,10 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  padding-bottom: 20px;
+  padding-top: 20px;
   width: 100%;
   text-align: center;
+  background-color: white;
 }
 
 .red {

@@ -17,10 +17,6 @@ button {
   color: #858484;
 }
 
-.settings-icon {
-  padding-right: 15px;
-}
-
 .active {
   color: #000;
 }
@@ -53,6 +49,14 @@ button {
 .nav__links li a:hover {
   color: #000;
 }
+.signout-icon {
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+.signout-icon:hover {
+  cursor: pointer;
+  color: #000;
+}
 
 button {
   padding: 9px 25px;
@@ -65,4 +69,9 @@ button {
 
 button:hover {
   color: #000;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
 }

@@ -1,7 +1,10 @@
+import firebase from "firebase";
+import "firebase/auth";
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "./Logo.png";
 import "./Navbar.css";
+const auth = firebase.auth();
 
 function Navbar() {
   return (
@@ -23,11 +26,23 @@ function Navbar() {
           </li>
         </ul>
       </nav>
-      <Link to="/settings">
-        <div className="settings-icon">
-          <i className="fas fa-cog "></i>
-        </div>
-      </Link>
+      <ul className="nav__links">
+        <li>
+          <Link to="/settings">
+            <div className="settings-icon">
+              <i className="fas fa-cog "></i>
+            </div>
+          </Link>
+        </li>
+        <li>
+          <div className="signout-icon">
+            <i
+              className="fas fa-sign-out-alt"
+              onClick={() => auth.signOut()}
+            ></i>
+          </div>
+        </li>
+      </ul>
     </div>
   );
 }

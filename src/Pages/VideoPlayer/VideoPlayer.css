@@ -30,6 +30,10 @@
   font-size: small;
 }
 
+.menu-items:last-child {
+  margin-bottom: 60px;
+}
+
 .menu-checkbox {
   margin-right: 5px;
   margin-left: 0px;

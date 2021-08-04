@@ -49,6 +49,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       })
       .catch((err) => console.log(err));
   }, []);
+
   /* Utility */
   const returnIframMarkup = () => {
     let videoURL = `https://www.youtube.com/embed/${
@@ -69,7 +70,17 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     );
   };
 
-  const handleVideoEnded = () => {};
+  const handleVideoEnded = () => {
+    var idx;
+    state.playlistArray.forEach((item) => {
+      if (item.snippet.resourceId.videoId === currentVideo)
+        idx = state.playlistArray.indexOf(item);
+    });
+    idx === 1
+      ? setCurrentVideo(currentVideo)
+      : setCurrentVideo(state.playlistArray[++idx].snippet.resourceId.videoId);
+  };
+
   const handleVideoDuration = () => {};
 
   const handleMenuCollapse = (collapsed) => {
@@ -93,7 +104,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
         collapsedWidth={150}
         style={{
           overflow: "auto",
-          height: "100vh",
+          height: "87vh",
           position: "fixed",
           left: 0,
         }}
@@ -102,12 +113,13 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
         <Menu
           theme="light"
           mode="inline"
-          defaultSelectedKeys={JSON.stringify(currentVideo)}
+          defaultSelectedKeys={[currentVideo]}
           className="menu"
         >
           <Title level={4} className="playlist-title">
             Videos
           </Title>
+          {/* <div className="menu-items"> */}
           {state.playlistArray.map((item) => (
             <Menu.Item
               key={item.snippet.resourceId.videoId}
@@ -120,6 +132,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
               {item.snippet.title}
             </Menu.Item>
           ))}
+          {/* </div> */}
         </Menu>
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: 400 }}>
