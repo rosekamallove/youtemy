@@ -8,7 +8,8 @@ const { Sider, Content } = Layout;
 const { Title } = Typography;
 const { Panel } = Collapse;
 
-const VideoPlayer = ({ playlistID, userProgress }) => {
+const VideoPlayer = (props) => {
+  var playlistID = props.location.playlistID;
   const [playlistState, setPlaylistState] = useState({
     playlistData: {},
     firstVideo: "",
