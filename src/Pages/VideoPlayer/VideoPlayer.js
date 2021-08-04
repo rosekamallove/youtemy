@@ -53,15 +53,11 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
         setCurrentVideo(state.firstVideo);
       })
       .catch((err) => console.log(err));
+    setVideoDescriptionInMarkup();
   }, []);
 
   useEffect(() => {
-    state.playlistArray.map((item) => {
-      if (item.snippet.resourceId.videoId === currentVideo) {
-        console.log(item.snippet.description);
-        setVideoDescription(item.snippet.description);
-      }
-    });
+    setVideoDescriptionInMarkup();
   }, [currentVideo]);
 
   /* Utility */
@@ -84,12 +80,10 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     );
   };
 
-  const getVideoDescriptionInMarkup = () => {
+  const setVideoDescriptionInMarkup = () => {
     state.playlistArray.map((item) => {
-      if (item.snippet.resourceId.videoId === currentVideo) {
-        console.log(item.snippet.description);
+      if (item.snippet.resourceId.videoId === currentVideo)
         setVideoDescription(item.snippet.description);
-      }
     });
   };
 
