@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import App from "./App";
-import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import BookmarksPage from "./Pages/BookmarksPage/BookmarksPage";
 import CoursesPage from "./Pages/CoursesPage/CoursesPage";
@@ -21,7 +20,7 @@ const Routing = () => {
         <Route path={"/bookmarks"} component={BookmarksPage} />
         <Route path={"/settings"} component={SettingsPage} />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 };

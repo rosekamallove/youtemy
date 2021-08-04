@@ -28,18 +28,24 @@
   margin-top: 15px;
   margin-bottom: 15px;
   font-size: small;
+  box-shadow: rgba(122, 122, 122, 0.2) 0px 2px 8px 0px;
 }
 
-.menu-items:last-child {
-  margin-bottom: 60px;
+.ant-menu:last-child {
+  margin-bottom: 2rem;
 }
 
 .menu-checkbox {
-  margin-right: 5px;
-  margin-left: 0px;
+  margin-right: 24px;
 }
-react-player {
+
+.react-player {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin: 0;
+}
+.ant-layout-sider {
+  background-color: white !important;
 }

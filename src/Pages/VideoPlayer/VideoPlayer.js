@@ -1,20 +1,24 @@
-import { Checkbox, Layout, Menu, Typography } from "antd";
+import { Checkbox, Collapse, Layout, Menu, Typography } from "antd";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player/youtube";
 import "./VideoPlayer.css";
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 const { Title } = Typography;
+const { Panel } = Collapse;
 
 const VideoPlayer = ({ playlistID, userProgress }) => {
   const [state, setState] = useState({
+    playlistData: {},
     menuCollapsed: 0,
     firstVideo: "",
     playlistArray: [],
   });
 
-  const [currentVideo, setCurrentVideo] = useState("");
+  const [currentVideo, setCurrentVideo] = useState(state.firstVideo);
+  const [videoDescrption, setVideoDescription] = useState("");
+  const [videoMargin, setVideoMargin] = useState(400);
 
   useEffect(() => {
     const API_KEY = "AIzaSyBR3F9lodP7zQ3wiY3FY0dHS_8edP5j6NM";
@@ -42,6 +46,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       .then((data) => {
         setState({
           ...state,
+          playlistData: data,
           firstVideo: data.items[0].snippet.resourceId.videoId,
           playlistArray: data.items,
         });
@@ -49,6 +54,15 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    state.playlistArray.map((item) => {
+      if (item.snippet.resourceId.videoId === currentVideo) {
+        console.log(item.snippet.description);
+        setVideoDescription(item.snippet.description);
+      }
+    });
+  }, [currentVideo]);
 
   /* Utility */
   const returnIframMarkup = () => {
@@ -70,13 +84,24 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     );
   };
 
+  const getVideoDescriptionInMarkup = () => {
+    state.playlistArray.map((item) => {
+      if (item.snippet.resourceId.videoId === currentVideo) {
+        console.log(item.snippet.description);
+        setVideoDescription(item.snippet.description);
+      }
+    });
+  };
+
   const handleVideoEnded = () => {
     var idx;
     state.playlistArray.forEach((item) => {
-      if (item.snippet.resourceId.videoId === currentVideo)
+      if (item.snippet.resourceId.videoId === currentVideo) {
         idx = state.playlistArray.indexOf(item);
+        console.log(idx);
+      }
     });
-    idx === 1
+    idx === -1
       ? setCurrentVideo(currentVideo)
       : setCurrentVideo(state.playlistArray[++idx].snippet.resourceId.videoId);
   };
@@ -88,6 +113,8 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       ...state,
       menuCollapsed: collapsed,
     });
+    console.log(videoMargin);
+    state.menuCollapsed ? setVideoMargin(400) : setVideoMargin(100);
   };
 
   const handleMenuItemClick = (videoId) => {
@@ -101,10 +128,10 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
         onCollapse={handleMenuCollapse}
         collapsed={state.menuCollapsed}
         width={400}
-        collapsedWidth={150}
+        collapsedWidth={65}
         style={{
           overflow: "auto",
-          height: "87vh",
+          height: "88vh",
           position: "fixed",
           left: 0,
         }}
@@ -135,7 +162,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
           {/* </div> */}
         </Menu>
       </Sider>
-      <Layout className="site-layout" style={{ marginLeft: 400 }}>
+      <Layout className="site-layout" style={{ marginLeft: videoMargin }}>
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div
             className="site-layout-background"
@@ -143,6 +170,9 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
           >
             {returnIframMarkup()}
           </div>
+          <Collapse bordered={false}>
+            <Panel header="Description">{videoDescrption}</Panel>
+          </Collapse>
         </Content>
       </Layout>
     </Layout>
