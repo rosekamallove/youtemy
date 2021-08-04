@@ -6,7 +6,7 @@ import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import img1 from "./1.jpg";
 import img2 from "./2.jpg";
 import img3 from './3.jpg';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function CoursesPage(){
   
@@ -19,39 +19,39 @@ export default function CoursesPage(){
       <section className="heading">
           <h1>Web Development Track</h1>
       </section>
-
-      <h2>Basic</h2>
       
-      <section className="video-section basic"> 
-        <div>
-
-          <img src={img1} 
-           onClick={<playlist id="PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88"></playlist>} 
-           alt="Freecodecamp HTML+CSS">
-           </img>
-        </div>
+      <section className="video-section basic">
+          <Link
+            to={{
+              pathname: "/video-player",
+              playlistID: "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
+            }}
+          >
+            <img src={img1} alt="Freecodecamp HTML+CSS"></img>
+          </Link>
+              
           <FontAwesomeIcon icon={faChevronRight} size='5x'/>
-        <div>
-          <img src={img2} 
-           onClick={<playlist id="PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"></playlist>} 
-           alt="Traversy JS">
-           </img>
-        </div>
+
+          <Link
+            to={{
+              pathname: "/video-player",
+              playlistID: "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
+            }}
+          >
+            <img src={img2} alt="Traverssy JS"></img>
+          </Link>
+
           <FontAwesomeIcon icon={faChevronRight} size='5x'/>
-          
-          <div>
-          <img src={img3} 
-           onClick={<playlist id="PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"></playlist>} 
-           alt="Traversy JS">
-           </img>
-        </div>
-      </section>
-
-      <h2>Intermediate</h2>
-
-      <section className="video-section intermediate">
-        
-      </section>
-    </div>
+              
+          <Link
+            to={{
+              pathname: "/video-player",
+              playlistID: "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d",
+            }}
+          >
+            <img src={img3} alt="React JS"></img>
+          </Link>
+    </section>
+  </div>
   );
 }

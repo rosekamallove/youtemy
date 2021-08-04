@@ -8,6 +8,8 @@ import CoursesPage from "./Pages/CoursesPage/CoursesPage";
 import ExplorePage from "./Pages/ExplorePage/ExplorePage";
 import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import Footer from "./Components/Footer/Footer";
+import VideoPlayer from "./Pages/VideoPlayer/VideoPlayer";
+
 
 const Routing = () => {
   return (
@@ -19,6 +21,7 @@ const Routing = () => {
         <Route path={"/explore"} component={ExplorePage} />
         <Route path={"/bookmarks"} component={BookmarksPage} />
         <Route path={"/settings"} component={SettingsPage} />
+        <Route path={"/video-player"} component={VideoPlayer} />
       </Switch>
     <Footer />
     </Router>
