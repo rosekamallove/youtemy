@@ -19,3 +19,10 @@
 .red {
   color: #ff0000;
 }
+
+.name-us {
+  color: gray !important;
+}
+.name-us:hover {
+  color: black;
+}

@@ -79,6 +79,7 @@ const VideoPlayer = (props) => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         url={videoURL}
+        playing={true}
         className="react-player"
         width="auto%"
         height={700}

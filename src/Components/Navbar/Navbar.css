@@ -14,7 +14,7 @@ button {
   font-weight: 500;
   font-size: 18px;
   text-decoration: none;
-  color: #000;
+  color: #000 !important;
   margin-top: 15px;
 }
 
@@ -55,7 +55,7 @@ button {
 }
 
 .nav__links li a:hover {
-  color: gray;
+  color: gray !important;
 }
 .signout-icon {
   cursor: pointer;
@@ -76,7 +76,7 @@ button {
 }
 
 button:hover {
-  color: gray;
+  color: gray !important;
 }
 
 .sticky {

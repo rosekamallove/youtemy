@@ -3,12 +3,14 @@ import "firebase/auth";
 import "firebase/firestore";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Footer from "./Components/Footer/Footer";
 import "./css/App.css";
 import "./css/index.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
 firebase.initializeApp({
-  apiKey: process.env.REACT_APP_MM_KEY,
+  apiKey: "AIzaSyBmS_1wY-MkEOYErWbobVd42iRNj_l3TYE",
+  // apiKey: process.env.REACT_APP_MM_KEY,
   authDomain: "youtemy-bc22a.firebaseapp.com",
   projectId: "youtemy-bc22a",
   storageBucket: "youtemy-bc22a.appspot.com",
@@ -20,22 +22,7 @@ const auth = firebase.auth();
 
 function App() {
   const [user] = useAuthState(auth);
-  return (
-    <div>
-      {user ? <Dashboard /> : <LandingPage />}
-      {/* <SignOut /> */}
-    </div>
-  );
-}
-
-function SignOut() {
-  return (
-    auth.currentUser && (
-      <button className="sign-out" onClick={() => auth.signOut()}>
-        Sign Out
-      </button>
-    )
-  );
+  return <div>{user ? <Dashboard /> : <LandingPage />}</div>;
 }
 
 function LandingPage() {
@@ -56,6 +43,7 @@ function LandingPage() {
           SignIn with Google <i className="fab fa-google"></i>
         </button>
       </div>
+      <Footer />
     </div>
   );
 }
