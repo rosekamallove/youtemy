@@ -9,18 +9,20 @@ const { Title } = Typography;
 const { Panel } = Collapse;
 
 const VideoPlayer = ({ playlistID, userProgress }) => {
-  const [state, setState] = useState({
+  const [playlistState, setPlaylistState] = useState({
     playlistData: {},
-    menuCollapsed: 0,
     firstVideo: "",
     playlistArray: [],
   });
 
-  const [currentVideo, setCurrentVideo] = useState(state.firstVideo);
+  const [menuCollapsed, setMenuCollapsed] = useState(0);
+  const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
   const [videoDescrption, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
-  const [titleLevel, setTitleLevel] = useState(4);
 
+  /**************************
+   * Sets the PlaylistData *
+   **************************/
   useEffect(() => {
     const API_KEY = "AIzaSyBR3F9lodP7zQ3wiY3FY0dHS_8edP5j6NM";
     playlistID =
@@ -45,13 +47,13 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setState({
-          ...state,
+        setPlaylistState({
+          ...playlistState,
           playlistData: data,
           firstVideo: data.items[0].snippet.resourceId.videoId,
           playlistArray: data.items,
         });
-        setCurrentVideo(state.firstVideo);
+        setCurrentVideo(playlistState.firstVideo);
       })
       .catch((err) => console.log(err));
     setVideoDescriptionInMarkup();
@@ -61,10 +63,14 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
     setVideoDescriptionInMarkup();
   }, [currentVideo]);
 
-  /* Utility */
+  /**************************
+   *    Utility Functions   *
+   **************************/
+
+  /* Returns the React Player on Current Video Change */
   const returnIframMarkup = () => {
     let videoURL = `https://www.youtube.com/embed/${
-      currentVideo || state.firstVideo
+      currentVideo || playlistState.firstVideo
     }`;
     return (
       <ReactPlayer
@@ -82,7 +88,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
   };
 
   const setVideoDescriptionInMarkup = () => {
-    state.playlistArray.map((item) => {
+    playlistState.playlistArray.map((item) => {
       if (item.snippet.resourceId.videoId === currentVideo)
         setVideoDescription(item.snippet.description);
     });
@@ -90,26 +96,25 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
 
   const handleVideoEnded = () => {
     var idx;
-    state.playlistArray.forEach((item) => {
+    playlistState.playlistArray.forEach((item) => {
       if (item.snippet.resourceId.videoId === currentVideo) {
-        idx = state.playlistArray.indexOf(item);
+        idx = playlistState.playlistArray.indexOf(item);
         console.log(idx);
       }
     });
     idx === -1
       ? setCurrentVideo(currentVideo)
-      : setCurrentVideo(state.playlistArray[++idx].snippet.resourceId.videoId);
+      : setCurrentVideo(
+          playlistState.playlistArray[++idx].snippet.resourceId.videoId
+        );
   };
 
   const handleVideoDuration = () => {};
 
   const handleMenuCollapse = (collapsed) => {
-    setState({
-      ...state,
-      menuCollapsed: collapsed,
-    });
+    setMenuCollapsed(collapsed);
     console.log(videoMargin);
-    state.menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
+    menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
   };
 
   const handleMenuItemClick = (videoId) => {
@@ -121,7 +126,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       <Sider
         collapsible
         onCollapse={handleMenuCollapse}
-        collapsed={state.menuCollapsed}
+        collapsed={playlistState.menuCollapsed}
         width={400}
         collapsedWidth={65}
         style={{
@@ -142,7 +147,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
             Videos
           </Title>
           {/* <div className="menu-items"> */}
-          {state.playlistArray.map((item) => (
+          {playlistState.playlistArray.map((item) => (
             <Menu.Item
               key={item.snippet.resourceId.videoId}
               className="menu-item"
