@@ -22,6 +22,9 @@
 
 .playlist-title {
   text-align: center;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  color: gray !important;
 }
 
 .menu-item {

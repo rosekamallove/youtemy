@@ -19,6 +19,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
   const [currentVideo, setCurrentVideo] = useState(state.firstVideo);
   const [videoDescrption, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
+  const [titleLevel, setTitleLevel] = useState(4);
 
   useEffect(() => {
     const API_KEY = "AIzaSyBR3F9lodP7zQ3wiY3FY0dHS_8edP5j6NM";
@@ -108,7 +109,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
       menuCollapsed: collapsed,
     });
     console.log(videoMargin);
-    state.menuCollapsed ? setVideoMargin(400) : setVideoMargin(100);
+    state.menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
   };
 
   const handleMenuItemClick = (videoId) => {
@@ -137,7 +138,7 @@ const VideoPlayer = ({ playlistID, userProgress }) => {
           defaultSelectedKeys={[currentVideo]}
           className="menu"
         >
-          <Title level={4} className="playlist-title">
+          <Title level={3} className="playlist-title">
             Videos
           </Title>
           {/* <div className="menu-items"> */}
