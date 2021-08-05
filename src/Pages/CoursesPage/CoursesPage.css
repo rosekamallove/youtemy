@@ -23,11 +23,5 @@
     width: 100%;
     align-content: center;
     justify-content: center;
-  }
-
-  .video{
-    display: flex;
-    flex-direction: row;
-    margin-left:10px;
-
+    justify-items: center;
   }
