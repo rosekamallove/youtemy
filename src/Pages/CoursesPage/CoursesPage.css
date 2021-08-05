@@ -3,11 +3,11 @@
     padding: 0;
 
   }
-  
+
   .very-center {
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+    margin-top: 5%;
   }
   .heading{
     display: flex;
@@ -23,10 +23,5 @@
     width: 100%;
     align-content: center;
     justify-content: center;
-  }
-
-  .video{
-  max-height: 50%;
-  max-width: 30%;
-  margin: 50px 10px 140px 10px;
+    justify-items: center;
   }
