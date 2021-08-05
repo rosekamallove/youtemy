@@ -1,0 +1,19 @@
+.wrapper {
+  margin: 100px;
+  text-align: center;
+}
+
+.card-heading {
+  text-align: center;
+}
+
+Row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle-n {
+  padding-bottom: 15px;
+  text-align: center;
+}
