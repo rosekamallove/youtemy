@@ -56,3 +56,7 @@
 .ant-layout-sider {
   background-color: white !important;
 }
+
+.description-span {
+  white-space: pre-wrap;
+}
