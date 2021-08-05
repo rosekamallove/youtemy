@@ -1,9 +1,7 @@
 import {
   CaretRightOutlined,
   DeleteOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
+  EditOutlined, SettingOutlined
 } from "@ant-design/icons";
 import { Card, Progress, Space } from "antd";
 import React from "react";
@@ -13,16 +11,6 @@ import "./Dashboard.css";
 const { Meta } = Card;
 
 export default function Dashboard() {
-  const handlePlayButtonClicked = () => {
-    console.log(`crap`);
-    <Link
-      to={{
-        pathname: "/video-player",
-        playlistID: "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP",
-      }}
-    ></Link>;
-  };
-
   return (
     <div className="wrapper">
       <Space direction="horizontal" align="center" width="80%" size={400}>
@@ -37,12 +25,14 @@ export default function Dashboard() {
               />
             }
             actions={[
-              <CaretRightOutlined
-                key="play"
-                onClick={() => handlePlayButtonClicked()}
-              />,
-              <DeleteOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <Link
+                to={{
+                  pathname: "/video-player",
+                  playlistID: "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP",
+                }}
+              ><CaretRightOutlined key="play" /></Link>,
+              <Link to={{pathname:"/settings"}}>
+              <DeleteOutlined key="edit" /></Link>,
             ]}
           >
             <Meta
@@ -56,14 +46,8 @@ export default function Dashboard() {
           <Card
             style={{ width: 300 }}
             actions={[
-              <SettingOutlined
-                key="setting"
-                onClick={() => {
-                  handlePlayButtonClicked();
-                }}
-              />,
+              <SettingOutlined key="setting" />,
               <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
             ]}
           >
             <div className="progress-circle-n">
@@ -86,12 +70,8 @@ export default function Dashboard() {
               />
             }
             actions={[
-              <CaretRightOutlined
-                key="play"
-                onClick={() => handlePlayButtonClicked()}
-              />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />,
+              <Link to="/explore">
+              <CaretRightOutlined key="play" /></Link>,
             ]}
           >
             <Meta

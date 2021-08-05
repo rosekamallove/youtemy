@@ -184,7 +184,7 @@ const VideoPlayer = (props) => {
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div
             className="site-layout-background"
-            style={{ padding: 24, textAlign: "center", minHeight: 800 }}
+            style={{ padding: 24, textAlign: "center", minHeight: 820 }}
           >
             {returnIframMarkup()}
           </div>
