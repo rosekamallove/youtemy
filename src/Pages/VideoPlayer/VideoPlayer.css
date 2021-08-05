@@ -38,8 +38,8 @@
   box-shadow: rgba(122, 122, 122, 0.2) 0px 2px 8px 0px;
 }
 
-.ant-menu:last-child {
-  margin-bottom: 2rem;
+.menu {
+  z-index: 5;
 }
 
 .menu-checkbox {
