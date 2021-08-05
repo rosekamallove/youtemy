@@ -1,11 +1,13 @@
 import {
   CaretRightOutlined,
   DeleteOutlined,
-  EditOutlined, SettingOutlined
+  EditOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import { Card, Progress, Space } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../Components/Footer/Footer";
 import "./Dashboard.css";
 
 const { Meta } = Card;
@@ -30,9 +32,12 @@ export default function Dashboard() {
                   pathname: "/video-player",
                   playlistID: "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP",
                 }}
-              ><CaretRightOutlined key="play" /></Link>,
-              <Link to={{pathname:"/settings"}}>
-              <DeleteOutlined key="edit" /></Link>,
+              >
+                <CaretRightOutlined key="play" />
+              </Link>,
+              <Link to={{ pathname: "/settings" }}>
+                <DeleteOutlined key="edit" />
+              </Link>,
             ]}
           >
             <Meta
@@ -71,7 +76,8 @@ export default function Dashboard() {
             }
             actions={[
               <Link to="/explore">
-              <CaretRightOutlined key="play" /></Link>,
+                <CaretRightOutlined key="play" />
+              </Link>,
             ]}
           >
             <Meta
@@ -81,6 +87,7 @@ export default function Dashboard() {
           </Card>
         </div>
       </Space>
+      <Footer />
     </div>
   );
 }
