@@ -1,8 +1,63 @@
-# Pre Fellowship Template
+# Youtemy
+Track your YouTube learning with progress bars and pies, avoiding the infamous _Tutorial Hell_
 
-This is a template to help you get started with your projects. Find out more information inside of the Fellow Handbook.
+_Start Dev Server_
 
-This template has a `main` and `staging` branch already setup. 
+    npm i
+    npm start
 
-- Code will only be merged into `main` once your Pod Leader has reviewed your code. At the end of each week, there will be a code freeze. Your Pod Leader will review it before it's merged.
-- During the week, you'll merge code into `staging`. 
+## Overview
+
+- ### Pages:
+    - **Landing Page** (Middleware goes here if not logged in)
+    - **Dashboard**:
+        - Courses currently enrolled
+        - Course Tracker (with progress pie)
+        - Streak Tracker
+            - Daily Goal (Progress)
+        - All-time Progress (Across Courses)
+        - Captions to Transcript
+    - **Forum**
+        - Doubts
+        - Additional Resources relevant to the course
+            - FreeCodeCamp
+            - TheOdinProject
+            - WebDevSimplified
+    - **Course Curriculum**
+        - Different Tracks
+            - Web-Dev Track
+                - HTML\CSS
+                - JavaScript
+                - React/Vue/Angular
+                - Node.JS / Express
+        - At max two playlists of the same topic
+        - Suggested playlists
+    - **User Dashboard**
+        - Courses currently enrolled in
+        - Charts for the progress
+        - Tutorial Hell Warnings
+        - Maybe percentile
+        - Suggested next course
+    - Non MVP Features
+        - Leave a Review
+
+### MVP Flow:
+![NavBar](protoypes/Youtemy-Flow.png)
+
+### MVP Mockups:
+
+**Navbar and Footer:**
+![NavBar](protoypes/NavBar.jpg)
+![Footer](protoypes/Footer.jpg)
+**Dashboard:**
+![Dashboard](protoypes/Dashboard.jpg)
+
+**Course Curriculam:**
+![CourseCurriculam](protoypes/Course-Curriculum.jpg)
+
+**Course Curriculam:**
+![Player](protoypes/Player.png)
+
+**Weekly Progress via Trello Board:**
+![Week1](TrelloProgress/Week1Progress.png)
+
