@@ -1,5 +1,3 @@
-import { faChevronRight } from "@fortawesome/fontawesome-free-solid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
@@ -10,9 +8,6 @@ import "./CoursesPage.css";
 import { Card } from 'antd';
 
 export default function CoursesPage() {
-  function playlist(id) {
-    <VideoPlayer playlistID={id}></VideoPlayer>;
-  }
 
   return (
     <div className="very-center">

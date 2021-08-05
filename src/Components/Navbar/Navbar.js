@@ -36,12 +36,14 @@ function Navbar() {
             </Link>
           </li>
           <li>
+            <Link to="/">
             <div className="signout-icon">
               <i
                 className="fas fa-sign-out-alt"
                 onClick={() => auth.signOut()}
               ></i>
             </div>
+            </Link>
           </li>
         </ul>
       </div>
