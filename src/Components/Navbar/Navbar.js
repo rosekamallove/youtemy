@@ -14,29 +14,29 @@ function Navbar() {
         <nav>
           <ul className="nav__links">
             <li className="nav-li">
-              <Link to="/">Home</Link>
+              <Link className="nav-a"  to="/">Home</Link>
             </li>
             <li className="nav-li">
-              <Link to="/courses">Courses</Link>
+              <Link className="nav-a"to="/courses">Courses</Link>
             </li>
             <li className="nav-li">
-              <Link to="/explore">Explore</Link>
+              <Link className="nav-a"to="/explore">Explore</Link>
             </li>
             <li className="nav-li">
-              <Link to="/bookmarks">Bookmarks</Link>
+              <Link className="nav-a"to="/bookmarks">Bookmarks</Link>
             </li>
           </ul>
         </nav>
         <ul className="nav__links">
-          <li>
-            <Link to="/settings">
+          <li className="nav-li">
+            <Link className="nav-a"to="/settings">
               <div className="settings-icon">
                 <i className="fas fa-cog "></i>
               </div>
             </Link>
           </li>
-          <li>
-            <Link to="/">
+          <li className="nav-li">
+            <Link className="nav-a"to="/">
             <div className="signout-icon">
               <i
                 className="fas fa-sign-out-alt"

@@ -7,9 +7,9 @@
   font-family: "Roboto", sans-serif;
 }
 
-li,
-a,
-button {
+.nav-li,
+.nav-a,
+.nav-button {
   font-family: "Courier New", Courier, monospace;
   font-weight: 500;
   font-size: 18px;
@@ -45,16 +45,16 @@ button {
   list-style: none;
 }
 
-.nav__links li {
+.nav__links .nav-li {
   display: inline-block;
   padding: 0px 20px;
 }
 
-.nav__links li a {
+.nav__links .nav-li .nav-a {
   transition: all 0.3s ease 0s;
 }
 
-.nav__links li a:hover {
+.nav__links .nav-li .nav-a:hover {
   color: gray !important;
 }
 .signout-icon {
@@ -66,7 +66,7 @@ button {
   color: gray;
 }
 
-button {
+.nav-button {
   padding: 9px 25px;
   border: none;
   background-color: white;
@@ -75,7 +75,7 @@ button {
   transition: all 0.3s ease 0s;
 }
 
-button:hover {
+.nav-button:hover {
   color: gray !important;
 }
 
