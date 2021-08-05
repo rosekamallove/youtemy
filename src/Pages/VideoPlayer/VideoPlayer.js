@@ -21,6 +21,13 @@ const VideoPlayer = (props) => {
   const [videoDescrption, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
 
+  /*
+   *  Use the useRef hook to store the referrence of checkBoxex
+   *  currentVideo === videoId ? ref = {checkboxRef} : nothing
+   *  oneVideoEnder => Update the ref to the next Menu.item,
+   *  Update the Database
+   */
+
   /**************************
    * Sets the PlaylistData *
    **************************/
@@ -173,7 +180,9 @@ const VideoPlayer = (props) => {
             {returnIframMarkup()}
           </div>
           <Collapse bordered={false}>
-            <Panel header="Description">{videoDescrption}</Panel>
+            <Panel header="Description">
+              <span className="description-span">{videoDescrption}</span>{" "}
+            </Panel>
           </Collapse>
         </Content>
       </Layout>
