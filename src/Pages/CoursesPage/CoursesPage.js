@@ -16,33 +16,42 @@ export default function CoursesPage(){
   
   return (
     <div className="very-center">
+      <div className="webd">
       <section className="heading">
           <h1>Web Development Track</h1>
       </section>
       
       <section className="video-section basic">
-          <Link
-            to={{
-              pathname: "/video-player",
-              playlistID: "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
-            }}
-          >
-            <img src={img1} alt="Freecodecamp HTML+CSS"></img>
-          </Link>
-              
-          <FontAwesomeIcon icon={faChevronRight} size='5x'/>
+          
+          <div className="video">
+            <Link
+              to={{
+                pathname: "/video-player",
+                playlistID: "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
+              }}
+            >
+              <img src={img1} alt="Freecodecamp HTML+CSS"></img>
+            </Link>
+            <FontAwesomeIcon icon={faChevronRight} size='5x' className="icon"/>
+          </div>
+ 
+          
 
-          <Link
-            to={{
-              pathname: "/video-player",
-              playlistID: "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
-            }}
-          >
-            <img src={img2} alt="Traverssy JS"></img>
-          </Link>
+          <div className="video">
+            <Link
+              to={{
+                pathname: "/video-player",
+                playlistID: "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
+              }}
+            >
+              <img src={img2} alt="Traverssy JS"></img>
+            </Link>
+            <FontAwesomeIcon icon={faChevronRight} size='5x' className="icon"/>
+          </div>
 
-          <FontAwesomeIcon icon={faChevronRight} size='5x'/>
-              
+
+
+          <div className="video">
           <Link
             to={{
               pathname: "/video-player",
@@ -51,7 +60,57 @@ export default function CoursesPage(){
           >
             <img src={img3} alt="React JS"></img>
           </Link>
+          </div>
     </section>
+  </div>
+
+  <div className="machine-learning">
+      <section className="heading">
+          <h1>Machine Learning Track</h1>
+      </section>
+      
+      <section className="video-section basic">
+          
+          <div className="video">
+            <Link
+              to={{
+                pathname: "/video-player",
+                playlistID: "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
+              }}
+            >
+              <img src={img1} alt="Freecodecamp HTML+CSS"></img>
+            </Link>
+            <FontAwesomeIcon icon={faChevronRight} size='5x' className="icon"/>
+          </div>
+ 
+          
+
+          <div className="video">
+            <Link
+              to={{
+                pathname: "/video-player",
+                playlistID: "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
+              }}
+            >
+              <img src={img2} alt="Traverssy JS"></img>
+            </Link>
+            <FontAwesomeIcon icon={faChevronRight} size='5x' className="icon"/>
+          </div>
+
+
+
+          <div className="video">
+          <Link
+            to={{
+              pathname: "/video-player",
+              playlistID: "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d",
+            }}
+          >
+            <img src={img3} alt="React JS"></img>
+          </Link>
+          </div>
+    </section>
+  </div>
   </div>
   );
 }
