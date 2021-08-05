@@ -10,12 +10,14 @@ const { Panel } = Collapse;
 
 const VideoPlayer = (props) => {
   var playlistID = props.location.playlistID;
+
   const [playlistState, setPlaylistState] = useState({
     playlistData: {},
     firstVideo: "",
     playlistArray: [],
   });
 
+  const [loading, setLoading] = useState(false);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
   const [videoDescrption, setVideoDescription] = useState("");
@@ -52,25 +54,27 @@ const VideoPlayer = (props) => {
       url.searchParams.append(key, params[key])
     );
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setPlaylistState({
-          ...playlistState,
-          playlistData: data,
-          firstVideo: data.items[0].snippet.resourceId.videoId,
-          playlistArray: data.items,
-        });
-        setCurrentVideo(playlistState.firstVideo);
-      })
-      .catch((err) => console.log(err));
-    setVideoDescriptionInMarkup();
+    const fetchData = async () => (await fetch(url)).json();
+    fetchData().then((data) => {
+      console.log(data);
+      setCurrentVideo(data.items[0].snippet.resourceId.videoId);
+      setPlaylistState({
+        playlistData: data,
+        firstVideo: data.items[0].snippet.resourceId.videoId,
+        playlistArray: data.items,
+      });
+      setLoading(true);
+    });
   }, []);
+  /*-------------------------------------------------------------------*/
 
   useEffect(() => {
     setVideoDescriptionInMarkup();
   }, [currentVideo]);
+
+  useEffect(() => {
+    setVideoDescriptionInMarkup();
+  }, [loading]);
 
   /**************************
    *    Utility Functions   *
@@ -99,8 +103,14 @@ const VideoPlayer = (props) => {
 
   const setVideoDescriptionInMarkup = () => {
     playlistState.playlistArray.map((item) => {
-      if (item.snippet.resourceId.videoId === currentVideo)
+      console.clear();
+      console.log(currentVideo || playlistState.firstVideo);
+      if (
+        item.snippet.resourceId.videoId ===
+        (currentVideo || playlistState.firstVideo)
+      ) {
         setVideoDescription(item.snippet.description);
+      }
     });
   };
 
@@ -108,9 +118,8 @@ const VideoPlayer = (props) => {
     var idx;
     playlistState.playlistArray.forEach((item) => {
       if (item.snippet.resourceId.videoId === currentVideo) {
-        console.log(typeof item.snippet.resourceId.videoId);
+        console.log(JSON.stringify(item.snippet.resourceId.videoId));
         idx = playlistState.playlistArray.indexOf(item);
-        console.log(idx);
       }
     });
     idx === -1
@@ -150,7 +159,7 @@ const VideoPlayer = (props) => {
         <Menu
           theme="light"
           mode="inline"
-          defaultSelectedKeys={[playlistState.firstVideo]}
+          defaultSelectedKeys={[JSON.stringify(playlistState.firstVideo)]}
           className="menu"
         >
           <Title level={3} className="playlist-title">
@@ -159,7 +168,7 @@ const VideoPlayer = (props) => {
           {/* <div className="menu-items"> */}
           {playlistState.playlistArray.map((item) => (
             <Menu.Item
-              key={item.snippet.resourceId.videoId}
+              key={JSON.stringify(item.snippet.resourceId.videoId)}
               className="menu-item"
               onClick={() => {
                 handleMenuItemClick(item.snippet.resourceId.videoId);
