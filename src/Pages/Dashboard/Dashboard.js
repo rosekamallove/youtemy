@@ -1,15 +1,28 @@
 import {
+  CaretRightOutlined,
+  DeleteOutlined,
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Avatar, Card, Progress, Space } from "antd";
+import { Card, Progress, Space } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Dashboard.css";
 
 const { Meta } = Card;
 
 export default function Dashboard() {
+  const handlePlayButtonClicked = () => {
+    console.log(`crap`);
+    <Link
+      to={{
+        pathname: "/video-player",
+        playlistID: "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP",
+      }}
+    ></Link>;
+  };
+
   return (
     <div className="wrapper">
       <Space direction="horizontal" align="center" width="80%" size={400}>
@@ -20,21 +33,21 @@ export default function Dashboard() {
             cover={
               <img
                 alt="example"
-                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                src="https://i.ytimg.com/vi/pN6jk0uUrD8/hqdefault.jpg"
               />
             }
             actions={[
-              <SettingOutlined key="setting" />,
-              <EditOutlined key="edit" />,
+              <CaretRightOutlined
+                key="play"
+                onClick={() => handlePlayButtonClicked()}
+              />,
+              <DeleteOutlined key="edit" />,
               <EllipsisOutlined key="ellipsis" />,
             ]}
           >
             <Meta
-              avatar={
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              }
-              title="Card title"
-              description="This is the description"
+              title="Namaste JavaScript"
+              description="Deep understanding of JavaScript"
             />
           </Card>
         </div>
@@ -43,7 +56,12 @@ export default function Dashboard() {
           <Card
             style={{ width: 300 }}
             actions={[
-              <SettingOutlined key="setting" />,
+              <SettingOutlined
+                key="setting"
+                onClick={() => {
+                  handlePlayButtonClicked();
+                }}
+              />,
               <EditOutlined key="edit" />,
               <EllipsisOutlined key="ellipsis" />,
             ]}
@@ -68,17 +86,17 @@ export default function Dashboard() {
               />
             }
             actions={[
-              <SettingOutlined key="setting" />,
+              <CaretRightOutlined
+                key="play"
+                onClick={() => handlePlayButtonClicked()}
+              />,
               <EditOutlined key="edit" />,
               <EllipsisOutlined key="ellipsis" />,
             ]}
           >
             <Meta
-              avatar={
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              }
-              title="Card title"
-              description="This is the description"
+              title="Enroll New Courses"
+              description="Explore and find what you need"
             />
           </Card>
         </div>
