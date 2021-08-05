@@ -7,7 +7,7 @@
   .very-center {
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+    margin-top: 5%;
   }
   .heading{
     display: flex;
@@ -30,18 +30,4 @@
     flex-direction: row;
     margin-left:10px;
 
-  }
-
-  .video > .icon{
-    margin-right: 10px;
-    margin-top: 70px;
-  }
-
-  .webd{
-    margin-top: 5%;
-    margin-bottom: 25%;
-  }
-
-  .machine-learning{
-    margin-bottom: 15%;
   }
