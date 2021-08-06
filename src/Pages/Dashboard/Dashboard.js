@@ -21,7 +21,6 @@ export default function Dashboard() {
 
   return (
     <div className="wrapper">
-      <h1>{uid}</h1>
       <Space direction="horizontal" align="center" width="80%" size={100}>
         <div>
           <h2 className="card-heading">Active Course</h2>
