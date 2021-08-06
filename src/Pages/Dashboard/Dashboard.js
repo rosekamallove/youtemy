@@ -4,14 +4,29 @@ import {
   ExpandAltOutlined,
 } from "@ant-design/icons";
 import { Card, Progress, Space } from "antd";
+import "firebase/firestore";
 import React from "react";
 import { Link } from "react-router-dom";
+import { db } from "../../App";
 import Footer from "../../Components/Footer/Footer";
 import "./Dashboard.css";
 
 const { Meta } = Card;
 
-export default function Dashboard() {
+let userDB;
+export { userDB };
+
+export default function Dashboard({ uid, userName }) {
+  // if (db.collection("users").doc(uid) != undefined) {
+  userDB = db.collection("users").doc(uid);
+  console.log(userDB);
+  userDB.get().then((res) => console.log(res));
+  // }
+  db.collection("users").doc(uid).set({
+    name: userName,
+    uid,
+  });
+
   return (
     <div className="wrapper">
       <Space direction="horizontal" align="center" width="80%" size={100}>
