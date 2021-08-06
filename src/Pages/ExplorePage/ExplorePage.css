@@ -1,16 +1,20 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .very-center {
-    padding-top: 100px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-  }
+  margin: 0;
+  padding: 0;
+}
 
-.displaybar{
+.very-center {
+  padding-top: 100px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.container {
+  padding-top: 100px;
+}
+
+.displaybar {
   display: flex;
   flex-direction: column;
   padding: 0;

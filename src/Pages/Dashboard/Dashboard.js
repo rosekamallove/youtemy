@@ -1,8 +1,7 @@
 import {
   CaretRightOutlined,
   DeleteOutlined,
-  EditOutlined,
-  SettingOutlined,
+  ExpandAltOutlined,
 } from "@ant-design/icons";
 import { Card, Progress, Space } from "antd";
 import React from "react";
@@ -15,7 +14,7 @@ const { Meta } = Card;
 export default function Dashboard() {
   return (
     <div className="wrapper">
-      <Space direction="horizontal" align="center" width="80%" size={400}>
+      <Space direction="horizontal" align="center" width="80%" size={100}>
         <div>
           <h2 className="card-heading">Active Course</h2>
           <Card
@@ -48,15 +47,9 @@ export default function Dashboard() {
         </div>
         <div>
           <h2 className="card-heading">Progress</h2>
-          <Card
-            style={{ width: 300 }}
-            actions={[
-              <SettingOutlined key="setting" />,
-              <EditOutlined key="edit" />,
-            ]}
-          >
+          <Card style={{ width: 300 }} actions={[<ExpandAltOutlined />]}>
             <div className="progress-circle-n">
-              <Progress type="circle" percent={69} width={170}></Progress>
+              <Progress type="circle" percent={69} width={207}></Progress>
             </div>
             <Meta
               title="Current Course Progress"

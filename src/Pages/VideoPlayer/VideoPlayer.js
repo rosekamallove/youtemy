@@ -150,7 +150,7 @@ const VideoPlayer = (props) => {
         collapsedWidth={65}
         style={{
           overflow: "auto",
-          height: "88vh",
+          height: "100%",
           position: "fixed",
           left: 0,
         }}
@@ -165,7 +165,6 @@ const VideoPlayer = (props) => {
           <Title level={3} className="playlist-title">
             Videos
           </Title>
-          {/* <div className="menu-items"> */}
           {playlistState.playlistArray.map((item) => (
             <Menu.Item
               key={JSON.stringify(item.snippet.resourceId.videoId)}
@@ -178,6 +177,7 @@ const VideoPlayer = (props) => {
               {item.snippet.title}
             </Menu.Item>
           ))}
+          <Menu.Item key="8" style={{ paddingBottom: 80 }}></Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: videoMargin }}>
@@ -188,8 +188,8 @@ const VideoPlayer = (props) => {
           >
             {returnIframMarkup()}
           </div>
-          <Collapse bordered={false}>
-            <Panel header="Description">
+          <Collapse bordered={false} defaultActiveKey={["1"]}>
+            <Panel header="Description" key="1">
               <span className="description-span">{videoDescrption}</span>{" "}
             </Panel>
           </Collapse>

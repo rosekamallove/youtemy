@@ -1,10 +1,10 @@
-import "./ExplorePage.css";
-import Footer from "../../Components/Footer/Footer";
-import React from "react";
-import SearchBar from "./SearchBar";
-import instance from "../../apis/youtube";
-import PlaylistsList from "./PlaylistsList";
 import { Card } from "antd";
+import React from "react";
+import instance from "../../apis/youtube";
+import Footer from "../../Components/Footer/Footer";
+import "./ExplorePage.css";
+import PlaylistsList from "./PlaylistsList";
+import SearchBar from "./SearchBar";
 
 class ExplorePage extends React.Component {
   state = {
