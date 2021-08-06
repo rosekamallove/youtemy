@@ -21,9 +21,6 @@ const auth = firebase.auth();
 
 function App() {
   const [user] = useAuthState(auth);
-  {
-    console.log(process.env.REACT_APP_FIREBASE);
-  }
   return <div>{user ? <Dashboard /> : <LandingPage />}</div>;
 }
 
@@ -40,7 +37,7 @@ function LandingPage() {
         <br />
         <h2>
           Your chance to stop wasting time and track your YouTube Learning
-        </h2>{" "}
+        </h2>
         <button className="sign-in" onClick={signInWithGoogle}>
           SignIn with Google <i className="fab fa-google"></i>
         </button>

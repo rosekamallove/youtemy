@@ -16,7 +16,7 @@
   flex-direction: row;
   width: 100%;
   justify-content: center;
-  text-shadow: 2px 2px 2px #cccccc;
+  font-weight: 300;
   margin: -150px 0 40px 0px;
 }
 .video-section {

@@ -20,7 +20,7 @@ const VideoPlayer = (props) => {
   const [loading, setLoading] = useState(false);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
-  const [videoDescrption, setVideoDescription] = useState("");
+  const [videoDescription, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
 
   /*
@@ -190,7 +190,7 @@ const VideoPlayer = (props) => {
           </div>
           <Collapse bordered={false} defaultActiveKey={["1"]}>
             <Panel header="Description" key="1">
-              <span className="description-span">{videoDescrption}</span>{" "}
+              <span className="description-span">{videoDescription}</span>{" "}
             </Panel>
           </Collapse>
         </Content>
