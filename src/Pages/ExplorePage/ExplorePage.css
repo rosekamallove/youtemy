@@ -9,4 +9,10 @@
     align-content: center;
     justify-content: center;
   }
-  
+
+.displaybar{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 20px;
+}
