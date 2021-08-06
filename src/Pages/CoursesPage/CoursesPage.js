@@ -15,9 +15,6 @@ import "./CoursesPage.css";
 const { Meta } = Card;
 
 export default function CoursesPage() {
-  // const userDB = useContext(UserContext);
-  // userDB.get().then((res) => console.log(`from course ${res}`));
-
   const handleCourseButtonClicked = (playlistID) => {
     console.log(playlistID);
   };

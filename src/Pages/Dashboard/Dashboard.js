@@ -5,30 +5,23 @@ import {
 } from "@ant-design/icons";
 import { Card, Progress, Space } from "antd";
 import "firebase/firestore";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { db } from "../../App";
 import Footer from "../../Components/Footer/Footer";
+import firebase from "../../firebase";
+import { UserContext } from "../../UserContext";
 import "./Dashboard.css";
 
 const { Meta } = Card;
 
-let userDB;
-export { userDB };
-
-export default function Dashboard({ uid, userName }) {
-  // if (db.collection("users").doc(uid) != undefined) {
-  userDB = db.collection("users").doc(uid);
-  console.log(userDB);
-  userDB.get().then((res) => console.log(res));
-  // }
-  db.collection("users").doc(uid).set({
-    name: userName,
-    uid,
-  });
+export default function Dashboard() {
+  /* Setting the userId */
+  const { uid, setUid } = useContext(UserContext);
+  setUid(firebase.auth().currentUser.uid);
 
   return (
     <div className="wrapper">
+      <h1>{uid}</h1>
       <Space direction="horizontal" align="center" width="80%" size={100}>
         <div>
           <h2 className="card-heading">Active Course</h2>

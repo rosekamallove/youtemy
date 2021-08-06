@@ -1,38 +1,47 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
+import Navbar from "./Components/Navbar/Navbar";
 import "./css/App.css";
 import "./css/index.css";
-import { firebaseConfig } from "./firebase";
+import firebase from "./firebase";
+import BookmarksPage from "./Pages/BookmarksPage/BookmarksPage";
+import CoursesPage from "./Pages/CoursesPage/CoursesPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import ExplorePage from "./Pages/ExplorePage/ExplorePage";
+import SettingsPage from "./Pages/SettingsPage/SettingsPage";
+import VideoPlayer from "./Pages/VideoPlayer/VideoPlayer";
+import { UserContext } from "./UserContext";
 
-firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 export { db };
 
 function App() {
   const [userLoggedIn] = useAuthState(auth);
-
-  let userId;
-  let userName;
-  const user = firebase.auth().currentUser;
-  if (user !== null) {
-    userId = user.uid;
-    userName = user.displayName;
-  }
-
+  const [uid, setUid] = useState("en");
+  const value = { uid, setUid };
   return (
-    <div>
-      {userLoggedIn ? (
-        <Dashboard uid={userId} userName={userName} />
-      ) : (
-        <LandingPage />
-      )}
-    </div>
+    <UserContext.Provider value={value}>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route
+            exact
+            path={"/"}
+            render={() => {
+              return userLoggedIn ? <Dashboard /> : <LandingPage />;
+            }}
+          />
+          <Route path={"/courses"} component={CoursesPage} />
+          <Route path={"/explore"} component={ExplorePage} />
+          <Route path={"/bookmarks"} component={BookmarksPage} />
+          <Route path={"/settings"} component={SettingsPage} />
+          <Route path={"/video-player"} component={VideoPlayer} />
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   );
 }
 
