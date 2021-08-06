@@ -16,11 +16,10 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
           src={playlist.snippet.thumbnails.default.url}
           alt={playlist.snippet.description}
         />
-        <h4 className="header ">{playlist.snippet.title}</h4>
-      </Link>
+      <h4 className="explorer-header">{playlist.snippet.title}</h4>
       <div className="channel-name">{playlist.snippet.channelTitle}</div>
-      <br />
-      <br />
+      <br/>
+      </Link>
     </div>
   );
 };
