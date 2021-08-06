@@ -34,7 +34,7 @@ const VideoPlayer = (props) => {
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
-    const API_KEY = "AIzaSyBR3F9lodP7zQ3wiY3FY0dHS_8edP5j6NM";
+    const API_KEY = process.env.REACT_APP_YOUTUBE;
     playlistID =
       playlistID === undefined
         ? "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP"

@@ -9,8 +9,7 @@ import "./css/index.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBmS_1wY-MkEOYErWbobVd42iRNj_l3TYE",
-  // apiKey: process.env.REACT_APP_MM_KEY,
+  apiKey: process.env.REACT_APP_FIREBASE,
   authDomain: "youtemy-bc22a.firebaseapp.com",
   projectId: "youtemy-bc22a",
   storageBucket: "youtemy-bc22a.appspot.com",
@@ -22,6 +21,9 @@ const auth = firebase.auth();
 
 function App() {
   const [user] = useAuthState(auth);
+  {
+    console.log(process.env.REACT_APP_FIREBASE);
+  }
   return <div>{user ? <Dashboard /> : <LandingPage />}</div>;
 }
 
