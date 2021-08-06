@@ -15,6 +15,9 @@ import "./CoursesPage.css";
 const { Meta } = Card;
 
 export default function CoursesPage() {
+  const handleCourseButtonClicked = (playlistID) => {
+    console.log(playlistID);
+  };
   return (
     <div className="wrapper">
       <div className="very-center">
@@ -35,7 +38,14 @@ export default function CoursesPage() {
               >
                 <CaretRightOutlined key="Play" />
               </Link>,
-              <PlusCircleOutlined key="Enroll" />,
+              <PlusCircleOutlined
+                key="Enroll"
+                onClick={() => {
+                  handleCourseButtonClicked(
+                    "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88"
+                  );
+                }}
+              />,
               <a
                 href="https://www.youtube.com/watch?v=mU6anWqZJcc&list=PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88"
                 target="_blank"
@@ -64,7 +74,14 @@ export default function CoursesPage() {
                   playlistID: "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
                 }}
               >
-                <CaretRightOutlined key="Play" />
+                <CaretRightOutlined
+                  key="Play"
+                  onClick={() => {
+                    handleCourseButtonClicked(
+                      "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
+                    );
+                  }}
+                />
               </Link>,
               <PlusCircleOutlined key="Enroll" />,
               <a
@@ -98,7 +115,14 @@ export default function CoursesPage() {
               >
                 <CaretRightOutlined key="Play" />
               </Link>,
-              <PlusCircleOutlined key="Enroll" />,
+              <PlusCircleOutlined
+                key="Enroll"
+                onClick={() => {
+                  handleCourseButtonClicked(
+                    "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
+                  );
+                }}
+              />,
               <a
                 href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
                 target="_blank"

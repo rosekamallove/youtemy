@@ -4,14 +4,21 @@ import {
   ExpandAltOutlined,
 } from "@ant-design/icons";
 import { Card, Progress, Space } from "antd";
-import React from "react";
+import "firebase/firestore";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
+import firebase from "../../firebase";
+import { UserContext } from "../../UserContext";
 import "./Dashboard.css";
 
 const { Meta } = Card;
 
 export default function Dashboard() {
+  /* Setting the userId */
+  const { uid, setUid } = useContext(UserContext);
+  setUid(firebase.auth().currentUser.uid);
+
   return (
     <div className="wrapper">
       <Space direction="horizontal" align="center" width="80%" size={100}>

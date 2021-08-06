@@ -2,6 +2,7 @@ import { Checkbox, Collapse, Layout, Menu, Typography } from "antd";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player/youtube";
+import getVideos from "../../apis/getVideos";
 import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
@@ -56,7 +57,6 @@ const VideoPlayer = (props) => {
 
     const fetchData = async () => (await fetch(url)).json();
     fetchData().then((data) => {
-      console.log(data);
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
       setPlaylistState({
         playlistData: data,
@@ -65,6 +65,8 @@ const VideoPlayer = (props) => {
       });
       setLoading(true);
     });
+    const crap = getVideos(playlistID);
+    console.log(crap);
   }, []);
   /*-------------------------------------------------------------------*/
 
@@ -103,8 +105,6 @@ const VideoPlayer = (props) => {
 
   const setVideoDescriptionInMarkup = () => {
     playlistState.playlistArray.map((item) => {
-      console.clear();
-      console.log(currentVideo || playlistState.firstVideo);
       if (
         item.snippet.resourceId.videoId ===
         (currentVideo || playlistState.firstVideo)
