@@ -1901,6 +1901,29 @@
     "estree-walker" "^1.0.1"
     "picomatch" "^2.2.2"
 
+"@sendgrid/client@^7.4.3":
+  "integrity" "sha512-tTaHx893w5iqG0sVtUnMyRchuwYF95k4UOkmov1MouMIeMUbNvbalITo7cG7YSXUTY9rT2t4eBY6HcEBCVeqfg=="
+  "resolved" "https://registry.npmjs.org/@sendgrid/client/-/client-7.4.3.tgz"
+  "version" "7.4.3"
+  dependencies:
+    "@sendgrid/helpers" "^7.4.3"
+    "axios" "^0.21.1"
+
+"@sendgrid/helpers@^7.4.3":
+  "integrity" "sha512-Wt+68g1sVEM5UspJh34O/cxtv6BBbtAIk7U9B3PB2ySOtPs9e6hI1QkgYVwpNmkt7k2p86muUNyma/Aig25agg=="
+  "resolved" "https://registry.npmjs.org/@sendgrid/helpers/-/helpers-7.4.3.tgz"
+  "version" "7.4.3"
+  dependencies:
+    "deepmerge" "^4.2.2"
+
+"@sendgrid/mail@^7.4.5":
+  "integrity" "sha512-adXMvrTUOlYr7+UTigZRGSYR9vheBv1y4fF2mugn29NBdQMfcQPGLQ5vIHgSAfcboBFCagZdamZqM5FeSGU0Hw=="
+  "resolved" "https://registry.npmjs.org/@sendgrid/mail/-/mail-7.4.5.tgz"
+  "version" "7.4.5"
+  dependencies:
+    "@sendgrid/client" "^7.4.3"
+    "@sendgrid/helpers" "^7.4.3"
+
 "@sinonjs/commons@^1.7.0":
   "integrity" "sha512-sruwd86RJHdsVf/AtBoijDmUqJp3B6hF/DGC23C+JaegnDHaZyewCjoVGTdg3J0uz3Zs7NnIT05OBOmML72lQw=="
   "resolved" "https://registry.npmjs.org/@sinonjs/commons/-/commons-1.8.2.tgz"
