@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  padding-top: 20px;
+}
+.very-center {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+}
+.heading {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  font-weight: 300;
+  margin: -150px 0 40px 0px;
+}
+.video-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+}
