@@ -18,6 +18,7 @@ export default function CoursesPage() {
   const handleCourseButtonClicked = (playlistID) => {
     console.log(playlistID);
   };
+
   return (
     <div className="wrapper">
       <div className="very-center">

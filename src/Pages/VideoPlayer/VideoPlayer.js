@@ -18,11 +18,13 @@ const VideoPlayer = (props) => {
     playlistArray: [],
   });
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
   const [videoDescription, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(currentVideo);
+  const [keyCounter, setKeyCounter] = useState(1);
 
   /*
    *  Use the useRef hook to store the referrence of checkBoxex
@@ -35,40 +37,20 @@ const VideoPlayer = (props) => {
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
-    const API_KEY = process.env.REACT_APP_YOUTUBE;
     playlistID =
       playlistID === undefined
         ? "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP"
         : playlistID;
-    const _URL = "https://www.googleapis.com/youtube/v3/playlistItems";
-
-    const options = {
-      part: "snippet",
-      key: API_KEY,
-      maxResults: 100,
-      playlistId: playlistID,
-    };
-
-    var url = new URL(_URL),
-      params = options;
-    Object.keys(params).forEach((key) =>
-      url.searchParams.append(key, params[key])
-    );
-
-    const fetchData = async () => (await fetch(url)).json();
-    fetchData().then((data) => {
+    getVideos(playlistID).then((data) => {
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
       setPlaylistState({
         playlistData: data,
         firstVideo: data.items[0].snippet.resourceId.videoId,
         playlistArray: data.items,
       });
-      setLoading(true);
+      setLoading(false);
     });
-    const crap = getVideos(playlistID);
-    console.log(crap);
   }, []);
-  /*-------------------------------------------------------------------*/
 
   useEffect(() => {
     setVideoDescriptionInMarkup();
@@ -118,7 +100,6 @@ const VideoPlayer = (props) => {
     var idx;
     playlistState.playlistArray.forEach((item) => {
       if (item.snippet.resourceId.videoId === currentVideo) {
-        console.log(JSON.stringify(item.snippet.resourceId.videoId));
         idx = playlistState.playlistArray.indexOf(item);
       }
     });
@@ -156,18 +137,13 @@ const VideoPlayer = (props) => {
         }}
       >
         <div className="logo" />
-        <Menu
-          theme="light"
-          mode="inline"
-          defaultSelectedKeys={[JSON.stringify(playlistState.firstVideo)]}
-          className="menu"
-        >
+        <Menu theme="light" mode="inline" selectedKeys={[selectedMenuItem]}>
           <Title level={3} className="playlist-title">
             Videos
           </Title>
           {playlistState.playlistArray.map((item) => (
             <Menu.Item
-              key={JSON.stringify(item.snippet.resourceId.videoId)}
+              key={item.snippet.resourceId.videoId}
               className="menu-item"
               onClick={() => {
                 handleMenuItemClick(item.snippet.resourceId.videoId);
@@ -181,7 +157,7 @@ const VideoPlayer = (props) => {
         </Menu>
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: videoMargin }}>
-        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+        <Content style={{ margin: "50px 16px 0", overflow: "initial" }}>
           <div
             className="site-layout-background"
             style={{ padding: 24, textAlign: "center", minHeight: 820 }}
