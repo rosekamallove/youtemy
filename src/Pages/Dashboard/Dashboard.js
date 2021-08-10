@@ -8,7 +8,7 @@ import "firebase/firestore";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
-import firebase from "../../firebase";
+import firebase, { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
 import "./Dashboard.css";
 
@@ -18,6 +18,13 @@ export default function Dashboard() {
   /* Setting the userId */
   const { uid, setUid } = useContext(UserContext);
   setUid(firebase.auth().currentUser.uid);
+
+  db.collection("users").doc(firebase.auth().currentUser.uid).set(
+    {
+      name: "rose Kamal",
+    },
+    { merge: true }
+  );
 
   return (
     <div className="wrapper">

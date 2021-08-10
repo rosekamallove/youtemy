@@ -5,9 +5,12 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 import "antd/dist/antd.css";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import getVideos from "../../apis/getVideos";
 import Footer from "../../Components/Footer/Footer";
+import { db } from "../../firebase";
+import { UserContext } from "../../UserContext";
 import img1 from "./1.jpg";
 import img2 from "./2.jpg";
 import img3 from "./3.jpg";
@@ -15,8 +18,18 @@ import "./CoursesPage.css";
 const { Meta } = Card;
 
 export default function CoursesPage() {
-  const handleCourseButtonClicked = (playlistID) => {
-    console.log(playlistID);
+  const { uid, setUid } = useContext(UserContext);
+  const videos = [];
+  const handleCourseButtonClicked = async (playlistID) => {
+    const data = await getVideos(playlistID);
+    data.items.forEach((item) => {
+      videos.push({ videoId: item.id, watched: false });
+    });
+    db.collection("users")
+      .doc(uid)
+      .collection("currentlyEnrolled")
+      .doc(playlistID)
+      .set({ videos });
   };
 
   return (
@@ -120,7 +133,7 @@ export default function CoursesPage() {
                 key="Enroll"
                 onClick={() => {
                   handleCourseButtonClicked(
-                    "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
+                    "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
                   );
                 }}
               />,
