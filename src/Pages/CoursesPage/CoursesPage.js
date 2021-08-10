@@ -145,7 +145,7 @@ export default function CoursesPage() {
           </Card>
         </section>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 }

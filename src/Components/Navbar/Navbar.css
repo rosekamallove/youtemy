@@ -6,7 +6,6 @@
   padding: 0;
   font-family: "Roboto", sans-serif;
 }
-
 .nav-li,
 .nav-a,
 .nav-button {
@@ -38,6 +37,7 @@
   padding-left: 0px;
   padding-right: 2px;
   background-color: white;
+  z-index: 5;
 }
 
 .logo {
