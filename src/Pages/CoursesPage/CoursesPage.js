@@ -22,14 +22,21 @@ export default function CoursesPage() {
   const videos = [];
   const handleCourseButtonClicked = async (playlistID) => {
     const data = await getVideos(playlistID);
+    console.log(data);
+    let playlistInfo = {
+      thumbnail: data.items[0].snippet.thumbnails.medium.url,
+      title: data.items[0].snippet.title,
+      playlistID,
+    };
     data.items.forEach((item) => {
       videos.push({ videoId: item.id, watched: false });
     });
+    console.log(playlistInfo);
     db.collection("users")
       .doc(uid)
       .collection("currentlyEnrolled")
       .doc(playlistID)
-      .set({ videos });
+      .set({ playlistInfo, videos });
   };
 
   return (
@@ -97,7 +104,14 @@ export default function CoursesPage() {
                   }}
                 />
               </Link>,
-              <PlusCircleOutlined key="Enroll" />,
+              <PlusCircleOutlined
+                key="Enroll"
+                onClick={() => {
+                  handleCourseButtonClicked(
+                    "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
+                  );
+                }}
+              />,
               <a
                 href="https://www.youtube.com/watch?v=hdI2bqOjy3c&list=PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
                 target="_blank"
@@ -133,7 +147,7 @@ export default function CoursesPage() {
                 key="Enroll"
                 onClick={() => {
                   handleCourseButtonClicked(
-                    "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
+                    "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
                   );
                 }}
               />,
