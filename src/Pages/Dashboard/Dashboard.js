@@ -43,8 +43,15 @@ export default function Dashboard() {
         });
         setCurrentlyEnrolled({ data: currentlyEnrolled });
       });
-    console.log(currentlyEnrolled);
   }, []);
+
+  const handleCourseDelete = (playlistID) => {
+    db.collection("users")
+      .doc(UID)
+      .collection("currentlyEnrolled")
+      .doc(playlistID)
+      .delete();
+  };
 
   const RenderCards = ({ playlistData }) => {
     const renderedCards = playlistData.map((playlist) => {
@@ -61,9 +68,12 @@ export default function Dashboard() {
             >
               <CaretRightOutlined key="play" />
             </Link>,
-            <Link to={{ pathname: "/settings" }}>
-              <DeleteOutlined key="edit" />
-            </Link>,
+            <DeleteOutlined
+              key="edit"
+              onClick={() =>
+                handleCourseDelete(playlist.playlistInfo.playlistID)
+              }
+            />,
           ]}
         >
           <Meta title={playlist.playlistInfo.title} />
