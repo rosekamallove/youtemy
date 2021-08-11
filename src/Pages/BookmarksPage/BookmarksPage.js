@@ -23,7 +23,9 @@ export default function BookmarksPage() {
       .doc(uid)
       .get()
       .then((data) => {
-        setBookmarks(data.data().bookmarks);
+        if (data) {
+          setBookmarks(data.data().bookmarks);
+        }
       });
   })();
 
@@ -39,37 +41,40 @@ export default function BookmarksPage() {
   return (
     <div className="wrapper____">
       <Row gutter={[16, 24]}>
-        {bookmarks.map((playlist) => (
-          <Col className="gutter-row" span={6} key={playlist.playlistID}>
-            <Card
-              style={{ width: 300, margin: 0 }}
-              actions={[
-                <Link
-                  to={{
-                    pathname: "/video-player",
-                    playlistID: playlist.playlistID,
-                  }}
+        {bookmarks
+          ? bookmarks.map((playlist) => (
+              <Col className="gutter-row" span={6} key={playlist.playlistID}>
+                <Card
+                  cover={<img alt="example" src={playlist.thumbnail} />}
+                  style={{ width: 300, margin: 0 }}
+                  actions={[
+                    <Link
+                      to={{
+                        pathname: "/video-player",
+                        playlistID: playlist.playlistID,
+                      }}
+                    >
+                      <CaretRightOutlined key="play" />
+                    </Link>,
+                    <PlusCircleOutlined
+                      key="Enroll"
+                      onClick={() => {
+                        handleAddCourse(playlist.playlistID, uid);
+                      }}
+                    />,
+                    <DeleteOutlined
+                      key="edit"
+                      onClick={() => {
+                        handleDeleteBookmark(playlist.playlistID);
+                      }}
+                    />,
+                  ]}
                 >
-                  <CaretRightOutlined key="play" />
-                </Link>,
-                <PlusCircleOutlined
-                  key="Enroll"
-                  onClick={() => {
-                    handleAddCourse(playlist.playlistID, uid);
-                  }}
-                />,
-                <DeleteOutlined
-                  key="edit"
-                  onClick={() => {
-                    handleDeleteBookmark(playlist.playlistID);
-                  }}
-                />,
-              ]}
-            >
-              <Meta title={playlist.title} />
-            </Card>
-          </Col>
-        ))}
+                  <Meta title={playlist.title} />
+                </Card>
+              </Col>
+            ))
+          : ""}
       </Row>
       <Footer />
     </div>
