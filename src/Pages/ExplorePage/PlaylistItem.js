@@ -1,5 +1,6 @@
 import {
   CaretRightOutlined,
+  CopyOutlined,
   PlusCircleOutlined,
   YoutubeOutlined,
 } from "@ant-design/icons";
@@ -33,6 +34,13 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
       .doc(playlistID)
       .set({ playlistInfo, videos });
   };
+
+  const handleAddToBookamrk = async (playlistID) => {
+    const data = await db.collection("users").doc(uid).get();
+    let bookmarks = await data.data().bookmarks;
+    bookmarks.push(playlistID);
+    db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
+  };
   const yt = "https://youtube.com/playlist?list=" + playlistID;
   return (
     <Card
@@ -61,6 +69,11 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
         <a href={yt} target="_blank" rel="noreferrer">
           <YoutubeOutlined key="Open In Youtube" />
         </a>,
+        <CopyOutlined
+          onClick={() => {
+            handleAddToBookamrk(playlist.id.playlistId);
+          }}
+        />,
       ]}
       bordered={true}
     >
