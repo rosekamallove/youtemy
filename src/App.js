@@ -14,7 +14,6 @@ import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import VideoPlayer from "./Pages/VideoPlayer/VideoPlayer";
 import PrivateRoute from "./PrivateRoute";
 import { UserContext } from "./UserContext";
-import {functions } from './firebase';
 
 const auth = firebase.auth();
 const db = firebase.firestore();
@@ -54,20 +53,32 @@ function LandingPage() {
   };
 
   return (
-    <div>
+    <div className="landing-wrapper">
       <div className="landing-title">
         <h1>Welcome to YouTemy</h1>
         <br />
         <h2>
           Your chance to stop wasting time and track your YouTube Learning
         </h2>
-        <button className="sign-in" onClick={signInWithGoogle}>
-          <label className="signin-label">SignIn with{"  "}</label>
-          <img
-            className="google-logo"
-            src="https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515358_10512.png"
-          ></img>
-        </button>
+        <div className="buttons-row-landing">
+          <button className="sign-in" onClick={signInWithGoogle}>
+            <label className="signin-label">SignIn with{"  "}</label>
+            <img
+              className="google-logo"
+              src="https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515358_10512.png"
+            ></img>
+          </button>
+          <a
+            className="github-goto"
+            href="https://github.com/rosekamallove/youtemy"
+            target="_blank"
+          >
+            <button className="github-youtemy">
+              Contribute{"  "}
+              <i className="fab fa-github github-logo"></i>
+            </button>
+          </a>
+        </div>
       </div>
       <Footer />
     </div>
