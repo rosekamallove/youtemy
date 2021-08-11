@@ -31,6 +31,7 @@ function App() {
             exact
             path={"/"}
             render={() => {
+              
               return userLoggedIn ? <Dashboard /> : <LandingPage />;
             }}
           />

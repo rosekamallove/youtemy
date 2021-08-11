@@ -49,6 +49,7 @@ export default function CoursesPage() {
               <a
                 href="https://www.youtube.com/watch?v=mU6anWqZJcc&list=PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88"
                 target="_blank"
+                rel="noreferrer"
               >
                 <YoutubeOutlined key="Open In Youtube" />
               </a>,
@@ -87,6 +88,7 @@ export default function CoursesPage() {
               <a
                 href="https://www.youtube.com/watch?v=hdI2bqOjy3c&list=PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
                 target="_blank"
+                rel="noreferrer"
               >
                 <YoutubeOutlined key="Open In Youtube" />
               </a>,
@@ -126,6 +128,7 @@ export default function CoursesPage() {
               <a
                 href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
                 target="_blank"
+                rel="noreferrer"
               >
                 <YoutubeOutlined key="Open In Youtube" />
               </a>,
@@ -142,7 +145,7 @@ export default function CoursesPage() {
           </Card>
         </section>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
