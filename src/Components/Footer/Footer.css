@@ -15,6 +15,7 @@
   width: 100%;
   text-align: center;
   background-color: white;
+  box-shadow: rgba(48, 48, 48, 0.56) 0px 15px 50px 4px;
   z-index: 5;
 }
 

@@ -22,12 +22,6 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
   return (
     <Card
       style={({ width: 50 }, { padding: 0 }, { margin: 20 })}
-      cover={
-        <img
-          src={playlist.snippet.thumbnails.default.url}
-          alt={playlist.snippet.description}
-        ></img>
-      }
       actions={[
         <Link
           to={{
