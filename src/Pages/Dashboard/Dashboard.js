@@ -5,53 +5,97 @@ import {
 } from "@ant-design/icons";
 import { Card, Progress, Space } from "antd";
 import "firebase/firestore";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
-import firebase from "../../firebase";
+import firebase, { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
 import "./Dashboard.css";
 
 const { Meta } = Card;
 
 export default function Dashboard() {
+  const [currentlyEnrolled, setCurrentlyEnrolled] = useState({});
+
   /* Setting the userId */
   const { uid, setUid } = useContext(UserContext);
-  setUid(firebase.auth().currentUser.uid);
+  const UID = firebase.auth().currentUser.uid;
+  setUid(UID);
+
+  /* Setting the name */
+  db.collection("users").doc(UID).set(
+    {
+      name: firebase.auth().currentUser.displayName.toString(),
+    },
+    { merge: true }
+  );
+
+  /* Getting Enrolled Courses */
+  useEffect(() => {
+    db.collection("users")
+      .doc(UID)
+      .collection("currentlyEnrolled")
+      .get()
+      .then((docs) => {
+        const currentlyEnrolled = [];
+        docs.forEach((doc) => {
+          currentlyEnrolled.push(doc.data());
+        });
+        setCurrentlyEnrolled({ data: currentlyEnrolled });
+      });
+  }, [UID]);
+
+  const handleCourseDelete = (playlistID) => {
+    db.collection("users")
+      .doc(UID)
+      .collection("currentlyEnrolled")
+      .doc(playlistID)
+      .delete();
+  };
+
+  const RenderCards = ({ playlistData }) => {
+    const renderedCards = playlistData.map((playlist) => {
+      return (
+        <Card
+          style={{ width: 300, margin: 10 }}
+          // cover={<img alt="example" src={playlist.playlistInfo.thumbnail} />}
+          actions={[
+            <Link
+              to={{
+                pathname: "/video-player",
+                playlistID: playlist.playlistInfo.playlistID,
+              }}
+            >
+              <CaretRightOutlined key="play" />
+            </Link>,
+            <DeleteOutlined
+              key="edit"
+              onClick={() =>
+                handleCourseDelete(playlist.playlistInfo.playlistID)
+              }
+            />,
+          ]}
+        >
+          <Meta title={playlist.playlistInfo.title} />
+        </Card>
+      );
+    });
+    return (
+      <React.Fragment>
+        <h2 className="card-heading">Enrolled Courses</h2>
+        {renderedCards}
+      </React.Fragment>
+    );
+  };
 
   return (
     <div className="wrapper">
       <Space direction="horizontal" align="center" width="80%" size={100}>
-        <div>
-          <h2 className="card-heading">Active Course</h2>
-          <Card
-            style={{ width: 300, margin: 0 }}
-            cover={
-              <img
-                alt="example"
-                src="https://i.ytimg.com/vi/pN6jk0uUrD8/hqdefault.jpg"
-              />
-            }
-            actions={[
-              <Link
-                to={{
-                  pathname: "/video-player",
-                  playlistID: "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP",
-                }}
-              >
-                <CaretRightOutlined key="play" />
-              </Link>,
-              <Link to={{ pathname: "/settings" }}>
-                <DeleteOutlined key="edit" />
-              </Link>,
-            ]}
-          >
-            <Meta
-              title="Namaste JavaScript"
-              description="Deep understanding of JavaScript"
-            />
-          </Card>
-        </div>
+        {currentlyEnrolled.data ? (
+          <RenderCards playlistData={currentlyEnrolled.data} />
+        ) : (
+          ""
+        )}
         <div>
           <h2 className="card-heading">Progress</h2>
           <Card style={{ width: 300 }} actions={[<ExpandAltOutlined />]}>

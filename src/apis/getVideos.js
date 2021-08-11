@@ -1,5 +1,4 @@
-const getVideos = (playlistID) => {
-  let data;
+const getVideos = async (playlistID) => {
   const API_KEY = process.env.REACT_APP_YOUTUBE;
   const _URL = "https://www.googleapis.com/youtube/v3/playlistItems";
   const options = {
@@ -13,9 +12,7 @@ const getVideos = (playlistID) => {
   Object.keys(params).forEach((key) =>
     url.searchParams.append(key, params[key])
   );
-  const fetchData = async () => (await fetch(url)).json();
-  fetchData().then((res) => (data = res));
-  return data;
+  return await (await fetch(url)).json();
 };
 
 export default getVideos;
