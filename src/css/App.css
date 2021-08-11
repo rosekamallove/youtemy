@@ -10,11 +10,13 @@
 h1 {
   font-size: 58px;
   font-weight: 400;
+  color: rgb(29, 13, 13) !important;
 }
 
 h2 {
   font-weight: 300;
   padding-bottom: 50px;
+  color: rgb(44, 44, 44) !important;
 }
 
 .landing-title {
@@ -39,10 +41,28 @@ button:disabled {
 
 .sign-in {
   margin-top: 50px;
-  color: white;
-  background: #ff0000;
+  color: rgb(44, 44, 44);
+  background: white;
   max-width: 400px;
   margin: 0 auto;
+  transition: ease 0.2s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+  border-radius: 2px;
+}
+
+.sign-in:hover {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.signin-label {
+  cursor: pointer;
+}
+
+.google-logo {
+  width: 25px;
+  padding-left: 5px;
 }
 
 .sign-out {
