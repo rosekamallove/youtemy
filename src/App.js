@@ -61,7 +61,11 @@ function LandingPage() {
           Your chance to stop wasting time and track your YouTube Learning
         </h2>
         <button className="sign-in" onClick={signInWithGoogle}>
-          SignIn with Google <i className="fab fa-google"></i>
+          <label className="signin-label">SignIn with{"  "}</label>
+          <img
+            className="google-logo"
+            src="https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515358_10512.png"
+          ></img>
         </button>
       </div>
       <Footer />

@@ -34,7 +34,10 @@ class ExplorePage extends React.Component {
             <SearchBar handleFormSubmit={this.handleSubmit} />
           </Card>
           <Card className="allplaylists">
-            <PlaylistsList playlists={this.state.playlists} />
+            <PlaylistsList
+              className="playlist-item"
+              playlists={this.state.playlists}
+            />
           </Card>
         </div>
         <Footer />
