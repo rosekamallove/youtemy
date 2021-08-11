@@ -141,6 +141,9 @@ const VideoPlayer = (props) => {
           <Title level={3} className="playlist-title">
             Videos
           </Title>
+          <Menu.Item key="8" style={{ paddingTop: 5 }}>
+            Videos
+          </Menu.Item>
           {playlistState.playlistArray.map((item) => (
             <Menu.Item
               key={item.snippet.resourceId.videoId}
