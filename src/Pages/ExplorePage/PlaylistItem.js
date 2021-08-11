@@ -48,7 +48,11 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
         </a>,
         <CopyOutlined
           onClick={() => {
-            handleAddToBookamrk(playlist.id.playlistId);
+            handleAddToBookamrk(
+              playlist.id.playlistId,
+              uid,
+              playlist.snippet.title
+            );
           }}
         />,
       ]}

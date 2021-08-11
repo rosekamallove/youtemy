@@ -10,7 +10,7 @@ const { Title } = Typography;
 const { Panel } = Collapse;
 
 const VideoPlayer = (props) => {
-  var playlistID = props.location.playlistID;
+  const playlistID = props.location.playlistID;
 
   const [playlistState, setPlaylistState] = useState({
     playlistData: {},
@@ -36,10 +36,6 @@ const VideoPlayer = (props) => {
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
-    playlistID =
-      playlistID === undefined
-        ? "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP"
-        : playlistID;
     getVideos(playlistID).then((data) => {
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
       setPlaylistState({

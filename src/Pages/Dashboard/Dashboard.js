@@ -18,7 +18,7 @@ export default function Dashboard() {
   const [currentlyEnrolled, setCurrentlyEnrolled] = useState({});
 
   /* Setting the userId */
-  const { uid, setUid } = useContext(UserContext);
+  const { setUid } = useContext(UserContext);
   const UID = firebase.auth().currentUser.uid;
   setUid(UID);
 
@@ -57,6 +57,7 @@ export default function Dashboard() {
     const renderedCards = playlistData.map((playlist) => {
       return (
         <Card
+          key={playlist.playlistInfo.playlistID}
           style={{ width: 300, margin: 10 }}
           // cover={<img alt="example" src={playlist.playlistInfo.thumbnail} />}
           actions={[
