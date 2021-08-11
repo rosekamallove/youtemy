@@ -55,7 +55,7 @@ export default function BookmarksPage() {
                 <PlusCircleOutlined
                   key="Enroll"
                   onClick={() => {
-                    handleAddCourse(playlist, uid);
+                    handleAddCourse(playlist.playlistID, uid);
                   }}
                 />,
                 <DeleteOutlined
