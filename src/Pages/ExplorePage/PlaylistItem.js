@@ -45,7 +45,8 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
             handleAddToBookamrk(
               playlist.id.playlistId,
               uid,
-              playlist.snippet.title
+              playlist.snippet.title,
+              playlist.snippet.thumbnails.default.url
             );
           }}
         />,
