@@ -36,10 +36,10 @@ const VideoPlayer = (props) => {
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
-    playlistID =
-      playlistID === undefined
-        ? "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP"
-        : playlistID;
+    // playlistID =
+    //   playlistID === undefined
+    //     ? "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP"
+    //     : playlistID;
     getVideos(playlistID).then((data) => {
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
       setPlaylistState({

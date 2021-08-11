@@ -27,18 +27,27 @@ export default function BookmarksPage() {
       });
   })();
 
+  const handleDeleteBookmark = async (playlistID) => {
+    const data = await db.collection("users").doc(uid).get();
+    let bookmarks = await data.data().bookmarks;
+    const filteredBookmarks = bookmarks.filter((value, idx, arr) => {
+      return value.playlistID !== playlistID;
+    });
+    db.collection("users").doc(uid).set({ bookmarks: filteredBookmarks });
+  };
+
   return (
     <div className="wrapper____">
       <Row gutter={[16, 24]}>
-        {bookmarks.map((playlistID) => (
-          <Col className="gutter-row" span={6}>
+        {bookmarks.map((playlist) => (
+          <Col className="gutter-row" span={6} key={playlist.playlistID}>
             <Card
               style={{ width: 300, margin: 0 }}
               actions={[
                 <Link
                   to={{
                     pathname: "/video-player",
-                    playlistID: playlistID,
+                    playlistID: playlist.playlistID,
                   }}
                 >
                   <CaretRightOutlined key="play" />
@@ -46,13 +55,18 @@ export default function BookmarksPage() {
                 <PlusCircleOutlined
                   key="Enroll"
                   onClick={() => {
-                    handleAddCourse(playlistID, uid);
+                    handleAddCourse(playlist, uid);
                   }}
                 />,
-                <DeleteOutlined key="edit" onClick={() => {}} />,
+                <DeleteOutlined
+                  key="edit"
+                  onClick={() => {
+                    handleDeleteBookmark(playlist.playlistID);
+                  }}
+                />,
               ]}
             >
-              <Meta title="title" />
+              <Meta title={playlist.title} />
             </Card>
           </Col>
         ))}
