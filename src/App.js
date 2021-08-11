@@ -12,6 +12,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import ExplorePage from "./Pages/ExplorePage/ExplorePage";
 import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import VideoPlayer from "./Pages/VideoPlayer/VideoPlayer";
+import PrivateRoute from "./PrivateRoute";
 import { UserContext } from "./UserContext";
 
 const auth = firebase.auth();
@@ -31,15 +32,14 @@ function App() {
             exact
             path={"/"}
             render={() => {
-              
               return userLoggedIn ? <Dashboard /> : <LandingPage />;
             }}
           />
-          <Route path={"/courses"} component={CoursesPage} />
-          <Route path={"/explore"} component={ExplorePage} />
-          <Route path={"/bookmarks"} component={BookmarksPage} />
-          <Route path={"/settings"} component={SettingsPage} />
-          <Route path={"/video-player"} component={VideoPlayer} />
+          <PrivateRoute path={"/courses"} component={CoursesPage} />
+          <PrivateRoute path={"/explore"} component={ExplorePage} />
+          <PrivateRoute path={"/bookmarks"} component={BookmarksPage} />
+          <PrivateRoute path={"/settings"} component={SettingsPage} />
+          <PrivateRoute path={"/video-player"} component={VideoPlayer} />
         </Switch>
       </Router>
     </UserContext.Provider>
