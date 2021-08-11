@@ -1,7 +1,7 @@
 import {
   CaretRightOutlined,
+  CopyOutlined,
   PlusCircleOutlined,
-  YoutubeOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 import "antd/dist/antd.css";
@@ -20,6 +20,7 @@ const { Meta } = Card;
 export default function CoursesPage() {
   const { uid, setUid } = useContext(UserContext);
   const videos = [];
+
   const handleCourseButtonClicked = async (playlistID) => {
     const data = await getVideos(playlistID);
     console.log(data);
@@ -37,6 +38,13 @@ export default function CoursesPage() {
       .collection("currentlyEnrolled")
       .doc(playlistID)
       .set({ playlistInfo, videos });
+  };
+
+  const handleAddToBookamrk = async (playlistID) => {
+    const data = await db.collection("users").doc(uid).get();
+    let bookmarks = await data.data().bookmarks;
+    bookmarks.push(playlistID);
+    db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
   };
 
   return (
@@ -67,12 +75,11 @@ export default function CoursesPage() {
                   );
                 }}
               />,
-              <a
-                href="https://www.youtube.com/watch?v=mU6anWqZJcc&list=PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88"
-                target="_blank"
-              >
-                <YoutubeOutlined key="Open In Youtube" />
-              </a>,
+              <CopyOutlined
+                onClick={() => {
+                  handleAddToBookamrk("PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88");
+                }}
+              />,
             ]}
             bordered={true}
           >
@@ -112,12 +119,11 @@ export default function CoursesPage() {
                   );
                 }}
               />,
-              <a
-                href="https://www.youtube.com/watch?v=hdI2bqOjy3c&list=PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
-                target="_blank"
-              >
-                <YoutubeOutlined key="Open In Youtube" />
-              </a>,
+              <CopyOutlined
+                onClick={() => {
+                  handleAddToBookamrk("PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX");
+                }}
+              />,
             ]}
             bordered={true}
           >
@@ -151,12 +157,11 @@ export default function CoursesPage() {
                   );
                 }}
               />,
-              <a
-                href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
-                target="_blank"
-              >
-                <YoutubeOutlined key="Open In Youtube" />
-              </a>,
+              <CopyOutlined
+                onClick={() => {
+                  handleAddToBookamrk("PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d");
+                }}
+              />,
             ]}
             bordered={true}
           >

@@ -43,7 +43,7 @@ export default function Dashboard() {
         });
         setCurrentlyEnrolled({ data: currentlyEnrolled });
       });
-  }, []);
+  }, [UID]);
 
   const handleCourseDelete = (playlistID) => {
     db.collection("users")
