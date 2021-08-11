@@ -24,7 +24,6 @@ const VideoPlayer = (props) => {
   const [videoDescription, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
   const [selectedMenuItem, setSelectedMenuItem] = useState(currentVideo);
-  const [keyCounter, setKeyCounter] = useState(1);
 
   /*
    *  Use the useRef hook to store the referrence of checkBoxex

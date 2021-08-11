@@ -1,5 +1,6 @@
 import {
   CaretRightOutlined,
+  CopyOutlined,
   PlusCircleOutlined,
   YoutubeOutlined,
 } from "@ant-design/icons";
@@ -7,32 +8,16 @@ import { Avatar, Card } from "antd";
 import "antd/dist/antd.css";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import getVideos from "../../apis/getVideos";
-import { db } from "../../firebase";
+import handleAddToBookamrk from "../../firestore/addBookmarks";
+import handleAddCourse from "../../firestore/addCourse";
 import { UserContext } from "../../UserContext";
 import "./ExplorePage.css";
+
 const { Meta } = Card;
 
 const PlaylistItem = ({ key, playlistID, playlist }) => {
-  const { uid, setUid } = useContext(UserContext);
-  const videos = [];
+  const { uid } = useContext(UserContext);
 
-  const handleCourseButtonClicked = async (playlistID) => {
-    const data = await getVideos(playlistID);
-    let playlistInfo = {
-      thumbnail: data.items[0].snippet.thumbnails.medium.url,
-      title: data.items[0].snippet.title,
-      playlistID,
-    };
-    data.items.forEach((item) => {
-      videos.push({ videoId: item.id, watched: false });
-    });
-    db.collection("users")
-      .doc(uid)
-      .collection("currentlyEnrolled")
-      .doc(playlistID)
-      .set({ playlistInfo, videos });
-  };
   const yt = "https://youtube.com/playlist?list=" + playlistID;
   return (
     <Card
@@ -55,12 +40,17 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
         <PlusCircleOutlined
           key="Enroll"
           onClick={() => {
-            handleCourseButtonClicked(playlist.id.playlistId);
+            handleAddCourse(playlist.id.playlistId, uid);
           }}
         />,
         <a href={yt} target="_blank" rel="noreferrer">
           <YoutubeOutlined key="Open In Youtube" />
         </a>,
+        <CopyOutlined
+          onClick={() => {
+            handleAddToBookamrk(playlist.id.playlistId);
+          }}
+        />,
       ]}
       bordered={true}
     >

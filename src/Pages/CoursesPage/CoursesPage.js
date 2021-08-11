@@ -7,9 +7,9 @@ import { Avatar, Card } from "antd";
 import "antd/dist/antd.css";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import getVideos from "../../apis/getVideos";
 import Footer from "../../Components/Footer/Footer";
-import { db } from "../../firebase";
+import handleAddToBookamrk from "../../firestore/addBookmarks";
+import handleAddCourse from "../../firestore/addCourse";
 import { UserContext } from "../../UserContext";
 import img1 from "./1.jpg";
 import img2 from "./2.jpg";
@@ -18,34 +18,7 @@ import "./CoursesPage.css";
 const { Meta } = Card;
 
 export default function CoursesPage() {
-  const { uid, setUid } = useContext(UserContext);
-  const videos = [];
-
-  const handleCourseButtonClicked = async (playlistID) => {
-    const data = await getVideos(playlistID);
-    console.log(data);
-    let playlistInfo = {
-      thumbnail: data.items[0].snippet.thumbnails.medium.url,
-      title: data.items[0].snippet.title,
-      playlistID,
-    };
-    data.items.forEach((item) => {
-      videos.push({ videoId: item.id, watched: false });
-    });
-    console.log(playlistInfo);
-    db.collection("users")
-      .doc(uid)
-      .collection("currentlyEnrolled")
-      .doc(playlistID)
-      .set({ playlistInfo, videos });
-  };
-
-  const handleAddToBookamrk = async (playlistID) => {
-    const data = await db.collection("users").doc(uid).get();
-    let bookmarks = await data.data().bookmarks;
-    bookmarks.push(playlistID);
-    db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
-  };
+  const { uid } = useContext(UserContext);
 
   return (
     <div className="wrapper">
@@ -70,14 +43,15 @@ export default function CoursesPage() {
               <PlusCircleOutlined
                 key="Enroll"
                 onClick={() => {
-                  handleCourseButtonClicked(
-                    "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88"
-                  );
+                  handleAddCourse("PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88", uid);
                 }}
               />,
               <CopyOutlined
                 onClick={() => {
-                  handleAddToBookamrk("PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88");
+                  handleAddToBookamrk(
+                    "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
+                    uid
+                  );
                 }}
               />,
             ]}
@@ -105,23 +79,22 @@ export default function CoursesPage() {
                 <CaretRightOutlined
                   key="Play"
                   onClick={() => {
-                    handleCourseButtonClicked(
-                      "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
-                    );
+                    handleAddCourse("PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX", uid);
                   }}
                 />
               </Link>,
               <PlusCircleOutlined
                 key="Enroll"
                 onClick={() => {
-                  handleCourseButtonClicked(
-                    "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX"
-                  );
+                  handleAddCourse("PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX", uid);
                 }}
               />,
               <CopyOutlined
                 onClick={() => {
-                  handleAddToBookamrk("PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX");
+                  handleAddToBookamrk(
+                    "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
+                    uid
+                  );
                 }}
               />,
             ]}
@@ -152,14 +125,15 @@ export default function CoursesPage() {
               <PlusCircleOutlined
                 key="Enroll"
                 onClick={() => {
-                  handleCourseButtonClicked(
-                    "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d"
-                  );
+                  handleAddCourse("PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d", uid);
                 }}
               />,
               <CopyOutlined
                 onClick={() => {
-                  handleAddToBookamrk("PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d");
+                  handleAddToBookamrk(
+                    "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d",
+                    uid
+                  );
                 }}
               />,
             ]}
