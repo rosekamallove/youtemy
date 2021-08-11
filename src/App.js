@@ -14,6 +14,7 @@ import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import VideoPlayer from "./Pages/VideoPlayer/VideoPlayer";
 import PrivateRoute from "./PrivateRoute";
 import { UserContext } from "./UserContext";
+import {functions } from './firebase';
 
 const auth = firebase.auth();
 const db = firebase.firestore();
