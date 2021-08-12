@@ -1,6 +1,5 @@
 import firebase from "firebase";
 import 'firebase/auth';
-import 'firebase/functions';
 
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE,
@@ -19,4 +18,3 @@ export { db };
 
 export default firebase;
 export const auth = firebase.auth();
-export const functions = firebase.functions();

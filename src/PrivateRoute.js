@@ -5,7 +5,6 @@ import firebase from "./firebase";
 
 const auth = firebase.auth();
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  // Add your own authentication on the below line.
   const [userLoggedIn] = useAuthState(auth);
 
   return (

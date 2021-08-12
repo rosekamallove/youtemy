@@ -20,8 +20,8 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
 
   const yt = "https://youtube.com/playlist?list=" + playlistID;
   return (
-    <Card
-      style={({ width: 50 }, { padding: 0 }, { margin: 20 })}
+    <Card 
+      style={({ width:50}, { padding: 0 }, { margin: 20 })}
       actions={[
         <Popover content="Preview in the Player">
           <Link
@@ -67,7 +67,7 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
       <Meta
         avatar={<Avatar src={playlist.snippet.thumbnails.default.url} />}
         title={playlist.snippet.title}
-        description={playlist.snippet.channelTitle}
+        description={playlist.snippet.description}
       />
     </Card>
   );
