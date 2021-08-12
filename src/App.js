@@ -37,8 +37,8 @@ function App() {
               return userLoggedIn ? <Dashboard /> : <LandingPage />;
             }}
           />
-          <PrivateRoute path={"/courses"} component={CoursesPage} />
-          <PrivateRoute path={"/explore"} component={ExplorePage} />
+          <Route path={"/courses"} component={CoursesPage} />
+          <Route path={"/explore"} component={ExplorePage} />
           <PrivateRoute path={"/bookmarks"} component={BookmarksPage} />
           <PrivateRoute path={"/settings"} component={SettingsPage} />
           <PrivateRoute path={"/video-player"} component={VideoPlayer} />
