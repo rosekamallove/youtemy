@@ -104,7 +104,8 @@ const RenderWithoutTracking = ({ playlistID }) => {
     menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
   };
 
-  const handleMenuItemClick = (videoId) => {
+  const handleMenuItemClick = (videoId, e) => {
+    console.log(e);
     setCurrentVideo(videoId);
   };
 
@@ -134,11 +135,14 @@ const RenderWithoutTracking = ({ playlistID }) => {
             <Menu.Item
               key={item.snippet.resourceId.videoId}
               className="menu-item"
-              onClick={() => {
-                handleMenuItemClick(item.snippet.resourceId.videoId);
+              onClick={(e) => {
+                handleMenuItemClick(item.snippet.resourceId.videoId, e);
               }}
             >
-              <Checkbox className="menu-checkbox"></Checkbox>
+              <Checkbox
+                className="menu-checkbox"
+                key={item.snippet.resourceId.videoId}
+              ></Checkbox>
               {item.snippet.title}
             </Menu.Item>
           ))}
