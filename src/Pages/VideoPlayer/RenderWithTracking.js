@@ -1,4 +1,4 @@
-import { Checkbox, Collapse, Layout, Menu, Typography } from "antd";
+import { Checkbox, Collapse, Layout, Menu, message, Typography } from "antd";
 import "antd/dist/antd.css";
 import React, { useContext, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -23,6 +23,7 @@ const RenderWithTracking = ({ playlistID }) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState("----");
 
   useEffect(() => {
+    message.success("Tracking is on");
     const getPlaylist = async () => {
       const data = await db
         .collection("users")
