@@ -1,13 +1,17 @@
 import React from "react";
 import RenderWithoutTracking from "./RenderWithoutTracking";
-import RenderWithTracking from "./RenderWithTracking";
 
 const VideoPlayer = ({ location }) => {
-  const playlistID = location.playlistID;
-  localStorage.setItem("playlist-id", playlistID);
+  let playlistID = location.playlistID;
+  if (playlistID === undefined) {
+    playlistID = localStorage.getItem("playlist-id");
+  } else {
+    localStorage.setItem("playlist-id", playlistID);
+  }
+
   const tracking = location.tracking;
   if (tracking) {
-    return <RenderWithTracking playlistID={playlistID} />;
+    return <RenderWithoutTracking playlistID={playlistID} />;
   } else {
     return <RenderWithoutTracking playlistID={playlistID} />;
   }
