@@ -28,6 +28,7 @@ const PlaylistItem = ({ key, playlistID, playlist }) => {
             to={{
               pathname: "/video-player",
               playlistID,
+              tracking: false,
             }}
           >
             <CaretRightOutlined key="Play" />

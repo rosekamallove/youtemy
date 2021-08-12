@@ -55,7 +55,7 @@ export default function Dashboard() {
       .collection("currentlyEnrolled")
       .doc(playlistID)
       .delete();
-    message.info("Course Delted Succesful, Refresh the page");
+    message.success("Course Deleted Succesfully, Refresh the page !");
     updateCurrentlyEnrolled();
   };
 
@@ -72,6 +72,7 @@ export default function Dashboard() {
                 to={{
                   pathname: "/video-player",
                   playlistID: playlist.playlistInfo.playlistID,
+                  tracking: true,
                 }}
               >
                 <CaretRightOutlined key="play" />
@@ -87,7 +88,7 @@ export default function Dashboard() {
                   handleCourseDelete(playlist.playlistInfo.playlistID)
                 }
               >
-                <DeleteOutlined />,
+                <DeleteOutlined />
               </Popconfirm>
             </Popover>,
           ]}
