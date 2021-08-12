@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
+import PrivateRoute from "./Components/PrivateRoute";
 import "./css/App.css";
 import "./css/index.css";
 import firebase from "./firebase";
@@ -14,7 +15,6 @@ import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import RenderWithoutTracking from "./Pages/VideoPlayer/RenderWithoutTracking";
 import RenderWithTracking from "./Pages/VideoPlayer/RenderWithTracking";
 import VideoPlayer from "./Pages/VideoPlayer/VideoPlayer";
-import PrivateRoute from "./PrivateRoute";
 import { UserContext } from "./UserContext";
 
 const auth = firebase.auth();

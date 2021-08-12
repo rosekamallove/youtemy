@@ -1,4 +1,4 @@
-import { Checkbox, Collapse, Layout, Menu, Typography } from "antd";
+import { Checkbox, Collapse, Layout, Menu, message, Typography } from "antd";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -27,6 +27,7 @@ const RenderWithoutTracking = ({ playlistID }) => {
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
+    message.error("Your Progress Won't be saved");
     playlistID = playlistID && localStorage.getItem("playlist-id");
     getVideos(playlistID).then((data) => {
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
@@ -104,7 +105,8 @@ const RenderWithoutTracking = ({ playlistID }) => {
     menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
   };
 
-  const handleMenuItemClick = (videoId) => {
+  const handleMenuItemClick = (videoId, e) => {
+    console.log(e);
     setCurrentVideo(videoId);
   };
 
@@ -134,11 +136,14 @@ const RenderWithoutTracking = ({ playlistID }) => {
             <Menu.Item
               key={item.snippet.resourceId.videoId}
               className="menu-item"
-              onClick={() => {
-                handleMenuItemClick(item.snippet.resourceId.videoId);
+              onClick={(e) => {
+                handleMenuItemClick(item.snippet.resourceId.videoId, e);
               }}
             >
-              <Checkbox className="menu-checkbox"></Checkbox>
+              <Checkbox
+                className="menu-checkbox"
+                key={item.snippet.resourceId.videoId}
+              ></Checkbox>
               {item.snippet.title}
             </Menu.Item>
           ))}

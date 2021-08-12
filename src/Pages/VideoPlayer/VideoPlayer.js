@@ -1,5 +1,6 @@
 import React from "react";
 import RenderWithoutTracking from "./RenderWithoutTracking";
+import RenderWithTracking from "./RenderWithTracking";
 
 const VideoPlayer = ({ location }) => {
   let playlistID = location.playlistID;
@@ -11,7 +12,7 @@ const VideoPlayer = ({ location }) => {
 
   const tracking = location.tracking;
   if (tracking) {
-    return <RenderWithoutTracking playlistID={playlistID} />;
+    return <RenderWithTracking playlistID={playlistID} />;
   } else {
     return <RenderWithoutTracking playlistID={playlistID} />;
   }

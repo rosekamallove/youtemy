@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Redirect, Route } from "react-router-dom";
-import firebase from "./firebase";
+import firebase from "../firebase";
 
 const auth = firebase.auth();
 const PrivateRoute = ({ component: Component, ...rest }) => {

@@ -17,9 +17,14 @@ const handleAddCourse = async (playlistID, uid) => {
     playlistID,
   };
   data.items.forEach((item) => {
-    videos.push({ videoId: item.id, watched: false });
+    console.log(item);
+    videos.push({
+      videoId: item.snippet.resourceId.videoId,
+      watched: false,
+      title: item.snippet.title,
+      description: item.snippet.description,
+    });
   });
-  console.log(playlistInfo);
   db.collection("users")
     .doc(uid)
     .collection("currentlyEnrolled")
