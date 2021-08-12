@@ -1,3 +1,4 @@
+import { message } from "antd";
 import getVideos from "../apis/getVideos";
 import { db } from "../firebase";
 
@@ -19,6 +20,7 @@ const handleAddCourse = async (playlistID, uid) => {
     .collection("currentlyEnrolled")
     .doc(playlistID)
     .set({ playlistInfo, videos });
+  message.info("Course added Succesfuly");
 };
 
 export default handleAddCourse;

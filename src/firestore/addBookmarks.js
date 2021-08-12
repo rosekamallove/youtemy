@@ -1,3 +1,4 @@
+import { message } from "antd";
 import { db } from "../firebase";
 
 const handleAddToBookamrk = async (
@@ -17,6 +18,7 @@ const handleAddToBookamrk = async (
       db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
     }
   }
+  message.info(`Course added to Bookmarks check it out`);
 };
 
 export default handleAddToBookamrk;
