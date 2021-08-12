@@ -18,7 +18,7 @@ export default function BookmarksPage() {
   const [bookmarks, setBookmarks] = useState([]);
   const { uid } = useContext(UserContext);
 
-  (async function getBookmarks() {
+  (async function () {
     db.collection("users")
       .doc(uid)
       .get()
@@ -56,6 +56,7 @@ export default function BookmarksPage() {
                         to={{
                           pathname: "/video-player",
                           playlistID: playlist.playlistID,
+                          tracking: false,
                         }}
                       >
                         <CaretRightOutlined key="play" />

@@ -11,6 +11,8 @@ import CoursesPage from "./Pages/CoursesPage/CoursesPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import ExplorePage from "./Pages/ExplorePage/ExplorePage";
 import SettingsPage from "./Pages/SettingsPage/SettingsPage";
+import RenderWithoutTracking from "./Pages/VideoPlayer/RenderWithoutTracking";
+import RenderWithTracking from "./Pages/VideoPlayer/RenderWithTracking";
 import VideoPlayer from "./Pages/VideoPlayer/VideoPlayer";
 import PrivateRoute from "./PrivateRoute";
 import { UserContext } from "./UserContext";
@@ -40,6 +42,14 @@ function App() {
           <PrivateRoute path={"/bookmarks"} component={BookmarksPage} />
           <PrivateRoute path={"/settings"} component={SettingsPage} />
           <PrivateRoute path={"/video-player"} component={VideoPlayer} />
+          <PrivateRoute
+            path={"/video-player-track"}
+            component={RenderWithTracking}
+          />
+          <PrivateRoute
+            path={"/video-player-no-track"}
+            component={RenderWithoutTracking}
+          />
         </Switch>
       </Router>
     </UserContext.Provider>
