@@ -27,6 +27,7 @@ const RenderWithoutTracking = ({ playlistID }) => {
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
+    playlistID = playlistID && localStorage.getItem("playlist-id");
     getVideos(playlistID).then((data) => {
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
       setPlaylistState({

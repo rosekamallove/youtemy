@@ -4,6 +4,7 @@ import RenderWithTracking from "./RenderWithTracking";
 
 const VideoPlayer = ({ location }) => {
   const playlistID = location.playlistID;
+  localStorage.setItem("playlist-id", playlistID);
   const tracking = location.tracking;
   if (tracking) {
     return <RenderWithTracking playlistID={playlistID} />;
