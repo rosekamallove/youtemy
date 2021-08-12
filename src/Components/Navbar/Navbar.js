@@ -10,7 +10,9 @@ function Navbar() {
   return (
     <div className="parent">
       <div className="header">
-        <img className="logo" src={logo} alt="logo" />
+        <Link to="/">
+          <img className="logo" src={logo} alt="logo" />
+        </Link>
         <nav>
           <ul className="nav__links">
             <li className="nav-li">

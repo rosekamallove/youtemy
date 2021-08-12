@@ -3,7 +3,7 @@ import {
   DeleteOutlined,
   ExpandAltOutlined,
 } from "@ant-design/icons";
-import { Card, Progress, Space } from "antd";
+import { Card, message, Popconfirm, Popover, Progress, Space } from "antd";
 import "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -30,8 +30,7 @@ export default function Dashboard() {
     { merge: true }
   );
 
-  /* Getting Enrolled Courses */
-  useEffect(() => {
+  const updateCurrentlyEnrolled = () => {
     db.collection("users")
       .doc(UID)
       .collection("currentlyEnrolled")
@@ -43,6 +42,11 @@ export default function Dashboard() {
         });
         setCurrentlyEnrolled({ data: currentlyEnrolled });
       });
+  };
+
+  /* Getting Enrolled Courses */
+  useEffect(() => {
+    updateCurrentlyEnrolled();
   }, [UID]);
 
   const handleCourseDelete = (playlistID) => {
@@ -51,30 +55,41 @@ export default function Dashboard() {
       .collection("currentlyEnrolled")
       .doc(playlistID)
       .delete();
+    message.info("Course Delted Succesful, Refresh the page");
+    updateCurrentlyEnrolled();
   };
 
   const RenderCards = ({ playlistData }) => {
+    console.log(playlistData);
     const renderedCards = playlistData.map((playlist) => {
       return (
         <Card
           key={playlist.playlistInfo.playlistID}
           style={{ width: 300, margin: 10 }}
-          // cover={<img alt="example" src={playlist.playlistInfo.thumbnail} />}
           actions={[
-            <Link
-              to={{
-                pathname: "/video-player",
-                playlistID: playlist.playlistInfo.playlistID,
-              }}
-            >
-              <CaretRightOutlined key="play" />
-            </Link>,
-            <DeleteOutlined
-              key="edit"
-              onClick={() =>
-                handleCourseDelete(playlist.playlistInfo.playlistID)
-              }
-            />,
+            <Popover title="Start learning">
+              <Link
+                to={{
+                  pathname: "/video-player",
+                  playlistID: playlist.playlistInfo.playlistID,
+                }}
+              >
+                <CaretRightOutlined key="play" />
+              </Link>
+            </Popover>,
+            <Popover title="Delete the course">
+              <Popconfirm
+                title={
+                  "Are you sure you wanna delete this course, all progress will be lost"
+                }
+                placement="top"
+                onConfirm={() =>
+                  handleCourseDelete(playlist.playlistInfo.playlistID)
+                }
+              >
+                <DeleteOutlined />,
+              </Popconfirm>
+            </Popover>,
           ]}
         >
           <Meta title={playlist.playlistInfo.title} />
@@ -83,7 +98,11 @@ export default function Dashboard() {
     });
     return (
       <React.Fragment>
-        <h2 className="card-heading">Enrolled Courses</h2>
+        {playlistData.length ? (
+          <h2 className="card-heading">Enrolled Courses</h2>
+        ) : (
+          ""
+        )}
         {renderedCards}
       </React.Fragment>
     );
@@ -101,7 +120,9 @@ export default function Dashboard() {
           <h2 className="card-heading">Progress</h2>
           <Card style={{ width: 300 }} actions={[<ExpandAltOutlined />]}>
             <div className="progress-circle-n">
-              <Progress type="circle" percent={69} width={207}></Progress>
+              <Popover title="Expand, show more detailed progress">
+                <Progress type="circle" percent={69} width={207}></Progress>
+              </Popover>
             </div>
             <Meta
               title="Current Course Progress"
@@ -120,9 +141,11 @@ export default function Dashboard() {
               />
             }
             actions={[
-              <Link to="/explore">
-                <CaretRightOutlined key="play" />
-              </Link>,
+              <Popover title="Explore new courses">
+                <Link to="/explore">
+                  <CaretRightOutlined key="play" />
+                </Link>
+              </Popover>,
             ]}
           >
             <Meta
