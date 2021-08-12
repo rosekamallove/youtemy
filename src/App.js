@@ -23,7 +23,7 @@ export { db };
 
 function App() {
   const [userLoggedIn] = useAuthState(auth);
-  const [uid, setUid] = useState("en");
+  const [uid, setUid] = useState("");
   const value = { uid, setUid };
   return (
     <UserContext.Provider value={value}>
@@ -37,11 +37,11 @@ function App() {
               return userLoggedIn ? <Dashboard /> : <LandingPage />;
             }}
           />
-          <PrivateRoute path={"/courses"} component={CoursesPage} />
-          <PrivateRoute path={"/explore"} component={ExplorePage} />
+          <Route path={"/courses"} component={CoursesPage} />
+          <Route path={"/explore"} component={ExplorePage} />
           <PrivateRoute path={"/bookmarks"} component={BookmarksPage} />
           <PrivateRoute path={"/settings"} component={SettingsPage} />
-          <PrivateRoute path={"/video-player"} component={VideoPlayer} />
+          <Route path={"/video-player"} component={VideoPlayer} />
           <Route path={"/video-player-track"} component={RenderWithTracking} />
           <Route
             path={"/video-player-no-track"}

@@ -4,6 +4,11 @@ import { db } from "../firebase";
 
 const videos = [];
 const handleAddCourse = async (playlistID, uid) => {
+  if (uid === "") {
+    message.error("Not Logged In");
+    return;
+  }
+  console.log(uid);
   const data = await getVideos(playlistID);
   console.log(data);
   let playlistInfo = {
