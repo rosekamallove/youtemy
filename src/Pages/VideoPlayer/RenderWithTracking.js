@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
+import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
 const { Title } = Typography;
@@ -19,7 +20,7 @@ const RenderWithTracking = ({ playlistID }) => {
   // const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
   const [videoDescription, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(currentVideo);
+  const [selectedMenuItem, setSelectedMenuItem] = useState("----");
 
   useEffect(() => {
     const getPlaylist = async () => {
@@ -36,7 +37,7 @@ const RenderWithTracking = ({ playlistID }) => {
     getPlaylist();
   }, []);
 
-  const findVideoAndSetWatchedTrue = async (videoId) => {
+  const findVideoAndSetWatched = async (videoId, what) => {
     let data = await db
       .collection("users")
       .doc(uid)
@@ -45,12 +46,15 @@ const RenderWithTracking = ({ playlistID }) => {
       .get();
 
     data = data.data();
-    console.log(data);
 
     data.videos.forEach((video) => {
       console.log(video.id, videoId);
       if (video.videoId === videoId) {
-        video.watched = true;
+        if (!what) {
+          video.watched = !video.watched;
+        } else {
+          video.watched = what;
+        }
       }
     });
 
@@ -65,7 +69,21 @@ const RenderWithTracking = ({ playlistID }) => {
     setPlaylistData(data);
   };
 
-  const handleVideoEnded = () => {};
+  const handleVideoEnded = () => {
+    let idx;
+    findVideoAndSetWatched(currentVideo, true);
+    playlistData.videos.forEach((video) => {
+      console.log(video);
+      console.log(currentVideo);
+      if (video.videoId === currentVideo) {
+        idx = playlistData.videos.indexOf(video);
+      }
+    });
+    console.log(idx);
+    idx === -1
+      ? setCurrentVideo(currentVideo)
+      : setCurrentVideo(playlistData.videos[++idx].videoId);
+  };
 
   const returnIframMarkup = () => {
     let videoURL = `https://www.youtube.com/embed/${currentVideo}`;
@@ -90,19 +108,25 @@ const RenderWithTracking = ({ playlistID }) => {
     }
     const renderedMenuItem = videos.map((video) => {
       return (
-        <Menu.Item key={video.videoId} className="menu-item" onClick={() => {}}>
+        <Menu.Item
+          key={video.videoId}
+          className="menu-item"
+          onClick={() => {
+            setCurrentVideo(video.videoId);
+          }}
+        >
           <Checkbox
             className="menu-checkbox"
             checked={video.watched}
             onChange={() => {
-              findVideoAndSetWatchedTrue(video.videoId);
+              findVideoAndSetWatched(video.videoId, undefined);
             }}
           ></Checkbox>
           {video.title}
         </Menu.Item>
       );
     });
-    return <div>{renderedMenuItem}</div>;
+    return <Menu>{renderedMenuItem}</Menu>;
   };
 
   const handleMenuCollapse = (collapsed) => {
@@ -126,7 +150,7 @@ const RenderWithTracking = ({ playlistID }) => {
             left: 0,
           }}
         >
-          <Menu theme="light" mode="inline">
+          <Menu theme="light" mode="inline" selectedKeys={[selectedMenuItem]}>
             <Menu.Item key="9" style={{ paddingTop: 120, textAlign: "center" }}>
               <h2>Videos</h2>
             </Menu.Item>

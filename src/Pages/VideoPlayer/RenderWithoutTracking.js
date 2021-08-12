@@ -1,4 +1,4 @@
-import { Checkbox, Collapse, Layout, Menu, Typography } from "antd";
+import { Checkbox, Collapse, Layout, Menu, message, Typography } from "antd";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -27,6 +27,7 @@ const RenderWithoutTracking = ({ playlistID }) => {
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
+    message.error("Your Progress Won't be saved");
     playlistID = playlistID && localStorage.getItem("playlist-id");
     getVideos(playlistID).then((data) => {
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
