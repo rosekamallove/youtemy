@@ -21,11 +21,6 @@
   color: #000;
 }
 
-/* .parent {
-  position: fixed;
-  top: 0;
-} */
-
 .header {
   display: flex;
   position: fixed;

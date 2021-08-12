@@ -26,7 +26,6 @@ export default function CoursesPage() {
         <section className="heading">
           <h1>Web Development Track</h1>
         </section>
-
         <section className="video-section">
           <Card
             style={({ width: 300 }, { padding: 0 }, { margin: 20 })}
