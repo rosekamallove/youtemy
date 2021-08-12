@@ -33,6 +33,8 @@ const RenderWithTracking = ({ playlistID }) => {
         .get();
       setPlaylistData(data.data());
       setCurrentVideo(data.data().videos[0].videoId);
+      setVideoDescription(data.data().videos[0].description);
+      console.log(data.data().videos[0].description);
       console.log(data.data().videos[0].videoId);
     };
     getPlaylist();
@@ -84,6 +86,7 @@ const RenderWithTracking = ({ playlistID }) => {
     idx === -1
       ? setCurrentVideo(currentVideo)
       : setCurrentVideo(playlistData.videos[++idx].videoId);
+    setVideoDescription(playlistData.videos[idx].description);
   };
 
   const returnIframMarkup = () => {
@@ -113,6 +116,7 @@ const RenderWithTracking = ({ playlistID }) => {
           key={video.videoId}
           className="menu-item"
           onClick={() => {
+            setVideoDescription(video.description);
             setCurrentVideo(video.videoId);
           }}
         >
@@ -172,7 +176,7 @@ const RenderWithTracking = ({ playlistID }) => {
             </div>
             <Collapse bordered={false} defaultActiveKey={["1"]}>
               <Panel header="Description" key="1">
-                <span className="description-span"></span>{" "}
+                <span className="description-span">{videoDescription}</span>{" "}
               </Panel>
             </Collapse>
           </Content>
