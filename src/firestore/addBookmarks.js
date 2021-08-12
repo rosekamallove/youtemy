@@ -7,6 +7,10 @@ const handleAddToBookamrk = async (
   title = "titleNotSpecified",
   thumbnail = "https://i.stack.imgur.com/y9DpT.jpg"
 ) => {
+  if (uid === "") {
+    message.error("Not Logged In");
+    return;
+  }
   const data = await db.collection("users").doc(uid).get();
   if (data) {
     let bookmarks = await data.data().bookmarks;
