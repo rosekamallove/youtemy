@@ -126,11 +126,8 @@ const RenderWithoutTracking = ({ playlistID }) => {
       >
         <div className="logo" />
         <Menu theme="light" mode="inline" selectedKeys={[selectedMenuItem]}>
-          <Title level={3} className="playlist-title">
-            Videos
-          </Title>
-          <Menu.Item key="9" style={{ paddingTop: 5 }}>
-            Videos
+          <Menu.Item key="9" style={{ paddingTop: 100, textAlign: "center" }}>
+            <h2>Videos</h2>
           </Menu.Item>
           {playlistState.playlistArray.map((item) => (
             <Menu.Item

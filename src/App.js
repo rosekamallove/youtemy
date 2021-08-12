@@ -42,11 +42,8 @@ function App() {
           <PrivateRoute path={"/bookmarks"} component={BookmarksPage} />
           <PrivateRoute path={"/settings"} component={SettingsPage} />
           <PrivateRoute path={"/video-player"} component={VideoPlayer} />
-          <PrivateRoute
-            path={"/video-player-track"}
-            component={RenderWithTracking}
-          />
-          <PrivateRoute
+          <Route path={"/video-player-track"} component={RenderWithTracking} />
+          <Route
             path={"/video-player-no-track"}
             component={RenderWithoutTracking}
           />
