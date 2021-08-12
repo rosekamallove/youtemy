@@ -1,12 +1,23 @@
 import { CopyOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Popconfirm, Row } from "antd";
-import React from "react";
+import { Button, Card, Col, message, Popconfirm, Row } from "antd";
+import React, { useContext } from "react";
+import { db } from "../../firebase";
+import { UserContext } from "../../UserContext";
 import "../BookmarksPage/BookmarksPage.css";
 import "./SettingsPage.css";
 
 export default function SettingsPage() {
-  const handleAllBookmarksDelete = () => {
-    console.log(new Date());
+  const { uid } = useContext(UserContext);
+  const handleAllBookmarksDelete = async () => {
+    const hide = message.loading("Deleting from the Database...", 0);
+    const data = await db.collection("users").doc(uid).get();
+
+    let bookmarks = await data.data().bookmarks;
+    bookmarks.splice(0, bookmarks.length);
+    db.collection("users").doc(uid).set({ bookmarks });
+
+    setTimeout(hide, 0);
+    message.success("Deleted all Bookmarks !!");
   };
   const handleDeleteCourses = () => {
     console.log(new Date());
@@ -22,12 +33,7 @@ export default function SettingsPage() {
                 handleAllBookmarksDelete();
               }}
             >
-              <Button
-                type="primary"
-                danger
-                onClick={handleAllBookmarksDelete}
-                icon={<CopyOutlined />}
-              >
+              <Button type="primary" danger icon={<CopyOutlined />}>
                 Delete Bookmarks
               </Button>
             </Popconfirm>
