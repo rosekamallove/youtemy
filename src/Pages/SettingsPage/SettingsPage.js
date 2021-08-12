@@ -1,6 +1,6 @@
 import { CopyOutlined } from "@ant-design/icons";
 import { Button, Card, Col, message, Popconfirm, Row } from "antd";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
 import "../BookmarksPage/BookmarksPage.css";
@@ -8,6 +8,27 @@ import "./SettingsPage.css";
 
 export default function SettingsPage() {
   const { uid } = useContext(UserContext);
+  const [currentlyEnrolled, setCurrentlyEnrolled] = useState({});
+
+  const docRef = db
+    .collection("users")
+    .doc(uid)
+    .collection("currentlyEnrolled");
+
+  useEffect(() => {
+    db.collection("users")
+      .doc(uid)
+      .collection("currentlyEnrolled")
+      .get()
+      .then((docs) => {
+        let currentlyEnrolled = [];
+        docs.forEach((doc) => {
+          currentlyEnrolled.push(doc.data());
+        });
+        setCurrentlyEnrolled({ data: currentlyEnrolled });
+      });
+  }, []);
+
   const handleAllBookmarksDelete = async () => {
     const hide = message.loading("Deleting from the Database...", 0);
     const data = await db.collection("users").doc(uid).get();
@@ -19,8 +40,18 @@ export default function SettingsPage() {
     setTimeout(hide, 0);
     message.success("Deleted all Bookmarks !!");
   };
+
   const handleDeleteCourses = () => {
-    console.log(new Date());
+    const hide = message.loading("Deleting from the Database...", 0);
+
+    console.log(currentlyEnrolled);
+
+    currentlyEnrolled.data.map((playlist) => {
+      docRef.doc(playlist.playlistInfo.playlistID).delete();
+    });
+
+    setTimeout(hide, 1000);
+    message.success("Deleted all Courses !!");
   };
   return (
     <div className="wrapper____">
