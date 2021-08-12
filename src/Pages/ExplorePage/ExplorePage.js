@@ -20,7 +20,6 @@ class ExplorePage extends React.Component {
     this.setState({
       playlists: response.data.items,
     });
-    console.log("this is resp", response);
   };
 
   render() {
@@ -33,12 +32,12 @@ class ExplorePage extends React.Component {
           >
             <SearchBar handleFormSubmit={this.handleSubmit} />
           </Card>
-          <Card className="allplaylists">
+          <div className="allplaylists">
             <PlaylistsList
               className="playlist-item"
               playlists={this.state.playlists}
             />
-          </Card>
+          </div>
         </div>
         <Footer />
       </div>
