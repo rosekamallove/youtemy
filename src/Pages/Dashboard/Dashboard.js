@@ -16,6 +16,7 @@ const { Meta } = Card;
 
 export default function Dashboard() {
   const [currentlyEnrolled, setCurrentlyEnrolled] = useState({});
+  const [totalProgress, setTotalProgress] = useState(0);
 
   /* Setting the userId */
   const { setUid } = useContext(UserContext);
@@ -49,6 +50,10 @@ export default function Dashboard() {
     updateCurrentlyEnrolled();
   }, [UID]);
 
+  useEffect(() => {
+    calculateAndSetTotalProgress();
+  }, []);
+
   const handleCourseDelete = (playlistID) => {
     db.collection("users")
       .doc(UID)
@@ -57,6 +62,24 @@ export default function Dashboard() {
       .delete();
     message.success("Course Deleted Succesfully, Refresh the page !");
     updateCurrentlyEnrolled();
+  };
+
+  const calculateAndSetTotalProgress = async () => {
+    let totalWatched = 0,
+      totalVideos = 0;
+    const data = await db
+      .collection("users")
+      .doc(UID)
+      .collection("currentlyEnrolled")
+      .get();
+    data.docs.forEach((doc) => {
+      totalWatched += doc.data().totalWatched;
+      totalVideos += doc.data().videos.length;
+    });
+    console.log(totalVideos, totalWatched);
+    const progress = Math.round((totalWatched / totalVideos) * 100);
+    console.log(progress);
+    setTotalProgress(progress);
   };
 
   const RenderCards = ({ playlistData }) => {
@@ -121,11 +144,15 @@ export default function Dashboard() {
           <Card style={{ width: 300 }} actions={[<ExpandAltOutlined />]}>
             <div className="progress-circle-n">
               <Popover title="Expand, show more detailed progress">
-                <Progress type="circle" percent={69} width={207}></Progress>
+                <Progress
+                  type="circle"
+                  percent={totalProgress}
+                  width={207}
+                ></Progress>
               </Popover>
             </div>
             <Meta
-              title="Current Course Progress"
+              title="Total Progress"
               description="This is the description"
             />
           </Card>

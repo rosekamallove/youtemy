@@ -58,30 +58,31 @@ const RenderWithTracking = ({ playlistID }) => {
       .doc(uid)
       .collection("currentlyEnrolled")
       .doc(playlistData.playlistInfo.playlistID)
-      .get();
+      .get()
+      .then((data) => {
+        data = data.data();
+        data.videos.forEach((video) => {
+          if (video.videoId === videoId) {
+            if (!what) {
+              video.watched = !video.watched;
+            } else {
+              video.watched = what;
+            }
+            return;
+          }
+        });
 
-    data = data.data();
-
-    data.videos.forEach((video) => {
-      if (video.videoId === videoId) {
-        if (!what) {
-          video.watched = !video.watched;
-        } else {
-          video.watched = what;
-        }
-        return;
-      }
-    });
-
-    db.collection("users")
-      .doc(uid)
-      .collection("currentlyEnrolled")
-      .doc(playlistData.playlistInfo.playlistID)
-      .set({
-        playlistInfo: data.playlistInfo,
-        videos: data.videos,
+        db.collection("users")
+          .doc(uid)
+          .collection("currentlyEnrolled")
+          .doc(playlistData.playlistInfo.playlistID)
+          .set({
+            playlistInfo: data.playlistInfo,
+            videos: data.videos,
+            totalWatched: data.totalWatched + 1,
+          });
+        setPlaylistData(data);
       });
-    setPlaylistData(data);
   };
 
   const handleVideoEnded = () => {
