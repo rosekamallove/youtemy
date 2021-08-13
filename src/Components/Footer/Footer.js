@@ -17,6 +17,14 @@ function Footer() {
         <a href="https://github.com/Ritesh055" className="name-us">
           Ritesh
         </a>
+        <div className="contribute-wrapper">
+          <a
+            href="https://github.com/rosekamallove/youtemy"
+            className="contribute"
+          >
+            Contribute <i className="fab fa-github"></i>
+          </a>
+        </div>
       </p>
     </div>
   );

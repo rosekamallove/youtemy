@@ -38,54 +38,58 @@ export default function BookmarksPage() {
     });
     db.collection("users").doc(uid).set({ bookmarks: filteredBookmarks });
     setTimeout(hide, 0);
-    message.success("Course Delted Succesful, Refresh the page");
+    message.success("Bookmark Removed Successfully, Refresh the page");
   };
 
   return (
     <div className="wrapper____">
-      <Row gutter={[16, 24]}>
-        {bookmarks
-          ? bookmarks.map((playlist) => (
-              <Col className="gutter-row" span={6} key={playlist.playlistID}>
-                <Card
-                  cover={<img alt="example" src={playlist.thumbnail} />}
-                  style={{ width: 300, margin: 0 }}
-                  actions={[
-                    <Popover content="Open in the player">
-                      <Link
-                        to={{
-                          pathname: "/video-player",
-                          playlistID: playlist.playlistID,
-                          tracking: false,
-                        }}
-                      >
-                        <CaretRightOutlined key="play" />
-                      </Link>
-                    </Popover>,
-                    <Popover title="Enroll in course and start tracking it">
-                      <PlusCircleOutlined
-                        key="Enroll"
-                        onClick={() => {
-                          handleAddCourse(playlist.playlistID, uid);
-                        }}
-                      />
-                    </Popover>,
-                    <Popconfirm
-                      title="Are you sure you wanna delete this?"
-                      onConfirm={() => {
-                        handleDeleteBookmark(playlist.playlistID);
+      {bookmarks.length === 0 ? (
+        <h2 style={{ paddingTop: 100, textAlign: "center" }}>
+          No Bookmarks Added
+        </h2>
+      ) : (
+        <Row gutter={[16, 24]}>
+          {bookmarks.map((playlist) => (
+            <Col className="gutter-row" span={6} key={playlist.playlistID}>
+              <Card
+                cover={<img alt="example" src={playlist.thumbnail} />}
+                style={{ width: 300, margin: 0 }}
+                actions={[
+                  <Popover content="Open in the player">
+                    <Link
+                      to={{
+                        pathname: "/video-player",
+                        playlistID: playlist.playlistID,
+                        tracking: false,
                       }}
                     >
-                      <DeleteOutlined key="edit" />
-                    </Popconfirm>,
-                  ]}
-                >
-                  <Meta title={playlist.title} />
-                </Card>
-              </Col>
-            ))
-          : ""}
-      </Row>
+                      <CaretRightOutlined key="play" />
+                    </Link>
+                  </Popover>,
+                  <Popover title="Enroll in course and start tracking it">
+                    <PlusCircleOutlined
+                      key="Enroll"
+                      onClick={() => {
+                        handleAddCourse(playlist.playlistID, uid);
+                      }}
+                    />
+                  </Popover>,
+                  <Popconfirm
+                    title="Are you sure you wanna delete this?"
+                    onConfirm={() => {
+                      handleDeleteBookmark(playlist.playlistID);
+                    }}
+                  >
+                    <DeleteOutlined key="edit" />
+                  </Popconfirm>,
+                ]}
+              >
+                <Meta title={playlist.title} />
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      )}
       <Footer />
     </div>
   );
