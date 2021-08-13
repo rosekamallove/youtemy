@@ -46,17 +46,18 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
         -   `npm i`
         - `npm start`
 <br/>
-<<<<<<< Updated upstream
 
 ## Snapshots of the Hosted Projects
 
 - ### ![Dashboard](protoypes/Website1.png)
+
 - ### ![CoursesPage1](protoypes/Website2.png)
+
 - ### ![CoursesPage2](protoypes/Website3.png)
+
 - ### ![ExplorePage](protoypes/Website4.png)
+
 - ### ![BookmarksPage](protoypes/Website5.png)
-=======
->>>>>>> Stashed changes
 
 ## Overview
 
@@ -69,6 +70,7 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
             - Daily Goal (Progress)
         - All-time Progress (Across Courses)
         - Captions to Transcript
+
     - **Course Curriculum**
         - Different Tracks
             - Web-Dev Track
@@ -78,15 +80,18 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
                 - Node.JS / Express
         - At max two playlists of the same topic
         - Suggested playlists
+
     - **User Dashboard**
         - Courses currently enrolled in
         - Charts for the progress
         - Tutorial Hell Warnings
         - Maybe percentile
         - Suggested next course
+
     - **Explore Page**
         - Search for new Courses on Youtube
         - Add them to bookmrks or enroll in them
+        
      - **Settings**
         - Delete all Bookmarks
         - Delete all enrolled courses
