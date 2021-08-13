@@ -26,7 +26,7 @@ const handleAddCourse = async (playlistID, uid) => {
     .doc(uid)
     .collection("currentlyEnrolled")
     .doc(playlistID)
-    .set({ playlistInfo, videos });
+    .set({ playlistInfo, videos, totalWatched: 0 });
   message.info("Course added Succesfuly");
 };
 
