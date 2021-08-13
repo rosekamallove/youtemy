@@ -1,10 +1,48 @@
 # Youtemy
 Track your YouTube learning with progress bars and pies, avoiding the infamous _Tutorial Hell_
+<br/>
+## _Start Dev Server_
+    1. Firebase API 
+        a. Use the following documentation to create a **Firebase Project** and get a Firebase 			API key.
+                
+                [Firebase Console]("https://firebase.google.com/docs/web/setup")
 
-_Start Dev Server_
+                i. Go to console.firebase.google.com and follow the steps to create a new Firebase project.
 
-    npm i
-    npm start
+                ii. Select </> , *Add a project via Code*.
+
+                iii. Create a new web app using the steps provided on the console.
+
+                iv. You will recieve a firebasConfig object with the first paramter as API key. Copy it.
+
+        b. After you get the Firebase API key, create a .env file in the root folder of the repository
+
+        c. Insert the folowing snippet in the file
+               
+             		`REACT_APP_FIREBASE="API_KEY_HERE"`
+
+    2. Youtube API
+        a. Go to the following link and set up a new project
+                
+                [Youtube API Console]("https://console.cloud.google.com/apis/")
+
+        b. Go the the project's dashboard and click on ###Enable APIs and Services
+
+        c. Select **Youtube Data API v3**
+
+        d. Click on Credentials to create new credentials for the API client
+
+        e. Select API Key out of the 3 options available (API Key, OAuth Client ID, Service Key)
+
+        f. A new API key will be generated. Copy it in the .env file.
+
+        e.REACT_APP_YOUTUBE="API_KEY_HERE"
+
+    3. Ensure that .env is added in .gitignore file.
+
+    4. In the root folder and enter the following commands in the CLI
+        a.   `npm i`
+        b. `npm start`
 
 ## Overview
 
