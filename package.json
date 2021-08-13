@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/helper-compilation-targets": "^7.12.17"
+    "@babel/helper-compilation-targets": "^7.12.17",
+    "cypress-firebase": "^2.0.0"
   }
 }
