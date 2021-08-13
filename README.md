@@ -46,6 +46,7 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
         -   `npm i`
         - `npm start`
 <br/>
+<<<<<<< Updated upstream
 
 ## Snapshots of the Hosted Projects
 
@@ -54,6 +55,8 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 - ### ![CoursesPage2](protoypes/Website3.png)
 - ### ![ExplorePage](protoypes/Website4.png)
 - ### ![BookmarksPage](protoypes/Website5.png)
+=======
+>>>>>>> Stashed changes
 
 ## Overview
 
