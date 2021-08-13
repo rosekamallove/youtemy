@@ -35,11 +35,22 @@ const RenderWithTracking = ({ playlistID }) => {
         .doc(playlistID)
         .get();
       setPlaylistData(data.data());
-      setCurrentVideo(data.data().videos[0].videoId);
+      setLastUnWatched(data.data());
       setVideoDescription(data.data().videos[0].description);
     };
     getPlaylist();
   }, []);
+
+  const setLastUnWatched = (data) => {
+    if (data) {
+      for (let i = 0; i < data.videos.length; i++) {
+        if (data.videos[i].watched === false) {
+          setCurrentVideo(data.videos[i].videoId);
+          return;
+        }
+      }
+    }
+  };
 
   const findVideoAndSetWatched = async (videoId, what) => {
     let data = await db
@@ -58,6 +69,7 @@ const RenderWithTracking = ({ playlistID }) => {
         } else {
           video.watched = what;
         }
+        return;
       }
     });
 
@@ -161,6 +173,7 @@ const RenderWithTracking = ({ playlistID }) => {
             ) : (
               " "
             )}
+            <Menu.Item key="8" style={{ paddingBottom: 80 }}></Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: videoMargin }}>
