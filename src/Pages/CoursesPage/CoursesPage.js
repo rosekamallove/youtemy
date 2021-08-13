@@ -27,7 +27,7 @@ export default function CoursesPage() {
     <div className="wrapper">
       <div className="very-center">
         <section className="heading">
-          <h1>Frontend Development Track</h1>
+          <h2>Frontend Development Track</h2>
         </section>
         <section className="video-section">
           <Card
