@@ -4,7 +4,7 @@ import { db } from "../firebase";
 const handleAddToBookamrk = async (
   playlistID,
   uid,
-  title = "titleNotSpecified",
+  title = "Untitled",
   thumbnail = "https://i.stack.imgur.com/y9DpT.jpg"
 ) => {
   if (uid === "") {

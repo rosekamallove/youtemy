@@ -53,7 +53,7 @@ export default function SettingsPage() {
   };
   return (
     <div className="wrapper____">
-      <Row gutter={[16, 24]} align="center">
+      <Row gutter={16} align="center">
         <Col className="gutter-row" span={12} align="center">
           <Card title="Delete all Bookmarks" style={{ width: 300 }}>
             <Popconfirm

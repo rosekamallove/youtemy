@@ -38,6 +38,7 @@ export default function CoursesPage() {
                 to={{
                   pathname: "/video-player",
                   playlistID: "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
+                  tracking: false,
                 }}
               >
                 <CaretRightOutlined key="Play" />
@@ -52,7 +53,8 @@ export default function CoursesPage() {
                 onClick={() => {
                   handleAddToBookamrk(
                     "PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88",
-                    uid
+                    uid,
+                    "HTML, CSS - FreeCodeCamp"
                   );
                 }}
               />,
@@ -76,6 +78,7 @@ export default function CoursesPage() {
                 to={{
                   pathname: "/video-player",
                   playlistID: "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
+                  tracking: false,
                 }}
               >
                 <CaretRightOutlined
@@ -95,7 +98,8 @@ export default function CoursesPage() {
                 onClick={() => {
                   handleAddToBookamrk(
                     "PLillGF-RfqbbnEGy3ROiLWk7JMCuSyQtX",
-                    uid
+                    uid,
+                    "Javascript - Traversy Media"
                   );
                 }}
               />,
@@ -120,6 +124,7 @@ export default function CoursesPage() {
                 to={{
                   pathname: "/video-player",
                   playlistID: "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d",
+                  tracking: false,
                 }}
               >
                 <CaretRightOutlined key="Play" />
@@ -134,7 +139,8 @@ export default function CoursesPage() {
                 onClick={() => {
                   handleAddToBookamrk(
                     "PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d",
-                    uid
+                    uid,
+                    "ReactJS - Net Ninja"
                   );
                 }}
               />,
@@ -152,10 +158,9 @@ export default function CoursesPage() {
         </section>
       </div>
 
-
       <div className="very-center">
         <section className="heading">
-          <h1>Machine Learning Track</h1>
+          <h2>Machine Learning Track</h2>
         </section>
         <section className="video-section">
           <Card
@@ -166,6 +171,7 @@ export default function CoursesPage() {
                 to={{
                   pathname: "/video-player",
                   playlistID: "PLQVvvaa0QuDeAams7fkdcwOGBpGdHpXln",
+                  tracking: false,
                 }}
               >
                 <CaretRightOutlined key="Play" />
@@ -180,7 +186,8 @@ export default function CoursesPage() {
                 onClick={() => {
                   handleAddToBookamrk(
                     "PLQVvvaa0QuDeAams7fkdcwOGBpGdHpXln",
-                    uid
+                    uid,
+                    "Python - By Sentdex"
                   );
                 }}
               />,
@@ -204,6 +211,7 @@ export default function CoursesPage() {
                 to={{
                   pathname: "/video-player",
                   playlistID: "PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v",
+                  tracking: false,
                 }}
               >
                 <CaretRightOutlined
@@ -223,7 +231,8 @@ export default function CoursesPage() {
                 onClick={() => {
                   handleAddToBookamrk(
                     "PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v",
-                    uid
+                    uid,
+                    "Intro to Machine Learning"
                   );
                 }}
               />,
@@ -248,6 +257,7 @@ export default function CoursesPage() {
                 to={{
                   pathname: "/video-player",
                   playlistID: "PLfFghEzKVmjvuSA67LszN1dZ-Dd_pkus6",
+                  tracking: false,
                 }}
               >
                 <CaretRightOutlined key="Play" />
@@ -262,7 +272,8 @@ export default function CoursesPage() {
                 onClick={() => {
                   handleAddToBookamrk(
                     "PLfFghEzKVmjvuSA67LszN1dZ-Dd_pkus6",
-                    uid
+                    uid,
+                    "Machine Learning Projects - Siddhardhan"
                   );
                 }}
               />,
