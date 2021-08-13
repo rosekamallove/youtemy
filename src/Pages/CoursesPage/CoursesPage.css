@@ -17,7 +17,7 @@
   width: 100%;
   justify-content: center;
   font-weight: 300;
-  margin: -150px 0 40px 0px;
+  margin: -150px 0 20px 0px;
 }
 .video-section {
   display: flex;
@@ -26,4 +26,5 @@
   align-content: center;
   justify-content: center;
   justify-items: center;
+  margin-bottom: 50px;
 }
