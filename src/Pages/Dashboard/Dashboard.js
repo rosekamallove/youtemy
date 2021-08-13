@@ -116,22 +116,6 @@ export default function Dashboard() {
         ) : (
           ""
         )}
-<<<<<<< Updated upstream
-        <div>
-          <h2 className="card-heading">Progress</h2>
-          <Card style={{ width: 300 }} actions={[<ExpandAltOutlined />]}>
-            <div className="progress-circle-n">
-              <Popover title="Expand, show more detailed progress">
-                <Progress type="circle" percent={69} width={207}></Progress>
-              </Popover>
-            </div>
-            <Meta
-              title="Current Course Progress"
-              description="This is the description"
-            />
-          </Card>
-        </div>
-=======
         {currentlyEnrolled.data && currentlyEnrolled.data.length ? (
           <div>
             <h2 className="card-heading">Progress</h2>
@@ -154,7 +138,6 @@ export default function Dashboard() {
         ) : (
           ""
         )}
->>>>>>> Stashed changes
         <div>
           <h2 className="card-heading">Enroll New</h2>
           <Card
