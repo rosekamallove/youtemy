@@ -8,25 +8,25 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
         - Use the following documentation to create a **Firebase Project** and get a Firebase API key.
                 
                 
-                i. Go to ["Firebase Console"]("console.firebase.google.com").
+                - Go to [Firebase Console](console.firebase.google.com).
                    Follow the steps to create a new Firebase project.
 
-                ii. Select </> , *Add a project via Code*.
+                - Select </> , *Add a project via Code*.
 
-                iii. Create a new web app using the steps provided on the console.
+                - Create a new web app using the steps provided on the console.
 
-                iv. You will recieve a firebasConfig object with the first paramter as API key. Copy it.
+                - You will recieve a firebasConfig object with the first paramter as API key. Copy it.
 
         - After you get the Firebase API key, create a .env file in the root folder of the repository
 
         - Insert the folowing snippet in the file
                
-             		```REACT_APP_FIREBASE="API_KEY_HERE"```
+             		`REACT_APP_FIREBASE="API_KEY_HERE"`
 
   -  ### Youtube API
         - Go to the following link and set up a new project
                 
-                [Youtube API Console]("https://console.cloud.google.com/apis/")
+                [Youtube API Console](https://console.cloud.google.com/apis/)
 
         - Go the the project's dashboard and click on **Enable APIs and Services**
 
@@ -38,13 +38,22 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 
         - A new API key will be generated. Copy it in the .env file.
 
-                     ```REACT_APP_YOUTUBE="API_KEY_HERE"```
+                     `REACT_APP_YOUTUBE="API_KEY_HERE"`
 
   -  ### Ensure that .env is added in .gitignore file.
 
   -  ### In the root folder and enter the following commands in the CLI
-        -   ```npm i```
-        - ```npm start```
+        -   `npm i`
+        - `npm start`
+<br/>
+
+## Snapshots of the Hosted Projects
+
+- ### ![Dashboard](protoypes/Website1.png)
+- ### ![CoursesPage1](protoypes/Website2.png)
+- ### ![CoursesPage2](protoypes/Website3.png)
+- ### ![ExplorePage](protoypes/Website4.png)
+- ### ![BookmarksPage](protoypes/Website5.png)
 
 ## Overview
 
