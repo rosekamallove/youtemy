@@ -106,7 +106,6 @@ const RenderWithoutTracking = ({ playlistID }) => {
   };
 
   const handleMenuItemClick = (videoId, e) => {
-    console.log(e);
     setCurrentVideo(videoId);
   };
 
