@@ -10,7 +10,13 @@ const VideoPlayer = ({ location }) => {
     localStorage.setItem("playlist-id", playlistID);
   }
 
-  const tracking = location.tracking;
+  let tracking = location.tracking;
+  if (tracking === undefined) {
+    tracking = localStorage.getItem("tracking");
+  } else {
+    localStorage.setItem("tracking", tracking);
+  }
+
   if (tracking) {
     return <RenderWithTracking playlistID={playlistID} />;
   } else {

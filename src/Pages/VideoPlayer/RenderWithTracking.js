@@ -11,7 +11,13 @@ const { Panel } = Collapse;
 
 const RenderWithTracking = ({ playlistID }) => {
   const [playlistData, setPlaylistData] = useState({});
-  const { uid } = useContext(UserContext);
+
+  let { uid } = useContext(UserContext);
+  if (uid === "") {
+    uid = localStorage.getItem("user-id-youtemy");
+  } else {
+    localStorage.setItem("user-id-youtemy", uid);
+  }
 
   const [currentVideo, setCurrentVideo] = useState();
   const [menuCollapsed, setMenuCollapsed] = useState(false);
