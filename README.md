@@ -21,7 +21,7 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 
         - Insert the folowing snippet in the file
                
-             		`REACT_APP_FIREBASE="API_KEY_HERE"`
+             		```REACT_APP_FIREBASE="API_KEY_HERE"```
 
   -  ### Youtube API
         - Go to the following link and set up a new project
@@ -38,13 +38,13 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 
         - A new API key will be generated. Copy it in the .env file.
 
-                     `REACT_APP_YOUTUBE="API_KEY_HERE"`
+                     ```REACT_APP_YOUTUBE="API_KEY_HERE"```
 
   -  ### Ensure that .env is added in .gitignore file.
 
   -  ### In the root folder and enter the following commands in the CLI
-        -   `npm i`
-        - `npm start`
+        -   ```npm i```
+        - ```npm start```
 
 ## Overview
 
