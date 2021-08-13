@@ -1,6 +1,6 @@
 import { CopyOutlined } from "@ant-design/icons";
 import { Button, Card, Col, message, Popconfirm, Row } from "antd";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
 import "../BookmarksPage/BookmarksPage.css";
@@ -43,8 +43,6 @@ export default function SettingsPage() {
 
   const handleDeleteCourses = () => {
     const hide = message.loading("Deleting from the Database...", 0);
-
-    console.log(currentlyEnrolled);
 
     currentlyEnrolled.data.map((playlist) => {
       docRef.doc(playlist.playlistInfo.playlistID).delete();

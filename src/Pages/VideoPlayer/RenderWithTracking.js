@@ -1,4 +1,4 @@
-import { Checkbox, Collapse, Layout, Menu, message, Typography } from "antd";
+import { Checkbox, Collapse, Layout, Menu, message } from "antd";
 import "antd/dist/antd.css";
 import React, { useContext, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -7,7 +7,6 @@ import { UserContext } from "../../UserContext";
 import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
-const { Title } = Typography;
 const { Panel } = Collapse;
 
 const RenderWithTracking = ({ playlistID }) => {
@@ -15,9 +14,7 @@ const RenderWithTracking = ({ playlistID }) => {
   const { uid } = useContext(UserContext);
 
   const [currentVideo, setCurrentVideo] = useState();
-  const [loading, setLoading] = useState(true);
   const [menuCollapsed, setMenuCollapsed] = useState(false);
-  // const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
   const [videoDescription, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
   const [selectedMenuItem, setSelectedMenuItem] = useState("----");
@@ -34,8 +31,6 @@ const RenderWithTracking = ({ playlistID }) => {
       setPlaylistData(data.data());
       setCurrentVideo(data.data().videos[0].videoId);
       setVideoDescription(data.data().videos[0].description);
-      console.log(data.data().videos[0].description);
-      console.log(data.data().videos[0].videoId);
     };
     getPlaylist();
   }, []);
@@ -51,7 +46,6 @@ const RenderWithTracking = ({ playlistID }) => {
     data = data.data();
 
     data.videos.forEach((video) => {
-      console.log(video.id, videoId);
       if (video.videoId === videoId) {
         if (!what) {
           video.watched = !video.watched;
@@ -76,13 +70,10 @@ const RenderWithTracking = ({ playlistID }) => {
     let idx;
     findVideoAndSetWatched(currentVideo, true);
     playlistData.videos.forEach((video) => {
-      console.log(video);
-      console.log(currentVideo);
       if (video.videoId === currentVideo) {
         idx = playlistData.videos.indexOf(video);
       }
     });
-    console.log(idx);
     idx === -1
       ? setCurrentVideo(currentVideo)
       : setCurrentVideo(playlistData.videos[++idx].videoId);

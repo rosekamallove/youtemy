@@ -8,16 +8,13 @@ const handleAddCourse = async (playlistID, uid) => {
     message.error("Not Logged In");
     return;
   }
-  console.log(uid);
   const data = await getVideos(playlistID);
-  console.log(data);
   let playlistInfo = {
     thumbnail: data.items[0].snippet.thumbnails.medium.url,
     title: data.items[0].snippet.title,
     playlistID,
   };
   data.items.forEach((item) => {
-    console.log(item);
     videos.push({
       videoId: item.snippet.resourceId.videoId,
       watched: false,

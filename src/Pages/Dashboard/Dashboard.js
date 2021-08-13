@@ -60,7 +60,6 @@ export default function Dashboard() {
   };
 
   const RenderCards = ({ playlistData }) => {
-    console.log(playlistData);
     const renderedCards = playlistData.map((playlist) => {
       return (
         <Card
