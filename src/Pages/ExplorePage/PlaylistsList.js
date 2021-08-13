@@ -3,7 +3,6 @@ import PlaylistItem from "./PlaylistItem";
 
 const PlaylistsList = ({ playlists }) => {
   const renderedPlaylists = playlists.map((playlist) => {
-    console.log(playlist.id.playlistId);
     return (
       <PlaylistItem
         key={JSON.stringify(playlist.id.playlistId)}

@@ -1,4 +1,6 @@
 import firebase from "firebase";
+import 'firebase/auth';
+
 export const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE,
   authDomain: "youtemy-bc22a.firebaseapp.com",
@@ -11,4 +13,8 @@ export const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const db = firebase.firestore();
+export { db };
+
 export default firebase;
+export const auth = firebase.auth();

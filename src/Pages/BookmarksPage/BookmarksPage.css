@@ -1,12 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .very-center {
-    padding-top: 100px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-  }
-  
+.wrapper____ {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-left: 50px;
+}

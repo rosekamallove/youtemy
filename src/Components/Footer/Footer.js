@@ -14,7 +14,7 @@ function Footer() {
           Rosek
         </a>{" "}
         &{" "}
-        <a href="https://github.com/Ritesh005" className="name-us">
+        <a href="https://github.com/Ritesh055" className="name-us">
           Ritesh
         </a>
       </p>

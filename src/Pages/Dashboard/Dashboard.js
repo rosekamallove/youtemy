@@ -3,63 +3,156 @@ import {
   DeleteOutlined,
   ExpandAltOutlined,
 } from "@ant-design/icons";
-import { Card, Progress, Space } from "antd";
+import { Card, message, Popconfirm, Popover, Progress, Space } from "antd";
 import "firebase/firestore";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
-import firebase from "../../firebase";
+import firebase, { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
 import "./Dashboard.css";
 
 const { Meta } = Card;
 
 export default function Dashboard() {
+  const [currentlyEnrolled, setCurrentlyEnrolled] = useState({});
+  const [totalProgress, setTotalProgress] = useState(0);
+
   /* Setting the userId */
-  const { uid, setUid } = useContext(UserContext);
-  setUid(firebase.auth().currentUser.uid);
+  const { setUid } = useContext(UserContext);
+  const UID = firebase.auth().currentUser.uid;
+  setUid(UID);
+
+  /* Setting the name */
+  db.collection("users").doc(UID).set(
+    {
+      name: firebase.auth().currentUser.displayName.toString(),
+    },
+    { merge: true }
+  );
+
+  const updateCurrentlyEnrolled = () => {
+    db.collection("users")
+      .doc(UID)
+      .collection("currentlyEnrolled")
+      .get()
+      .then((docs) => {
+        const currentlyEnrolled = [];
+        docs.forEach((doc) => {
+          currentlyEnrolled.push(doc.data());
+        });
+        setCurrentlyEnrolled({ data: currentlyEnrolled });
+      });
+  };
+
+  /* Getting Enrolled Courses */
+  useEffect(() => {
+    updateCurrentlyEnrolled();
+  }, [UID]);
+
+  useEffect(() => {
+    calculateAndSetTotalProgress();
+  }, []);
+
+  const handleCourseDelete = (playlistID) => {
+    db.collection("users")
+      .doc(UID)
+      .collection("currentlyEnrolled")
+      .doc(playlistID)
+      .delete();
+    message.success("Course Deleted Succesfully, Refresh the page !");
+    updateCurrentlyEnrolled();
+  };
+
+  const calculateAndSetTotalProgress = async () => {
+    let totalWatched = 0,
+      totalVideos = 0;
+    const data = await db
+      .collection("users")
+      .doc(UID)
+      .collection("currentlyEnrolled")
+      .get();
+    data.docs.forEach((doc) => {
+      totalWatched += doc.data().totalWatched;
+      totalVideos += doc.data().videos.length;
+    });
+    console.log(totalVideos, totalWatched);
+    const progress = Math.round((totalWatched / totalVideos) * 100);
+    console.log(progress);
+    setTotalProgress(progress);
+  };
+
+  const RenderCards = ({ playlistData }) => {
+    const renderedCards = playlistData.map((playlist) => {
+      return (
+        <Card
+          key={playlist.playlistInfo.playlistID}
+          style={{ width: 300, margin: 10 }}
+          actions={[
+            <Popover title="Start learning">
+              <Link
+                to={{
+                  pathname: "/video-player",
+                  playlistID: playlist.playlistInfo.playlistID,
+                  tracking: true,
+                }}
+              >
+                <CaretRightOutlined key="play" />
+              </Link>
+            </Popover>,
+            <Popover title="Delete the course">
+              <Popconfirm
+                title={
+                  "Are you sure you wanna delete this course, all progress will be lost"
+                }
+                placement="top"
+                onConfirm={() =>
+                  handleCourseDelete(playlist.playlistInfo.playlistID)
+                }
+              >
+                <DeleteOutlined />
+              </Popconfirm>
+            </Popover>,
+          ]}
+        >
+          <Meta title={playlist.playlistInfo.title} />
+        </Card>
+      );
+    });
+    return (
+      <React.Fragment>
+        {playlistData.length ? (
+          <h2 className="card-heading">Enrolled Courses</h2>
+        ) : (
+          ""
+        )}
+        {renderedCards}
+      </React.Fragment>
+    );
+  };
 
   return (
     <div className="wrapper">
       <Space direction="horizontal" align="center" width="80%" size={100}>
-        <div>
-          <h2 className="card-heading">Active Course</h2>
-          <Card
-            style={{ width: 300, margin: 0 }}
-            cover={
-              <img
-                alt="example"
-                src="https://i.ytimg.com/vi/pN6jk0uUrD8/hqdefault.jpg"
-              />
-            }
-            actions={[
-              <Link
-                to={{
-                  pathname: "/video-player",
-                  playlistID: "PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP",
-                }}
-              >
-                <CaretRightOutlined key="play" />
-              </Link>,
-              <Link to={{ pathname: "/settings" }}>
-                <DeleteOutlined key="edit" />
-              </Link>,
-            ]}
-          >
-            <Meta
-              title="Namaste JavaScript"
-              description="Deep understanding of JavaScript"
-            />
-          </Card>
-        </div>
+        {currentlyEnrolled.data ? (
+          <RenderCards playlistData={currentlyEnrolled.data} />
+        ) : (
+          ""
+        )}
         <div>
           <h2 className="card-heading">Progress</h2>
           <Card style={{ width: 300 }} actions={[<ExpandAltOutlined />]}>
             <div className="progress-circle-n">
-              <Progress type="circle" percent={69} width={207}></Progress>
+              <Popover title="Expand, show more detailed progress">
+                <Progress
+                  type="circle"
+                  percent={totalProgress}
+                  width={207}
+                ></Progress>
+              </Popover>
             </div>
             <Meta
-              title="Current Course Progress"
+              title="Total Progress"
               description="This is the description"
             />
           </Card>
@@ -75,9 +168,11 @@ export default function Dashboard() {
               />
             }
             actions={[
-              <Link to="/explore">
-                <CaretRightOutlined key="play" />
-              </Link>,
+              <Popover title="Explore new courses">
+                <Link to="/explore">
+                  <CaretRightOutlined key="play" />
+                </Link>
+              </Popover>,
             ]}
           >
             <Meta

@@ -1,3 +1,4 @@
+import Search from "antd/lib/transfer/search";
 import React from "react";
 import "./SearchBar.css";
 
@@ -17,7 +18,7 @@ class SearchBar extends React.Component {
         <form onSubmit={this.handleSubmit} className="form">
           <div className="field">
             <label htmlFor="playlist-search"></label>
-            <input
+            <Search
               onChange={this.handleChange}
               name="playlist-search"
               type="text"

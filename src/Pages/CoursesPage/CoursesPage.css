@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 5%;
+  height: 100;
 }
 .heading {
   display: flex;
@@ -17,7 +18,7 @@
   width: 100%;
   justify-content: center;
   font-weight: 300;
-  margin: -150px 0 40px 0px;
+  margin: -150px 0 60px 0px;
 }
 .video-section {
   display: flex;
@@ -26,4 +27,5 @@
   align-content: center;
   justify-content: center;
   justify-items: center;
+  margin-bottom: 50px;
 }
