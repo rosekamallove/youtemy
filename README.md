@@ -3,11 +3,12 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 <br/>
 
 ## _Start Dev Server_
-    ### Firebase API 
+
+  -  ### Firebase API 
         a. Use the following documentation to create a **Firebase Project** and get a Firebase API key.
                 
                 
-                i. Go to [Firebase Console](console.firebase.google.com).
+                i. Go to ["Firebase Console"]("console.firebase.google.com").
                    Follow the steps to create a new Firebase project.
 
                 ii. Select </> , *Add a project via Code*.
@@ -22,7 +23,7 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
                
              		`REACT_APP_FIREBASE="API_KEY_HERE"`
 
-    ### Youtube API
+  -  ### Youtube API
         a. Go to the following link and set up a new project
                 
                 [Youtube API Console]("https://console.cloud.google.com/apis/")
@@ -39,9 +40,9 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 
         e.REACT_APP_YOUTUBE="API_KEY_HERE"
 
-    ### Ensure that .env is added in .gitignore file.
+  -  ### Ensure that .env is added in .gitignore file.
 
-    ### In the root folder and enter the following commands in the CLI
+  -  ### In the root folder and enter the following commands in the CLI
         a.   `npm i`
         b. `npm start`
 
