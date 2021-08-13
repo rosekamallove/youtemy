@@ -3,11 +3,11 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 <br/>
 ## _Start Dev Server_
     1. Firebase API 
-        a. Use the following documentation to create a **Firebase Project** and get a Firebase 			API key.
+        a. Use the following documentation to create a **Firebase Project** and get a Firebase API key.
                 
-                [Firebase Console]("https://firebase.google.com/docs/web/setup")
+                
 
-                i. Go to console.firebase.google.com and follow the steps to create a new Firebase project.
+                i. Go to [Firebase Console](console.firebase.google.com) and follow the steps to create a new Firebase project.
 
                 ii. Select </> , *Add a project via Code*.
 
@@ -55,12 +55,6 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
             - Daily Goal (Progress)
         - All-time Progress (Across Courses)
         - Captions to Transcript
-    - **Forum**
-        - Doubts
-        - Additional Resources relevant to the course
-            - FreeCodeCamp
-            - TheOdinProject
-            - WebDevSimplified
     - **Course Curriculum**
         - Different Tracks
             - Web-Dev Track
@@ -76,8 +70,12 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
         - Tutorial Hell Warnings
         - Maybe percentile
         - Suggested next course
-    - Non MVP Features
-        - Leave a Review
+    - **Explore Page**
+        - Search for new Courses on Youtube
+        - Add them to bookmrks or enroll in them
+     - **Settings**
+        - Delete all Bookmarks
+        - Delete all enrolled courses
 
 ### MVP Flow:
 ![NavBar](protoypes/Youtemy-Flow.png)
@@ -93,9 +91,6 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 **Course Curriculam:**
 ![CourseCurriculam](protoypes/Course-Curriculum.jpg)
 
-**Course Curriculam:**
+**Video Player:**
 ![Player](protoypes/Player.png)
-
-**Weekly Progress via Trello Board:**
-![Week1](TrelloProgress/Week1Progress.png)
 
