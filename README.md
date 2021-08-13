@@ -8,7 +8,7 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
   
   -  ### Firebase API 
        
-#### 1. Go to [Firebase API](console.firebase.google.com) and follow the steps to create a new Firebase project.
+#### 1. Go to [Firebase API](https://console.firebase.google.com) and follow the steps to create a new Firebase project.
 
 #### 2. Select </> , *Add a project via Code*.
 
