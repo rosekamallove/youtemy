@@ -35,7 +35,7 @@
   margin-top: 15px;
   margin-bottom: 15px;
   font-size: small;
-  box-shadow: rgba(122, 122, 122, 0.2) 0px 2px 8px 0px;
+  /* box-shadow: rgba(122, 122, 122, 0.2) 0px 2px 8px 0px; */
 }
 
 .menu {
@@ -50,6 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   margin: 0;
 }

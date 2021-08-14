@@ -18,6 +18,34 @@
   justify-content: center;
 }
 
+.ant-card {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px !important;
+  transition: ease 0.3s !important;
+  border-radius: 5px !important;
+}
+.ant-card:hover,
+.ant-card-bordered:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.247) 0px 3px 7px -3px !important;
+}
+
+.ant-menu-item,
+.menu-item {
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px !important; */
+  box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+  /* box-shadow: rgba(73, 73, 136, 0.25) 0px 6px 12px -2px,
+    rgba(100, 100, 100, 0.3) 0px 3px 7px -3px; */
+  transition: ease 0.3s !important;
+  border-radius: 5px !important;
+}
+.ant-menu-item:hover,
+.menu-item:hover {
+  box-shadow: rgba(116, 116, 116, 0.219) 0px 1px 3px,
+    rgba(172, 172, 172, 0.24) 0px 1px 2px;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.247) 0px 3px 7px -3px !important; */
+}
+
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
