@@ -55,7 +55,7 @@ button:disabled {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
-  border-radius: 2px;
+  border-radius: 5px;
 }
 .github-youtemy {
   margin-top: 50px;
@@ -67,7 +67,7 @@ button:disabled {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 
-  border-radius: 2px;
+  border-radius: 5px;
 }
 .github-logo {
   font-size: 18px;

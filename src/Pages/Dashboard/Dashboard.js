@@ -37,10 +37,11 @@ export default function Dashboard() {
       .collection("currentlyEnrolled")
       .get()
       .then((docs) => {
-        const currentlyEnrolled = [];
+        let currentlyEnrolled = [];
         docs.forEach((doc) => {
           currentlyEnrolled.push(doc.data());
         });
+        currentlyEnrolled = currentlyEnrolled.reverse();
         setCurrentlyEnrolled({ data: currentlyEnrolled });
       });
   };
