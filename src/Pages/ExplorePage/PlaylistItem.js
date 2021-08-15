@@ -2,7 +2,7 @@ import {
   CaretRightOutlined,
   CopyOutlined,
   PlusCircleOutlined,
-  YoutubeOutlined,
+  YoutubeOutlined
 } from "@ant-design/icons";
 import { Avatar, Card, Popconfirm, Popover } from "antd";
 import "antd/dist/antd.css";
@@ -15,7 +15,7 @@ import "./ExplorePage.css";
 
 const { Meta } = Card;
 
-const PlaylistItem = ({ key, playlistID, playlist }) => {
+const PlaylistItem = ({ playlistID, playlist }) => {
   const { uid } = useContext(UserContext);
 
   const yt = "https://youtube.com/playlist?list=" + playlistID;

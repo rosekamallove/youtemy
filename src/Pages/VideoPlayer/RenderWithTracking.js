@@ -23,7 +23,7 @@ const RenderWithTracking = ({ playlistID }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [videoDescription, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
-  const [selectedMenuItem, setSelectedMenuItem] = useState("----");
+  const selectedMenuItem = currentVideo;
 
   useEffect(() => {
     message.success("Tracking is on");
@@ -39,6 +39,7 @@ const RenderWithTracking = ({ playlistID }) => {
       setVideoDescription(data.data().videos[0].description);
     };
     getPlaylist();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setLastUnWatched = (data) => {
@@ -53,8 +54,7 @@ const RenderWithTracking = ({ playlistID }) => {
   };
 
   const findVideoAndSetWatched = async (videoId, what) => {
-    let data = await db
-      .collection("users")
+    db.collection("users")
       .doc(uid)
       .collection("currentlyEnrolled")
       .doc(playlistData.playlistInfo.playlistID)
@@ -141,7 +141,7 @@ const RenderWithTracking = ({ playlistID }) => {
         </Menu.Item>
       );
     });
-    return <Menu>{renderedMenuItem}</Menu>;
+    return <Menu selectedKeys={[selectedMenuItem]}>{renderedMenuItem}</Menu>;
   };
 
   const handleMenuCollapse = (collapsed) => {

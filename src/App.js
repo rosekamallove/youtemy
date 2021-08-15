@@ -73,12 +73,14 @@ function LandingPage() {
             <img
               className="google-logo"
               src="https://kgo.googleusercontent.com/profile_vrt_raw_bytes_1587515358_10512.png"
+              alt="Google"
             ></img>
           </button>
           <a
             className="github-goto"
             href="https://github.com/rosekamallove/youtemy"
             target="_blank"
+            rel="noreferrer"
           >
             <button className="github-youtemy">
               Contribute{"  "}

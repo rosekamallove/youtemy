@@ -27,6 +27,7 @@ export default function SettingsPage() {
         });
         setCurrentlyEnrolled({ data: currentlyEnrolled });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAllBookmarksDelete = async () => {
@@ -44,9 +45,9 @@ export default function SettingsPage() {
   const handleDeleteCourses = () => {
     const hide = message.loading("Deleting from the Database...", 0);
 
-    currentlyEnrolled.data.map((playlist) => {
-      docRef.doc(playlist.playlistInfo.playlistID).delete();
-    });
+    currentlyEnrolled.data.map((playlist) =>
+      docRef.doc(playlist.playlistInfo.playlistID).delete()
+    );
 
     setTimeout(hide, 1000);
     message.success("Deleted all Courses !!");

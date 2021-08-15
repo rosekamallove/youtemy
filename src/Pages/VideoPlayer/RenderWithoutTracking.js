@@ -1,4 +1,4 @@
-import { Checkbox, Collapse, Layout, Menu, message, Typography } from "antd";
+import { Checkbox, Collapse, Layout, Menu, message } from "antd";
 import "antd/dist/antd.css";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -6,10 +6,10 @@ import getVideos from "../../apis/getVideos";
 import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
-const { Title } = Typography;
 const { Panel } = Collapse;
 
 const RenderWithoutTracking = ({ playlistID }) => {
+  playlistID = playlistID && localStorage.getItem("playlist-id");
   const [playlistState, setPlaylistState] = useState({
     playlistData: {},
     firstVideo: "",
@@ -21,14 +21,13 @@ const RenderWithoutTracking = ({ playlistID }) => {
   const [currentVideo, setCurrentVideo] = useState(playlistState.firstVideo);
   const [videoDescription, setVideoDescription] = useState("");
   const [videoMargin, setVideoMargin] = useState(400);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(currentVideo);
+  const selectedMenuItem = currentVideo;
 
   /**************************
    * Sets the PlaylistData *
    **************************/
   useEffect(() => {
     message.error("Your Progress Won't be saved");
-    playlistID = playlistID && localStorage.getItem("playlist-id");
     getVideos(playlistID).then((data) => {
       setCurrentVideo(data.items[0].snippet.resourceId.videoId);
       setPlaylistState({
@@ -38,14 +37,16 @@ const RenderWithoutTracking = ({ playlistID }) => {
       });
       setLoading(false);
     });
-  }, []);
+  }, [playlistID]);
 
   useEffect(() => {
     setVideoDescriptionInMarkup();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVideo]);
 
   useEffect(() => {
     setVideoDescriptionInMarkup();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
   /**************************
@@ -74,14 +75,12 @@ const RenderWithoutTracking = ({ playlistID }) => {
   };
 
   const setVideoDescriptionInMarkup = () => {
-    playlistState.playlistArray.map((item) => {
-      if (
-        item.snippet.resourceId.videoId ===
-        (currentVideo || playlistState.firstVideo)
-      ) {
-        setVideoDescription(item.snippet.description);
-      }
-    });
+    playlistState.playlistArray.map((item) =>
+      item.snippet.resourceId.videoId ===
+      (currentVideo || playlistState.firstVideo)
+        ? setVideoDescription(item.snippet.description)
+        : ""
+    );
   };
 
   const handleVideoEnded = () => {
@@ -108,8 +107,6 @@ const RenderWithoutTracking = ({ playlistID }) => {
   const handleMenuItemClick = (videoId, e) => {
     setCurrentVideo(videoId);
   };
-
-  let count = 0;
 
   return (
     <Layout>

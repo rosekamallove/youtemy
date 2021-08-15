@@ -49,10 +49,12 @@ export default function Dashboard() {
   /* Getting Enrolled Courses */
   useEffect(() => {
     updateCurrentlyEnrolled();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [UID]);
 
   useEffect(() => {
     calculateAndSetTotalProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCourseDelete = (playlistID) => {
@@ -77,9 +79,7 @@ export default function Dashboard() {
       totalWatched += doc.data().totalWatched;
       totalVideos += doc.data().videos.length;
     });
-    console.log(totalVideos, totalWatched);
     const progress = Math.round((totalWatched / totalVideos) * 100);
-    console.log(progress);
     setTotalProgress(progress);
   };
 
