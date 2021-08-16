@@ -28,12 +28,12 @@ const RenderWithoutTracking = ({ playlistID }) => {
    **************************/
   useEffect(() => {
     message.error("Your Progress Won't be saved");
-    getVideos(playlistID).then((data) => {
-      setCurrentVideo(data.items[0].snippet.resourceId.videoId);
+    getVideos(playlistID).then((items) => {
+      setCurrentVideo(items[0].snippet.resourceId.videoId);
       setPlaylistState({
-        playlistData: data,
-        firstVideo: data.items[0].snippet.resourceId.videoId,
-        playlistArray: data.items,
+        playlistData: items,
+        firstVideo: items[0].snippet.resourceId.videoId,
+        playlistArray: items,
       });
       setLoading(false);
     });

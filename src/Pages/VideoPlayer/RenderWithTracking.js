@@ -125,6 +125,7 @@ const RenderWithTracking = ({ playlistID }) => {
         <Menu.Item
           key={video.videoId}
           className="menu-item"
+          style={{ fontSize: 12 }}
           onClick={() => {
             setVideoDescription(video.description);
             setCurrentVideo(video.videoId);
