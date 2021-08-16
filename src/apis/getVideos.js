@@ -18,8 +18,7 @@ const getVideos = async (playlistID) => {
   result = data.items;
   nextPageToken = data.nextPageToken;
 
-  let t = 5;
-  while (t) {
+  while (true) {
     if (result.length === totalVideos) {
       break;
     }
@@ -29,22 +28,16 @@ const getVideos = async (playlistID) => {
     } else {
       result = returnedArr;
     }
-    t--;
   }
   return result;
 };
 
-const getMoreVideos = async (options, nextPageToken) => {
-  let arr = [];
-  let newOptions = { ...options, pageToken: nextPageToken };
-
+const getMoreVideos = async (options, pageToken) => {
+  const newOptions = { ...options, pageToken };
   const url = getFetchUrl(newOptions);
-
-  let data = await (await fetch(url)).json();
+  const data = await (await fetch(url)).json();
   nextPageToken = data.nextPageToken;
-  arr = [...result, ...data.items];
-
-  return arr;
+  return [...result, ...data.items];
 };
 
 const getFetchUrl = (options) => {
