@@ -146,7 +146,7 @@ const RenderWithTracking = ({ playlistID }) => {
 
   const handleMenuCollapse = (collapsed) => {
     setMenuCollapsed(collapsed);
-    menuCollapsed ? setVideoMargin(400) : setVideoMargin(120);
+    menuCollapsed ? setVideoMargin(400) : setVideoMargin(72);
   };
 
   return (
