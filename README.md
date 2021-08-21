@@ -2,72 +2,71 @@
 Track your YouTube learning with progress bars and pies, avoiding the infamous _Tutorial Hell_
 <br/>
 
-## _Start Dev Server_
+## __Starting the Dev Server__
 
-  -  ### Clone the repository to your local system.
-  
-  -  ### Firebase API 
-       
-#### 1. Go to [Firebase API](https://console.firebase.google.com) and follow the steps to create a new Firebase project.
+- Clone the repository to your local system. `https://github.com/rosekamallove/youtemy`
 
-#### 2. Select </> , *Add a project via Code*.
+-  Firebase API Setup:
 
-#### 3. Create a new web app using the steps provided on the console.
+    1. Go to [Firebase Console](https://console.firebase.google.com) and follow the steps to create a new Firebase project.
+    2. Select `</>` , *Add a project via Code*.
 
-#### 4. You will recieve a firebasConfig object with the first paramter as API key. Copy it.
+    3. Create a new web app using the steps provided on the console.
 
-#### 5. After you get the Firebase API key, create a .env file in the root folder of the repository
+    4. You will recieve a firebasConfig object with the first paramter as API key. Copy it.
 
-#### 6. Insert the folowing snippet in the file
-               
-             		REACT_APP_FIREBASE="API_KEY_HERE"
+    5. After you get the Firebase API key, create a .env file in the root folder of the repository
+
+    6. Insert the folowing snippet in the file
+
+            REACT_APP_FIREBASE="API_KEY_HERE"
       
-  -  ### Youtube API
-#### 1. Go to the following link and set up a new project from <https://console.cloud.google.com/apis/>
+  - Youtube API Setup:
+    1. Go to the following link and set up a new project from <https://console.cloud.google.com/apis/>
 
-#### 2. Go the the project's dashboard and click on **Enable APIs and Services**
+    2. Go the the project's dashboard and click on **Enable APIs and Services**
 
-#### 3. Select **Youtube Data API v3**
+    3. Select **Youtube Data API v3**
 
-#### 4. Click on Credentials to create new credentials for the API client
+    4. Click on Credentials to create new credentials for the API client
 
-#### 5. Select API Key out of the 3 options available (API Key, OAuth Client ID, Service Key)
+    5. Select API Key out of the 3 options available (API Key, OAuth Client ID, Service Key)
 
-#### 6. A new API key will be generated. Copy it in the .env file.
+    6. A new API key will be generated. Copy it in the .env file.
 
-                     REACT_APP_YOUTUBE="API_KEY_HERE"
+                 REACT_APP_YOUTUBE="API_KEY_HERE"
 
-  -  ### Ensure that .env is added in .gitignore file.
+  - Ensure that .env is added in .gitignore file.
 
-  -  ### In the root folder and enter the following commands in the CLI
-        -   `npm i`
-        - `npm start`
-  -  ### If you wish to contribute, either look for issues already created or create an issue if you have a new idea. 
+  -  In the root folder and enter the following commands in the CLI
+   
+             npm i or yarn
+             npm start or yarn start
+  -  If you wish to contribute, either look for issues already created or create an issue if you have a new idea. 
 <br/>
 
-## Snapshots of the Hosted Projects
+> ## Snapshots of the Hosted Projects
 
-- ### ![Dashboard](protoypes/Website1.png)
+> ### ![Dashboard](protoypes/Website1.png)
 
-- ### ![CoursesPage1](protoypes/Website2.png)
+> ### ![CoursesPage1](protoypes/Website2.png)
 
-- ### ![CoursesPage2](protoypes/Website3.png)
+> ### ![CoursesPage2](protoypes/Website3.png)
 
-- ### ![ExplorePage](protoypes/Website4.png)
+> ### ![ExplorePage](protoypes/Website4.png)
 
-- ### ![BookmarksPage](protoypes/Website5.png)
+> ### ![BookmarksPage](protoypes/Website5.png)
 
 ## Overview
 
 - ### Pages:
     - **Landing Page** (Middleware goes here if not logged in)
+      - LogIn or Contribute 
     - **Dashboard**:
         - Courses currently enrolled
-        - Course Tracker (with progress pie)
         - Streak Tracker
             - Daily Goal (Progress)
         - All-time Progress (Across Courses)
-        - Captions to Transcript
 
     - **Course Curriculum**
         - Different Tracks
@@ -76,8 +75,6 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
                 - JavaScript
                 - React/Vue/Angular
                 - Node.JS / Express
-        - At max two playlists of the same topic
-        - Suggested playlists
 
     - **User Dashboard**
         - Courses currently enrolled in
@@ -93,11 +90,11 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
      - **Settings**
         - Delete all Bookmarks
         - Delete all enrolled courses
-
+<!-- 
 ### MVP Flow:
-![NavBar](protoypes/Youtemy-Flow.png)
+![NavBar](protoypes/Youtemy-Flow.png) -->
 
-### MVP Mockups:
+<!-- ### MVP Mockups:
 
 **Navbar and Footer:**
 ![NavBar](protoypes/NavBar.jpg)
@@ -109,5 +106,5 @@ Track your YouTube learning with progress bars and pies, avoiding the infamous _
 ![CourseCurriculam](protoypes/Course-Curriculum.jpg)
 
 **Video Player:**
-![Player](protoypes/Player.png)
+![Player](protoypes/Player.png) -->
 
