@@ -13,7 +13,19 @@ A great way to learn from YouTube courses without any distractions and the abili
 
     3. Create a new web app using the steps provided on the console.
 
-    4. You will recieve a firebasConfig object with the first paramter as API key. Copy it.
+    4. You will recieve a firebasConfig object with the first paramter as API key. Copy it, which will look something like:
+     
+        ```js
+                cosnt firebaseConfig = {
+                apiKey: "YOUR_API_KEY",
+                authDomain: "AUTH_DOMAIN",
+                projectId: "PROJECT_ID",
+                storageBucket: "STORAGE_BUCKET",
+                messagingSenderId: "*************",
+                appId: "******************************",
+                measurementId: "*************"
+              };
+        ```
 
     5. After you get the Firebase API key, create a .env file in the root folder of the repository
 
