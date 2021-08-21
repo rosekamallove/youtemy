@@ -17,7 +17,7 @@ A great way to learn from YouTube courses without any distractions and the abili
      
         ```js
                 cosnt firebaseConfig = {
-                apiKey: "YOUR_API_KEY",
+                apiKey: "process.env.REACT_APP_FIREBASE",
                 authDomain: "AUTH_DOMAIN",
                 projectId: "PROJECT_ID",
                 storageBucket: "STORAGE_BUCKET",
