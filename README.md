@@ -1,5 +1,5 @@
 # Youtemy
-Track your YouTube learning with progress bars and pies, avoiding the infamous _Tutorial Hell_
+A great way to learn from YouTube courses without any distractions and the ability to enroll in courses and track them with a daily streak to become more consistent.
 <br/>
 
 ## __Starting the Dev Server__
