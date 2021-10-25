@@ -18,11 +18,19 @@ const handleAddToBookamrk = async (
       bookmarks = [{ playlistID, title, thumbnail }];
       db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
     } else {
-      bookmarks.push({ playlistID, title, thumbnail });
-      db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
+      console.log("bookmarks", bookmarks);
+      const existingBookmark = bookmarks.find(
+        (bookmark) => bookmark.playlistID === playlistID
+      );
+      if (existingBookmark) {
+        message.info(`Course already added to Bookmarks`);
+      } else {
+        bookmarks.push({ playlistID, title, thumbnail });
+        db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
+        message.info(`Course added to Bookmarks check it out`);
+      }
     }
   }
-  message.info(`Course added to Bookmarks check it out`);
 };
 
 export default handleAddToBookamrk;
