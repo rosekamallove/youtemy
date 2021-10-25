@@ -18,7 +18,6 @@ const handleAddToBookamrk = async (
       bookmarks = [{ playlistID, title, thumbnail }];
       db.collection("users").doc(uid).set({ bookmarks }, { merge: true });
     } else {
-      console.log("bookmarks", bookmarks);
       const existingBookmark = bookmarks.find(
         (bookmark) => bookmark.playlistID === playlistID
       );
