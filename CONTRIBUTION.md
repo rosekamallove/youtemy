@@ -1,4 +1,4 @@
-1. **Setting up firebase & firestore**
+- **Setting up firebase & firestore**
   - Firstly create an app on the [firebase console](https://console.firebase.google.com)
   - Then copy the firebase config which gets auto prompted when setting it up, or we can go to project setting later on
   - Enable `firestore` in the firestore tab on the console in testing mode
@@ -16,7 +16,7 @@
   ```
   - Then paste this firebase config in `src/firebase.js` after removing the existing **firebaseConfig**
 
-2. **Setting up Youtube Data API**
+- **Setting up Youtube Data API**
   - Go to [google-cloud-console](https://console.cloud.google.com/) and generate credentials for **Youtebe Data API** and copy the _API_KEY_
   - Create a `.env` in the root of the folder
   - And paste the following in it
