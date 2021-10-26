@@ -26,6 +26,9 @@ class ExplorePage extends React.Component {
     return (
       <div className="ui container">
         <div className="mainbody">
+          <div className="explorer-title">
+            <h2>Search a keyword you'll get a playlist</h2>
+          </div>
           <Card
             className="searchbar"
             style={({ width: 500 }, { padding: 0 }, { margin: 20 })}
