@@ -1,16 +1,18 @@
 import { Checkbox, Collapse, Layout, Menu, message } from "antd";
 import "antd/dist/antd.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import ReactPlayer from "react-player";
 import { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
+import getVideos from "../../apis/getVideos";
+import handleAddCourse from "../../firestore/addCourse";
 import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
 const { Panel } = Collapse;
 
 const RenderWithTracking = ({ playlistID }) => {
-  const [playlistData, setPlaylistData] = useState({});
+  const [playlistData, setPlaylistData] = useState(null);
 
   let { uid } = useContext(UserContext);
   if (uid === "") {
@@ -25,22 +27,41 @@ const RenderWithTracking = ({ playlistID }) => {
   const [videoMargin, setVideoMargin] = useState(400);
   const selectedMenuItem = currentVideo;
 
+  const getDataCB = useCallback(async () => {
+    console.log("in get data call back");
+    const data = await db
+      .collection("users")
+      .doc(uid)
+      .collection("currentlyEnrolled")
+      .doc(playlistID)
+      .get();
+    setPlaylistData(data.data());
+    setLastUnWatched(data.data());
+    setVideoDescription(data.data().videos[0].description);
+  }, [playlistID, uid]);
+
   useEffect(() => {
-    message.success("Tracking is on");
-    const getPlaylist = async () => {
-      const data = await db
-        .collection("users")
-        .doc(uid)
-        .collection("currentlyEnrolled")
-        .doc(playlistID)
-        .get();
-      setPlaylistData(data.data());
-      setLastUnWatched(data.data());
-      setVideoDescription(data.data().videos[0].description);
-    };
-    getPlaylist();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (playlistData && playlistID) {
+      const syncPlayList = async () => {
+        const youtubePlayList = await getVideos(playlistID);
+        console.log(youtubePlayList, playlistData);
+
+        if (youtubePlayList.length > playlistData.videos.length) {
+          // new videos are added to the playlist by creator
+          handleAddCourse(playlistID, uid);
+
+          // update dom
+          getDataCB();
+        }
+      };
+
+      syncPlayList();
+    }
+  }, [playlistData, playlistID, uid, getDataCB]);
+
+  useEffect(() => {
+    getDataCB();
+  }, [getDataCB]);
 
   const setLastUnWatched = (data) => {
     if (data) {
