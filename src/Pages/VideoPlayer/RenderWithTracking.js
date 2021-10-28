@@ -6,6 +6,7 @@ import { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
 import getVideos from "../../apis/getVideos";
 import handleAddCourse from "../../firestore/addCourse";
+import handleUpdateCourse from "../../firestore/updateCourse";
 import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
@@ -28,7 +29,6 @@ const RenderWithTracking = ({ playlistID }) => {
   const selectedMenuItem = currentVideo;
 
   const getDataCB = useCallback(async () => {
-    console.log("in get data call back");
     const data = await db
       .collection("users")
       .doc(uid)
@@ -40,24 +40,24 @@ const RenderWithTracking = ({ playlistID }) => {
     setVideoDescription(data.data().videos[0].description);
   }, [playlistID, uid]);
 
+  const syncPlayList = useCallback(async () => {
+    const youtubePlayList = await getVideos(playlistID);
+
+    if (youtubePlayList.length > playlistData.videos.length) {
+      // new videos are added to the playlist by creator
+      const newVideos = youtubePlayList.slice(playlistData.videos.length);
+      handleUpdateCourse(playlistID, uid, newVideos);
+
+      // update dom
+      getDataCB();
+    }
+  }, [getDataCB, playlistData, uid, playlistID]);
+
   useEffect(() => {
     if (playlistData && playlistID) {
-      const syncPlayList = async () => {
-        const youtubePlayList = await getVideos(playlistID);
-        console.log(youtubePlayList, playlistData);
-
-        if (youtubePlayList.length > playlistData.videos.length) {
-          // new videos are added to the playlist by creator
-          handleAddCourse(playlistID, uid);
-
-          // update dom
-          getDataCB();
-        }
-      };
-
       syncPlayList();
     }
-  }, [playlistData, playlistID, uid, getDataCB]);
+  }, [playlistData, playlistID, syncPlayList]);
 
   useEffect(() => {
     getDataCB();
