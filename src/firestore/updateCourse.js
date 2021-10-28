@@ -1,0 +1,31 @@
+import { message } from "antd";
+import { db } from "../firebase";
+import firebase from "firebase";
+
+const videos = [];
+const handleUpdateCourse = async (playListId, uid, newVideos) => {
+  if (uid === "") {
+    message.error("Not Logged In");
+    return;
+  }
+
+  newVideos.forEach((item) => {
+    videos.push({
+      videoId: item.snippet.resourceId.videoId,
+      watched: false,
+      title: item.snippet.title,
+      description: item.snippet.description,
+    });
+  });
+
+  db.collection("users")
+    .doc(uid)
+    .collection("currentlyEnrolled")
+    .doc(playListId)
+    .update({
+      videos: firebase.firestore.FieldValue.arrayUnion(...videos),
+    });
+  message.info("Update course successfully");
+};
+
+export default handleUpdateCourse;

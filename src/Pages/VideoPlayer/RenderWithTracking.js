@@ -1,16 +1,19 @@
 import { Checkbox, Collapse, Layout, Menu, message } from "antd";
 import "antd/dist/antd.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import ReactPlayer from "react-player";
 import { db } from "../../firebase";
 import { UserContext } from "../../UserContext";
+import getVideos from "../../apis/getVideos";
+import handleAddCourse from "../../firestore/addCourse";
+import handleUpdateCourse from "../../firestore/updateCourse";
 import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
 const { Panel } = Collapse;
 
 const RenderWithTracking = ({ playlistID }) => {
-  const [playlistData, setPlaylistData] = useState({});
+  const [playlistData, setPlaylistData] = useState(null);
 
   let { uid } = useContext(UserContext);
   if (uid === "") {
@@ -25,22 +28,40 @@ const RenderWithTracking = ({ playlistID }) => {
   const [videoMargin, setVideoMargin] = useState(400);
   const selectedMenuItem = currentVideo;
 
+  const getDataCB = useCallback(async () => {
+    const data = await db
+      .collection("users")
+      .doc(uid)
+      .collection("currentlyEnrolled")
+      .doc(playlistID)
+      .get();
+    setPlaylistData(data.data());
+    setLastUnWatched(data.data());
+    setVideoDescription(data.data().videos[0].description);
+  }, [playlistID, uid]);
+
+  const syncPlayList = useCallback(async () => {
+    const youtubePlayList = await getVideos(playlistID);
+
+    if (youtubePlayList.length > playlistData.videos.length) {
+      // new videos are added to the playlist by creator
+      const newVideos = youtubePlayList.slice(playlistData.videos.length);
+      handleUpdateCourse(playlistID, uid, newVideos);
+
+      // update dom
+      getDataCB();
+    }
+  }, [getDataCB, playlistData, uid, playlistID]);
+
   useEffect(() => {
-    message.success("Tracking is on");
-    const getPlaylist = async () => {
-      const data = await db
-        .collection("users")
-        .doc(uid)
-        .collection("currentlyEnrolled")
-        .doc(playlistID)
-        .get();
-      setPlaylistData(data.data());
-      setLastUnWatched(data.data());
-      setVideoDescription(data.data().videos[0].description);
-    };
-    getPlaylist();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (playlistData && playlistID) {
+      syncPlayList();
+    }
+  }, [playlistData, playlistID, syncPlayList]);
+
+  useEffect(() => {
+    getDataCB();
+  }, [getDataCB]);
 
   const setLastUnWatched = (data) => {
     if (data) {
