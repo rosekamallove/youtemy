@@ -34,17 +34,17 @@ A great way to learn from YouTube courses without any distractions and the abili
             REACT_APP_FIREBASE="API_KEY_HERE"
       
   - Youtube API Setup:
-    1. Go to the following link and set up a new project from <https://console.cloud.google.com/apis/>
+    (1.) Go to the following link and set up a new project from <https://console.cloud.google.com/apis/>
 
-    2. Go the the project's dashboard and click on **Enable APIs and Services**
+    (2.) Go the the project's dashboard and click on **Enable APIs and Services**
 
-    3. Select **Youtube Data API v3**
+   (3.) Select **Youtube Data API v3**
 
-    4. Click on Credentials to create new credentials for the API client
+    (4.) Click on Credentials to create new credentials for the API client
 
-    5. Select API Key out of the 3 options available (API Key, OAuth Client ID, Service Key)
+    (5.) Select API Key out of the 3 options available (API Key, OAuth Client ID, Service Key)
 
-    6. A new API key will be generated. Copy it in the .env file.
+    (6.) A new API key will be generated. Copy it in the .env file.
 
                  REACT_APP_YOUTUBE="API_KEY_HERE"
 
@@ -119,4 +119,5 @@ A great way to learn from YouTube courses without any distractions and the abili
 
 **Video Player:**
 ![Player](protoypes/Player.png) -->
+.....
 
