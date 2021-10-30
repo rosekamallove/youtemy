@@ -8,12 +8,12 @@ A great way to learn from YouTube courses without any distractions and the abili
 
 -  Firebase API Setup:
 
-    1. Go to [Firebase Console](https://console.firebase.google.com) and follow the steps to create a new Firebase project.
-    2. Select `</>` , *Add a project via Code*.
+    (1.) Go to [Firebase Console](https://console.firebase.google.com) and follow the steps to create a new Firebase project.
+    (2.) Select `</>` , *Add a project via Code*.
 
-    3. Create a new web app using the steps provided on the console.
+    (3.) Create a new web app using the steps provided on the console.
 
-    4. You will recieve a firebasConfig object with the first paramter as API key. Copy it, which will look something like:
+    (4.) You will recieve a firebasConfig object with the first paramter as API key. Copy it, which will look something like:
      
         ```js
                 cosnt firebaseConfig = {
@@ -27,9 +27,9 @@ A great way to learn from YouTube courses without any distractions and the abili
               };
         ```
 
-    5. After you get the Firebase API key, create a .env file in the root folder of the repository
+    (5.) After you get the Firebase API key, create a .env file in the root folder of the repository
 
-    6. Insert the folowing snippet in the file
+    (6.) Insert the folowing snippet in the file
 
             REACT_APP_FIREBASE="API_KEY_HERE"
       
