@@ -31,7 +31,7 @@ YouTemy is a web app built with the following:
 * [Javascript](https://www.javascript.com)
 * [ReactJS](https://reactjs.org/)
 * [Firebase](https://firebase.google.com)
-* [YouTube](https://youtube.com)
+* [YouTube Data API V3](https://developers.google.com/youtube/v3)
 
 <!-- CI/CD Block -->
 # 🤖 CI/CD
