@@ -1,3 +1,4 @@
+_**Note: This project is currently not in development!**_
 <!-- Logo Block -->
 <h1 align="center">
 	<a href="https://youtemy.tech"><img height=100 src="src/Components/Navbar/Logo.png" alt="YouTemy"/></a>
