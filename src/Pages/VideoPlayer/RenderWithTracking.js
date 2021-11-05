@@ -1,12 +1,11 @@
-import { Checkbox, Collapse, Layout, Menu, message } from "antd";
+import { Checkbox, Collapse, Layout, Menu } from "antd";
 import "antd/dist/antd.css";
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import { db } from "../../firebase";
-import { UserContext } from "../../UserContext";
 import getVideos from "../../apis/getVideos";
-import handleAddCourse from "../../firestore/addCourse";
+import { db } from "../../firebase";
 import handleUpdateCourse from "../../firestore/updateCourse";
+import { UserContext } from "../../UserContext";
 import "./VideoPlayer.css";
 
 const { Sider, Content } = Layout;
@@ -65,12 +64,13 @@ const RenderWithTracking = ({ playlistID }) => {
 
   const setLastUnWatched = (data) => {
     if (data) {
-      for (let i = 0; i < data.videos.length; i++) {
-        if (data.videos[i].watched === false) {
-          setCurrentVideo(data.videos[i].videoId);
-          return;
-        }
-      }
+      const firstUnwatchedVideo =
+        data.videos[
+          data.videos.indexOf(
+            data.videos.find((item) => item.watched === false)
+          )
+        ].videoId;
+      setCurrentVideo(firstUnwatchedVideo);
     }
   };
 
