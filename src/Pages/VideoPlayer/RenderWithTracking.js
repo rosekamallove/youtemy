@@ -35,7 +35,7 @@ const RenderWithTracking = ({ playlistID }) => {
       .doc(playlistID)
       .get();
     setPlaylistData(data.data());
-    setLastUnWatched(data.data());
+    setFirstUnwatchedVideo(data.data());
     setVideoDescription(data.data().videos[0].description);
   }, [playlistID, uid]);
 
@@ -62,7 +62,7 @@ const RenderWithTracking = ({ playlistID }) => {
     getDataCB();
   }, [getDataCB]);
 
-  const setLastUnWatched = (data) => {
+  const setFirstUnwatchedVideo = (data) => {
     if (data) {
       const firstUnwatchedVideo =
         data.videos[
