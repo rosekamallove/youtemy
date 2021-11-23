@@ -24,9 +24,9 @@ YouTemy is a platform to accelerate learning from YouTube courses. Users can lea
 
 <!-- Tech Stack Block -->
 # 🚀 Tech Stack
-<p align="center">
+<!-- <p align="center">
     <a href="https://firebase.google.com"><img width=32 height=32 src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" alt="Firebase logo"></a>
-</p>
+</p> -->
 
 YouTemy is a web app built with the following:
 * [Javascript](https://www.javascript.com)
