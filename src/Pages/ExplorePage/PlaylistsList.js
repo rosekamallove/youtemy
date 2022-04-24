@@ -1,4 +1,3 @@
-import React from "react";
 import PlaylistItem from "./PlaylistItem";
 
 const PlaylistsList = ({ playlists }) => {
