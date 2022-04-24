@@ -1,14 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  font-family: "Roboto";
+  font-family: "Poppins";
 }
 
 *::-webkit-scrollbar {
   display: none !important;
+}
+
+h2 {
+  font-weight: 300 !important;
 }
 
 .very-center {
@@ -47,9 +51,9 @@
 }
 
 body {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  /*background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);*/
+  background: #eff2f5 !important;
   background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
