@@ -1,6 +1,7 @@
 import { Checkbox, Collapse, Layout, Menu, message } from "antd";
 import "antd/dist/antd.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import ReactLinkify from "react-linkify";
 import ReactPlayer from "react-player";
 import getVideos from "../../apis/getVideos";
 import "./VideoPlayer.css";
@@ -156,7 +157,9 @@ const RenderWithoutTracking = ({ playlistID }) => {
           </div>
           <Collapse bordered={false} defaultActiveKey={["1"]}>
             <Panel header="Description" key="1">
-              <span className="description-span">{videoDescription}</span>{" "}
+              <ReactLinkify>
+                <span className="description-span">{videoDescription}</span>{" "}
+              </ReactLinkify>
             </Panel>
           </Collapse>
         </Content>
