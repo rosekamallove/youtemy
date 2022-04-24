@@ -132,9 +132,9 @@ export default function Dashboard() {
             style={{ width: 300, height: 350, marginTop: 110 }}
           >
             <h5 align="left">
-              You haven't enrolled in any course,
-              <br /> please <Link to="/explore">Search</Link> for a course and
-              enroll in it by clicking the <PlusCircleOutlined /> button.
+              You haven't enrolled in any course, please{" "}
+              <Link to="/explore">Search</Link> for a course and enroll in it by
+              clicking the <PlusCircleOutlined /> button.
             </h5>
           </Card>
         )}
