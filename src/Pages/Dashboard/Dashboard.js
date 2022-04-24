@@ -2,6 +2,7 @@ import {
   CaretRightOutlined,
   DeleteOutlined,
   ExpandAltOutlined,
+  PlusCircleOutlined,
 } from "@ant-design/icons";
 import { Card, message, Popconfirm, Popover, Progress, Space } from "antd";
 import "firebase/firestore";
@@ -125,7 +126,17 @@ export default function Dashboard() {
         {playlistData.length ? (
           <h2 className="card-heading">Enrolled Courses</h2>
         ) : (
-          ""
+          <Card
+            title="No Courses Enrolled"
+            bordered={false}
+            style={{ width: 300, height: 350, marginTop: 110 }}
+          >
+            <h5 align="left">
+              You haven't enrolled in any course,
+              <br /> please <Link to="/explore">Search</Link> for a course and
+              enroll in it by clicking the <PlusCircleOutlined /> button.
+            </h5>
+          </Card>
         )}
         {renderedCards}
       </React.Fragment>

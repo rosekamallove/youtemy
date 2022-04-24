@@ -2,11 +2,11 @@ import {
   CaretRightOutlined,
   CopyOutlined,
   PlusCircleOutlined,
-  YoutubeOutlined
+  YoutubeOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card, Popconfirm, Popover } from "antd";
 import "antd/dist/antd.css";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import handleAddToBookamrk from "../../firestore/addBookmarks";
 import handleAddCourse from "../../firestore/addCourse";
@@ -20,8 +20,8 @@ const PlaylistItem = ({ playlistID, playlist }) => {
 
   const yt = "https://youtube.com/playlist?list=" + playlistID;
   return (
-    <Card 
-      style={({ width:50}, { padding: 0 }, { margin: 20 })}
+    <Card
+      style={({ width: 50 }, { padding: 0 }, { margin: 20 })}
       actions={[
         <Popover content="Preview in the Player">
           <Link
