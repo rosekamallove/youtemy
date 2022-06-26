@@ -1,6 +1,5 @@
 import { message } from "antd";
-import { db } from "../firebase";
-import firebase from "firebase";
+import firebase, { db } from "../firebase";
 
 const videos = [];
 const handleUpdateCourse = async (playListId, uid, newVideos) => {
