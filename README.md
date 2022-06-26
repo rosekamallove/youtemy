@@ -147,6 +147,7 @@ Deployment to Firebase is automated and controlled through GitHub Actions.
 │   └── index.js
 └── yarn.lock
 </pre>
+</details>
 
 <!-- Snapshot Block -->
 
