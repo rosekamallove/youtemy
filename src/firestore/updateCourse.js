@@ -1,8 +1,8 @@
 import { message } from "antd";
 import firebase, { db } from "../firebase";
 
-const videos = [];
 const handleUpdateCourse = async (playListId, uid, newVideos) => {
+  const videos = [];
   if (uid === "") {
     message.error("Not Logged In");
     return;

@@ -75,7 +75,7 @@ const RenderWithTracking = ({ playlistID }) => {
     }
   };
 
-  const findVideoAndSetWatched = async (videoId, what) => {
+  const findVideoAndSetWatched = async (videoId, setWatched = false) => {
     db.collection("users")
       .doc(uid)
       .collection("currentlyEnrolled")
@@ -85,10 +85,10 @@ const RenderWithTracking = ({ playlistID }) => {
         data = data.data();
         data.videos.forEach((video) => {
           if (video.videoId === videoId) {
-            if (!what) {
+            if (!setWatched) {
               video.watched = !video.watched;
             } else {
-              video.watched = what;
+              video.watched = setWatched;
             }
             return;
           }
@@ -157,7 +157,7 @@ const RenderWithTracking = ({ playlistID }) => {
             className="menu-checkbox"
             checked={video.watched}
             onChange={() => {
-              findVideoAndSetWatched(video.videoId, undefined);
+              findVideoAndSetWatched(video.videoId);
             }}
           ></Checkbox>
           {video.title}

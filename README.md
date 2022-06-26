@@ -90,6 +90,64 @@ Deployment to Firebase is automated and controlled through GitHub Actions.
     - Delete all Bookmarks
     - Delete all enrolled courses
 
+<details>
+<summary> Folder Strucure</summary>
+
+<pre>
+.
+├── src
+│   ├── App.js
+│   ├── Components
+│   │   ├── Footer
+│   │   │   ├── Footer.css
+│   │   │   └── Footer.js
+│   │   ├── Navbar
+│   │   │   ├── Logo.png
+│   │   │   ├── Navbar.css
+│   │   │   └── Navbar.js
+│   │   └── PrivateRoute.js
+│   ├── Pages
+│   │   ├── BookmarksPage
+│   │   │   ├── BookmarksPage.css
+│   │   │   └── BookmarksPage.js
+│   │   ├── CoursesPage
+│   │   │   ├── CoursesPage.css
+│   │   │   └── CoursesPage.js
+│   │   ├── Dashboard
+│   │   │   ├── Dashboard.css
+│   │   │   └── Dashboard.js
+│   │   ├── ExplorePage
+│   │   │   ├── ExplorePage.css
+│   │   │   ├── ExplorePage.js
+│   │   │   ├── PlaylistItem.js
+│   │   │   ├── PlaylistsList.js
+│   │   │   ├── SearchBar.css
+│   │   │   └── SearchBar.js
+│   │   ├── SettingsPage
+│   │   │   ├── SettingsPage.css
+│   │   │   └── SettingsPage.js
+│   │   └── VideoPlayer
+│   │       ├── RenderWithTracking.js
+│   │       ├── RenderWithoutTracking.js
+│   │       ├── VideoPlayer.css
+│   │       └── VideoPlayer.js
+│   ├── UserContext.js
+│   ├── apis
+│   │   ├── demoObject.json
+│   │   ├── getVideos.js
+│   │   └── youtube.js
+│   ├── css
+│   │   ├── App.css
+│   │   └── index.css
+│   ├── firebase.js
+│   ├── firestore
+│   │   ├── addBookmarks.js
+│   │   ├── addCourse.js
+│   │   └── updateCourse.js
+│   └── index.js
+└── yarn.lock
+</pre>
+
 <!-- Snapshot Block -->
 
 > # 📷 Snapshots of the Hosted Projects
